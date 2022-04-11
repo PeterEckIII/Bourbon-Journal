@@ -12,7 +12,6 @@ import {
   MetaFunction,
   LoaderFunction,
 } from "@remix-run/server-runtime";
-import type {} from "@remix-run/server-runtime";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
