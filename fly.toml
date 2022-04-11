@@ -1,4 +1,4 @@
-app = "bourbon-journal-8ebc"
+app = "bourbon-journal"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
