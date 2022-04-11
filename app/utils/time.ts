@@ -14,7 +14,7 @@ async function time<ReturnType>({
   fn: () => ReturnType | Promise<ReturnType>;
   timings?: Timings;
 }): Promise<ReturnType> {
-  if (!timings) return fn();
+  if (!timings) return await fn();
 
   const start = performance.now();
   const result = await fn();
