@@ -1,0 +1,167 @@
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+const prisma = new PrismaClient();
+
+async function seed() {
+  const email = "rachel@remix.run";
+
+  // cleanup the existing database
+  await prisma.user.delete({ where: { email } }).catch(() => {
+    // no worries if it doesn't exist yet
+  });
+
+  const hashedPassword = await bcrypt.hash("racheliscool", 10);
+
+  const user = await prisma.user.create({
+    data: {
+      email,
+      password: {
+        create: {
+          hash: hashedPassword,
+        },
+      },
+    },
+  });
+
+  const eagleRare = await prisma.bottle.create({
+    data: {
+      name: "Eagle Rare",
+      type: "Bourbon",
+      distiller: "Buffalo Trace",
+      bottler: "Buffalo Trace",
+      producer: "Sazerac",
+      year: "2022",
+      batch: "N/A",
+      country: "USA",
+      region: "Kentucky",
+      price: 34.99,
+      age: "NAS",
+      alcoholPercent: "45%",
+      proof: "90",
+      size: "750ml",
+      color: "amber",
+      finishing: "None",
+    },
+  });
+
+  const staggJr16 = await prisma.bottle.create({
+    data: {
+      name: "Stagg Jr.",
+      type: "Bourbon",
+      distiller: "Buffalo Trace",
+      bottler: "Buffalo Trace",
+      producer: "Sazerac",
+      year: "2021",
+      batch: "16",
+      country: "USA",
+      region: "Kentucky",
+      price: 59.99,
+      age: "NAS",
+      alcoholPercent: "65.45%",
+      proof: "130.9",
+      size: "750ml",
+      color: "mahogany",
+      finishing: "None",
+    },
+  });
+
+  await prisma.review.create({
+    data: {
+      bottleId: eagleRare.id,
+      date: "2022-03-30T19:47:18+00:00",
+      setting: "N/A",
+      glassware: "Glencairn",
+      restTime: "20min",
+      nose: "The nose is straightforward and to the point. The cherry and oak are well-balanced, though the cherry (and a hint of grape) do dominate.",
+      palate:
+        "The palate starts with rich cherry bordering on cherry cough syrup. There is a slight twinge of oak that comes up to meet it, but it is quickly washed away with more cherry, some grape, and light baking spice",
+      finish:
+        "Predictable, medium, more cherry, light bit of leather as it fades out",
+      thoughts:
+        "This bottle is alright at $34.99 or whatever it comes out to nowadays, but nowhere near my favorite sipper. I'll have a bottle around for guests. It also makes a damn good old fashioned.",
+      baked: 1,
+      buttery: 0,
+      chocolate: 1,
+      toffee: 0,
+      rye: 1,
+      corn: 3,
+      wheat: 0,
+      malt: 0,
+      bakingSpice: 3,
+      molasses: 2,
+      nutty: 0,
+      oaky: 2,
+      redFruit: 5,
+      darkFruit: 0,
+      berryFruit: 4,
+      citrusFruit: 0,
+      stoneFruit: 0,
+      driedFruit: 1,
+      earthy: 0,
+      tobacco: 0,
+      leather: 1,
+      floral: 0,
+      herbaceous: 0,
+      overallRating: 6.0,
+      value: 6.5,
+      userId: user.id,
+      imageId: "",
+    },
+  });
+
+  await prisma.review.create({
+    data: {
+      bottleId: staggJr16.id,
+      date: "2022-03-30T19:47:18+00:00",
+      setting: "N/A",
+      glassware: "Glencairn",
+      restTime: "10min",
+      nose: "Rich chocolate and cherry coke take front stage with crashes of proof, oak, and spices.",
+      palate:
+        "Exploding with flavor. This dram is really special. You get more chocolate and well-rounded cherry -- not like an Eagle Rare where it's ALL cherry, this is more like a dark cherry syrup from a jar of cocktail cherries. Mature oak reminds you of the age and the proof is really well balanced. Not nearly drinking at 130+ proof. ",
+      finish:
+        "Long, rich, rewarding. All of the flavor from the palate and nose come back but are joined by leather, tobacco, and deep rich oak.",
+      thoughts:
+        "Absolutely incredible. One of my all-time favorites and if you can find it at retail it's the best buy in bourbon not named BTAC / Pappy.",
+      baked: 2,
+      buttery: 4,
+      chocolate: 5,
+      toffee: 3,
+      rye: 2,
+      corn: 2,
+      wheat: 0,
+      malt: 0,
+      bakingSpice: 4,
+      molasses: 5,
+      nutty: 1,
+      oaky: 4,
+      redFruit: 5,
+      darkFruit: 4,
+      berryFruit: 5,
+      citrusFruit: 0,
+      stoneFruit: 0,
+      driedFruit: 4,
+      earthy: 1,
+      tobacco: 3,
+      leather: 3,
+      floral: 0,
+      herbaceous: 0,
+      overallRating: 9.5,
+      value: 10.0,
+      userId: user.id,
+      imageId: "",
+    },
+  });
+
+  console.log(`Database has been seeded. 🌱`);
+}
+
+seed()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
