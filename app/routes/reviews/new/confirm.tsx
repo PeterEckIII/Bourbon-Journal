@@ -191,7 +191,7 @@ export const action: ActionFunction = async ({ request }) => {
     value,
   });
   if (!newReview) throw new Error(`Error posting review. Please try again`);
-  if (newReview) return redirect(`/reviews/${newReview.id}`);
+  return redirect(`/reviews/${newReview.id}`);
 };
 
 export default function NewConfirmationRoute() {

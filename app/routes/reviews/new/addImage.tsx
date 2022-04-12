@@ -59,8 +59,6 @@ export default function NewAddImageRoute() {
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [confirmed, setConfirmed] = useState<boolean>(false);
 
-  console.log(`PublicID: ${data?.publicId}`);
-
   if (setFormState === undefined) {
     throw new Error(`Error, please return to the bottle info page`);
   }
@@ -73,7 +71,7 @@ export default function NewAddImageRoute() {
     if (data?.imageSrc) {
       setConfirmed(true);
     }
-  }, [data?.publicId, setFormState, state]);
+  }, [data?.publicId, setFormState]);
 
   const handlePreviewImage = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.currentTarget;
@@ -138,7 +136,7 @@ export default function NewAddImageRoute() {
       <div className="my-8 text-right">
         <Link
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-          to={`/reviews/new/setting`}
+          to="/reviews/new/setting"
         >
           {data?.imageSrc ? "Next" : "Skip"}
         </Link>
