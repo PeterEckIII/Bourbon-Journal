@@ -43,7 +43,7 @@ async function transformImage(imageId: string) {
         .url(imageId, {
           secure: true,
           transformation: [
-            { width: 20, height: 500 },
+            { width: 250, height: 500 },
             { format: "auto" },
             { quality: "auto" },
             { crop: "fill" },
