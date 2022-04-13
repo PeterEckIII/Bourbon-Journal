@@ -1,30 +1,34 @@
-import {
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_CLOUD_NAME,
-} from "./cloudinaryConfig";
 import "dotenv/config";
 import { v2 as cloudinary } from "cloudinary";
 import type { Stream } from "stream";
 
 cloudinary.config({
-  cloud_name: CLOUDINARY_CLOUD_NAME,
-  api_key: CLOUDINARY_API_KEY,
-  api_secret: CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+type UploadImageProps = {
+  fileStream: Stream;
+  userId: string;
+  publicId: string;
+};
 
 async function uploadImage(
   fileStream: Stream,
   userId: string,
   publicId: string
 ) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: `${userId}`, public_id: publicId },
+      { folder: `${userId}`, public_id: `${publicId}` },
       (err, result) => {
-        if (err) {
-          reject(err);
-        }
+        if (err) reject(err);
         resolve(result);
       }
     );
