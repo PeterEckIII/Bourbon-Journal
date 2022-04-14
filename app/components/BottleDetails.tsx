@@ -21,8 +21,7 @@ export default function BottleDetails({ bottle }: BottleDetailProps) {
             <span className="font-bold">Price</span>: {bottle.price}
           </div>
           <div className="py-1">
-            <span className="font-bold">Alcohol Percent</span>:{" "}
-            {bottle.alcoholPercent}
+            <span className="font-bold">ABV</span>: {bottle.alcoholPercent}
           </div>
           <div className="py-1">
             <span className="font-bold">Proof</span>: {bottle.proof}pf

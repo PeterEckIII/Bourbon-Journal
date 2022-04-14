@@ -8,6 +8,7 @@ import { useUser } from "~/utils";
 import { getReviewListItems } from "~/models/review.server";
 import Hamburger from "~/components/Hamburger";
 import AddIcon from "~/components/AddIcon";
+import ArrowIcon from "~/components/ArrowIcon";
 
 type LoaderData = {
   reviewListItems: Awaited<ReturnType<typeof getReviewListItems>>;
@@ -30,7 +31,7 @@ export default function ReviewsPage() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Reviews</Link>
+          <Link to=".">Bourbon Journal</Link>
         </h1>
         <p>{user.email}</p>
         <Form action="/logout" method="post">
@@ -43,11 +44,12 @@ export default function ReviewsPage() {
         </Form>
       </header>
 
-      <main className="flex h-full bg-white">
+      <main className="flex h-full bg-white" aria-roledescription="aside">
         {opened ? (
-          <div className={`h-full w-80 border-r bg-gray-50`}>
+          // SIDE NAVBAR
+          <div className="min-h-screen w-80 border-r bg-gray-50 duration-300 ease-in-out">
             <div className="flex justify-between">
-              <Link to="new/bottleInfo" className="p-4 text-xl text-blue-500">
+              <Link to="new/bottleInfo" className="p-4 text-lg text-blue-500">
                 <div>
                   <AddIcon /> New Review
                 </div>
@@ -65,18 +67,7 @@ export default function ReviewsPage() {
                         to={`/reviews/${review.id}`}
                       >
                         {`${review?.bottle?.year} ${review?.bottle?.name}`}{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline h-5 w-5"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                        <ArrowIcon />
                       </Link>
                     </div>
                   );
@@ -89,7 +80,7 @@ export default function ReviewsPage() {
             </div>
           </div>
         ) : (
-          <div className="align-center flex h-full w-10 flex-col border-r bg-gray-50 p-2 pt-4 text-blue-900">
+          <div className="align-center flex min-h-screen w-10 flex-col border-r bg-gray-50 p-2 pt-4 text-blue-900 duration-300 ease-in-out">
             <Hamburger opened={opened} setOpened={toggle} />
           </div>
         )}

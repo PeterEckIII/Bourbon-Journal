@@ -5,20 +5,17 @@ import {
   redirect,
   json,
 } from "@remix-run/server-runtime";
-import {
-  useOutletContext,
-  useActionData,
-  useLoaderData,
-  Form,
-} from "@remix-run/react";
-import TextareaReviewInput from "~/components/TextareaReviewInput";
-import TextReviewInput from "~/components/TextReviewInput";
+import { useActionData, useLoaderData, Form } from "@remix-run/react";
+import EditTextReviewInput from "~/components/EditTextReviewInput";
+import EditTextReviewTextarea from "~/components/EditTextReviewTextarea";
 import { editReview, getReview } from "~/models/review.server";
 import { requireUserId } from "~/session.server";
-import { ContextType } from "../new";
+import { editBottle, getBottle } from "~/models/bottle.server";
+import invariant from "tiny-invariant";
 
 type LoaderData = {
   review: Review;
+  bottle: Bottle;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -28,325 +25,563 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     return redirect("/login");
   }
   const review = await getReview({ id: reviewId, userId });
-  if (!review) {
+  if (!review || review.bottleId === null) {
     throw new Error(`Error -- no review with that ID`);
   }
-  return json<LoaderData>({ review });
+  const bottle = await getBottle(review.bottleId);
+  if (!bottle) {
+    throw new Error(`No bottle associated with that review`);
+  }
+  return json<LoaderData>({ review, bottle });
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const userId = requireUserId(request);
-  const form = await request.formData();
+  const userId = await requireUserId(request);
   if (!userId) {
     return redirect("/login");
   }
-  const entries = form.entries();
-  console.log(`Form Entries: ${JSON.stringify(entries, null, 2)}`);
+  const formData = await request.formData();
+  const name = formData.get("name")?.toString();
+  const type = formData.get("type")?.toString();
+  const distiller = formData.get("distiller")?.toString();
+  const bottler = formData.get("bottler")?.toString();
+  const producer = formData.get("producer")?.toString();
+  const country = formData.get("country")?.toString();
+  const region = formData.get("region")?.toString();
+  const formPrice = formData.get("price")?.toString();
+  const age = formData.get("age")?.toString();
+  const year = formData.get("year")?.toString();
+  const batch = formData.get("batch")?.toString();
+  const alcoholPercent = formData.get("alcoholPercent")?.toString();
+  const proof = formData.get("proof")?.toString();
+  const size = formData.get("size")?.toString();
+  const color = formData.get("color")?.toString();
+  const finishing = formData.get("finishing")?.toString();
+  const imageId = formData.get("imageId")?.toString() as string | null;
+  const date = formData.get("date")?.toString();
+  const setting = formData.get("setting")?.toString();
+  const glassware = formData.get("glassware")?.toString();
+  const restTime = formData.get("restTime")?.toString();
+  const nose = formData.get("nose")?.toString();
+  const palate = formData.get("palate")?.toString();
+  const finish = formData.get("finish")?.toString();
+  const thoughts = formData.get("thoughts")?.toString();
+  const bottleId = formData.get("bottleId")?.toString();
+  const reviewId = formData.get("reviewId")?.toString();
+  const createdAt = formData.get("createdAt")?.toString();
+  const baked = Number(formData.get("baked")?.toString());
+  const buttery = Number(formData.get("buttery")?.toString());
+  const chocolate = Number(formData.get("chocolate")?.toString());
+  const toffee = Number(formData.get("toffee")?.toString());
+  const corn = Number(formData.get("corn")?.toString());
+  const rye = Number(formData.get("rye")?.toString());
+  const wheat = Number(formData.get("wheat")?.toString());
+  const malt = Number(formData.get("malt")?.toString());
+  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const molasses = Number(formData.get("molasses")?.toString());
+  const nutty = Number(formData.get("nutty")?.toString());
+  const oaky = Number(formData.get("oaky")?.toString());
+  const redFruit = Number(formData.get("redFruit")?.toString());
+  const darkFruit = Number(formData.get("darkFruit")?.toString());
+  const berryFruit = Number(formData.get("berryFruit")?.toString());
+  const citrusFruit = Number(formData.get("citrusFruit")?.toString());
+  const stoneFruit = Number(formData.get("stoneFruit")?.toString());
+  const driedFruit = Number(formData.get("driedFruit")?.toString());
+  const earthy = Number(formData.get("earthy")?.toString());
+  const tobacco = Number(formData.get("tobacco")?.toString());
+  const leather = Number(formData.get("leather")?.toString());
+  const floral = Number(formData.get("floral")?.toString());
+  const herbaceous = Number(formData.get("herbaceous")?.toString());
+  const overallRating = Number(formData.get("overallRating")?.toString());
+  const value = Number(formData.get("value")?.toString());
+  invariant(name, `Name is required`);
+  invariant(type, `Type is required`);
+  invariant(distiller, `Distiller is required`);
+  invariant(bottler, `Bottler is required`);
+  invariant(producer, `Producer is required`);
+  invariant(country, `Country is required`);
+  invariant(region, `Region is required`);
+  invariant(formPrice, `Price is required`);
+  invariant(age, `Age is required`);
+  invariant(year, `Year is required`);
+  invariant(batch, `Batch is required`);
+  invariant(alcoholPercent, `Alcohol Percent is required`);
+  invariant(proof, `Proof is required`);
+  invariant(size, `Size is required`);
+  invariant(color, `Color is required`);
+  invariant(finishing, `Finishing is required`);
+  invariant(date, `Date is required`);
+  invariant(setting, `Setting is required`);
+  invariant(glassware, `Glassware is required`);
+  invariant(restTime, `Rest Time is required`);
+  invariant(nose, `Nose is required`);
+  invariant(palate, `Palate is required`);
+  invariant(finish, `Finish is required`);
+  invariant(thoughts, `Thoughts is required`);
+  invariant(createdAt, `CreatedAt is required`);
+  invariant(imageId, `ImageId is required`);
+  invariant(bottleId, "No bottle with id {null}");
+  invariant(reviewId, "No review with id {null}");
 
-  return json({ entries });
+  if (
+    typeof baked !== "number" ||
+    typeof buttery !== "number" ||
+    typeof chocolate !== "number" ||
+    typeof toffee !== "number" ||
+    typeof corn !== "number" ||
+    typeof rye !== "number" ||
+    typeof wheat !== "number" ||
+    typeof malt !== "number" ||
+    typeof bakingSpice !== "number" ||
+    typeof molasses !== "number" ||
+    typeof nutty !== "number" ||
+    typeof oaky !== "number" ||
+    typeof redFruit !== "number" ||
+    typeof darkFruit !== "number" ||
+    typeof berryFruit !== "number" ||
+    typeof citrusFruit !== "number" ||
+    typeof stoneFruit !== "number" ||
+    typeof driedFruit !== "number" ||
+    typeof earthy !== "number" ||
+    typeof tobacco !== "number" ||
+    typeof leather !== "number" ||
+    typeof floral !== "number" ||
+    typeof herbaceous !== "number" ||
+    typeof overallRating !== "number" ||
+    typeof value !== "number"
+  ) {
+    return json(
+      { errors: { message: "One of the values was not a number" } },
+      { status: 400 }
+    );
+  }
+
+  const price = parseFloat(formPrice);
+
+  const today = new Date();
+  const createdDate = new Date(createdAt);
+
+  const newReview = await editReview(
+    {
+      date,
+      setting,
+      glassware,
+      restTime,
+      nose,
+      palate,
+      finish,
+      thoughts,
+      baked,
+      buttery,
+      chocolate,
+      toffee,
+      corn,
+      rye,
+      wheat,
+      malt,
+      bakingSpice,
+      molasses,
+      nutty,
+      oaky,
+      redFruit,
+      darkFruit,
+      berryFruit,
+      citrusFruit,
+      stoneFruit,
+      driedFruit,
+      earthy,
+      tobacco,
+      leather,
+      floral,
+      herbaceous,
+      overallRating,
+      value,
+      userId,
+      bottleId,
+      imageId,
+      id: reviewId,
+      createdAt: createdDate,
+      updatedAt: today,
+    },
+    userId
+  );
+  const newBottle = await editBottle({
+    id: bottleId,
+    name,
+    type,
+    distiller,
+    bottler,
+    producer,
+    country,
+    region,
+    age,
+    year,
+    batch,
+    alcoholPercent,
+    proof,
+    price,
+    size,
+    color,
+    finishing,
+  });
+  if (!newBottle || !newReview) {
+    return new Error(`ERROR UPDATING REVIEW`);
+  }
+  return redirect(`/reviews/${newReview.id}`);
 };
 
 export default function EditReviewRoute() {
   const actionData = useActionData();
+  if (!actionData) console.log(`ERROR: NO ACTION DATA!`);
+  console.log(`Action Data: ${JSON.stringify(actionData, null, 2)}`);
   const data = useLoaderData<LoaderData>();
   if (!data || data === undefined) {
     throw new Error(`Error! No data for this review ID`);
   }
+  if (!data?.bottle) {
+    throw new Error(`Error getting bottle`);
+  }
 
-  const { stateSetter } = useOutletContext<ContextType>();
-  if (!stateSetter) throw new Error(`Error!`);
   return (
     <div className="flex">
       <Form method="post">
-        <TextReviewInput
+        <EditTextReviewInput
           name="name"
           type="text"
           labelName="Name"
-          changeHandler={(e) => stateSetter(e)}
+          defaultValue={data ? data?.bottle.name : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Type"
           name="type"
+          defaultValue={data ? data?.bottle.type : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Distiller"
           name="distiller"
+          defaultValue={data?.bottle.distiller}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Bottler"
           name="bottler"
+          defaultValue={data ? data?.bottle.bottler : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Producer"
           name="producer"
+          defaultValue={data ? data?.bottle.producer : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Country of Origin"
           name="country"
+          defaultValue={data ? data?.bottle.country : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Region"
           name="region"
+          defaultValue={data ? data?.bottle.bottler : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Price"
           name="price"
+          defaultValue={data ? data?.bottle.price : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Age"
           name="age"
+          defaultValue={data ? data?.bottle.age : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Year"
           name="year"
+          defaultValue={data ? data?.bottle.year : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Batch / Barrel"
           name="batch"
+          defaultValue={data ? data?.bottle.batch : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
-          labelName="Alcohol Percent"
+          labelName="ABV"
           name="alcoholPercent"
+          defaultValue={data ? data?.bottle.alcoholPercent : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Proof"
           name="proof"
+          defaultValue={data ? data?.bottle.proof : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Size"
           name="size"
+          defaultValue={data ? data?.bottle.size : ""}
         />
-        <TextReviewInput
-          changeHandler={(e) => stateSetter(e)}
+        <EditTextReviewInput
           type="text"
           labelName="Color"
-          name="Finishing"
+          name="color"
+          defaultValue={data ? data?.bottle.color : ""}
         />
-        <TextReviewInput
+        <EditTextReviewInput
+          type="text"
+          labelName="Finishing"
+          name="finishing"
+          defaultValue={data ? data?.bottle.finishing : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="bottleId"
+          defaultValue={data ? data?.review.bottleId : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="bottleId"
+          defaultValue={data ? data?.review.bottleId : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="reviewId"
+          defaultValue={data ? data?.review.id : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="createdAt"
+          defaultValue={data ? data?.review.createdAt.toString() : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="updatedAt"
+          defaultValue={data ? data?.review.updatedAt.toString() : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="bottleId"
+          defaultValue={data ? data?.review.bottleId : ""}
+        />
+        <EditTextReviewInput
+          type="hidden"
+          labelName=""
+          name="imageId"
+          defaultValue={data ? data?.review.imageId : ""}
+        />
+        <EditTextReviewInput
           labelName="Date"
           name="date"
-          changeHandler={(e) => stateSetter(e)}
           type="text"
+          defaultValue={data ? data?.review.date : ""}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           labelName="Setting"
           name="setting"
-          changeHandler={(e) => stateSetter(e)}
           type="text"
+          defaultValue={data ? data?.review.setting : ""}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           labelName="Glassware"
           name="glassware"
-          changeHandler={(e) => stateSetter(e)}
           type="text"
+          defaultValue={data ? data?.review.glassware : ""}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           labelName="Rest Time"
           name="restTime"
-          changeHandler={(e) => stateSetter(e)}
           type="text"
+          defaultValue={data ? data?.review.restTime : ""}
         />
-        <TextareaReviewInput
+        <EditTextReviewTextarea
           name="nose"
           labelName="Nose"
-          changeHandler={(e) => stateSetter(e)}
+          defaultValue={data ? data?.review.nose : ""}
         />
-        <TextareaReviewInput
+        <EditTextReviewTextarea
           name="palate"
           labelName="Palate"
-          changeHandler={(e) => stateSetter(e)}
+          defaultValue={data ? data?.review.palate : ""}
         />
-        <TextareaReviewInput
+        <EditTextReviewTextarea
           name="finish"
           labelName="Finish"
-          changeHandler={(e) => stateSetter(e)}
+          defaultValue={data ? data?.review.finish : ""}
         />
-        <TextareaReviewInput
+        <EditTextReviewTextarea
           name="thoughts"
           labelName="Additional Thoughts"
-          changeHandler={(e) => stateSetter(e)}
+          defaultValue={data ? data?.review.thoughts : ""}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="baked"
           labelName="Baked"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.baked : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="buttery"
           labelName="Buttery"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.buttery : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="chocolate"
           labelName="Chocolate"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.chocolate : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="toffee"
           labelName="Toffee"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.toffee : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="corn"
           labelName="Corn"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.corn : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="rye"
           labelName="Rye"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.rye : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="wheat"
           labelName="Wheat"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.wheat : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="malt"
           labelName="Malt"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.malt : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="bakingSpice"
           labelName="Baking Spice"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.bakingSpice : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="molasses"
           labelName="Molasses"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.molasses : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
+          type="number"
           name="nutty"
           labelName="Nutty"
-          changeHandler={(e) => stateSetter(e)}
-          type="number"
+          defaultValue={data ? data?.review.nutty : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="oaky"
           labelName="Oaky"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.oaky : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="redFruit"
           labelName="redFruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.redFruit : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="darkFruit"
           labelName="Dark Fruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.darkFruit : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="berryFruit"
           labelName="Berry Fruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.berryFruit : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="citrusFruit"
           labelName="Citrus Fruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.citrusFruit : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="stoneFruit"
           labelName="Stone Fruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.stoneFruit : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="driedFruit"
           labelName="Dried Fruit"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.driedFruit : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="earthy"
           labelName="Earthy"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.earthy : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="tobacco"
           labelName="Tobacco"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.tobacco : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="leather"
           labelName="Leather"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.leather : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="floral"
           labelName="Floral"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.floral : 0}
         />
 
-        <TextReviewInput
+        <EditTextReviewInput
           name="herbaceous"
           labelName="Herbaceous"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.herbaceous : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="value"
           labelName="Value for Money"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.value : 0}
         />
-        <TextReviewInput
+        <EditTextReviewInput
           name="overallRating"
           labelName="Overall Rating"
-          changeHandler={(e) => stateSetter(e)}
           type="number"
+          defaultValue={data ? data?.review.overallRating : 0}
         />
         <div className="text-right">
           <button

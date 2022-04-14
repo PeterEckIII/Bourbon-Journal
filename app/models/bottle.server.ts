@@ -1,4 +1,4 @@
-import { Bottle } from "@prisma/client";
+import { Bottle, User } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 
@@ -53,6 +53,17 @@ export const createBottle = async ({
       size,
       color,
       finishing,
+    },
+  });
+};
+
+export const editBottle = async (bottle: Bottle) => {
+  return await prisma.bottle.update({
+    where: {
+      id: bottle.id,
+    },
+    data: {
+      ...bottle,
     },
   });
 };
