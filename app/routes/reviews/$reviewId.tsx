@@ -96,18 +96,12 @@ export default function ReviewDetailsPage() {
       </div>
       <div className="my-2 flex justify-evenly py-2">
         <BottleDetails bottle={bottle} />
-        <div>
+        <div className="align-center flex flex-col justify-center">
           <img src={data?.imageUrl} alt={`Picture of ${bottle.name}`} />
         </div>
       </div>
       <SettingDetails bottle={bottle} review={review} />
-      {/* 
-      <div>
-        <BottleDetails bottle={bottle} />
-      </div>
-      <div>
-      </div>
-      <hr className="my-4" />
+
       <div className="flex justify-end">
         <div className="m-1 inline text-right">
           <button
@@ -126,7 +120,7 @@ export default function ReviewDetailsPage() {
             <DeleteIcon /> Delete
           </button>
         </Form>
-      </div> */}
+      </div>
     </div>
   );
 }
