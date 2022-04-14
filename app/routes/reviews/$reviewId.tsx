@@ -23,6 +23,7 @@ import SettingDetails from "~/components/SettingDetails";
 import DeleteIcon from "~/components/DeleteIcon";
 import EditIcon from "~/components/EditIcon";
 import { transformImage } from "~/utils/cloudinary.server";
+import ReviewPage from "~/components/ReviewPage";
 
 type LoaderData = {
   review: Review;
@@ -88,39 +89,12 @@ export default function ReviewDetailsPage() {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">
-        {bottle.name} {bottle.batch?.startsWith("N") ? null : bottle.batch}
-      </h3>
-      <div className="flex pl-2">
-        <p className="py-4">{reviewDate}</p>
-      </div>
-      <div className="my-2 flex justify-evenly py-2">
-        <BottleDetails bottle={bottle} />
-        <div className="align-center flex flex-col justify-center">
-          <img src={data?.imageUrl} alt={`Picture of ${bottle.name}`} />
-        </div>
-      </div>
-      <SettingDetails bottle={bottle} review={review} />
-
-      <div className="flex justify-end">
-        <div className="m-1 inline text-right">
-          <button
-            onClick={handleEditClick}
-            className="my-4 rounded bg-blue-500 py-2 px-6 text-white hover:bg-blue-700 focus:bg-blue-400"
-          >
-            <EditIcon /> Edit
-          </button>
-        </div>
-        <Form method="post" className="m-1 inline text-right">
-          <input type="hidden" name="_deleted" value="_deleted" />
-          <button
-            type="submit"
-            className="my-4 rounded bg-red-500 py-2 px-4 text-white hover:bg-red-700 focus:bg-red-400"
-          >
-            <DeleteIcon /> Delete
-          </button>
-        </Form>
-      </div>
+      <ReviewPage
+        bottle={bottle}
+        review={review}
+        imageUrl={data?.imageUrl || ""}
+        handleEditClick={handleEditClick}
+      />
     </div>
   );
 }

@@ -31,24 +31,6 @@ export default function SettingDetails({
           <span className="font-bold">Setting</span>: {review.setting}
         </div>
       </div>
-      <div>
-        <div className="my-3 rounded border-2 py-3 pl-2">
-          <span className="font-bold underline">Nose</span>:
-          <div>{review.nose}</div>
-        </div>
-        <div className="my-3 rounded border-2 py-3 pl-2">
-          <span className="font-bold underline">Palate</span>:{" "}
-          <div>{review.palate}</div>
-        </div>
-        <div className="my-3 rounded border-2 py-3 pl-2">
-          <span className="font-bold underline">Finish</span>:{" "}
-          <div>{review.finish}</div>
-        </div>
-        <div className="my-3 rounded border-2 py-3 pl-2">
-          <span className="font-bold underline">Final Thoughts</span>:{" "}
-          <div>{review.thoughts}</div>
-        </div>
-      </div>
     </div>
   );
 }
