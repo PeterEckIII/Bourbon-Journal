@@ -43,37 +43,55 @@ export default function ReviewPage({
         <div className="flex w-2/3">
           <NotesDetails
             fruit={{
-              redFruit: review.redFruit,
-              berryFruit: review.berryFruit,
-              darkFruit: review.darkFruit,
-              citrusFruit: review.citrusFruit,
-              stoneFruit: review.stoneFruit,
-              driedFruit: review.driedFruit,
+              cherry: review.cherry,
+              strawberry: review.strawberry,
+              raspberry: review.raspberry,
+              blackberry: review.blackberry,
+              blueberry: review.blueberry,
+              apple: review.apple,
+              banana: review.banana,
+              grape: review.grape,
+              stone: review.stone,
+              citrus: review.citrus,
+              tropical: review.tropical,
             }}
             spice={{
+              pepper: review.pepper,
+              bakingSpice: review.bakingSpice,
+              cinnamon: review.cinnamon,
+              herbal: review.herbal,
+              mint: review.mint,
+            }}
+            earthy={{
+              coffee: review.coffee,
+              tobacco: review.tobacco,
+              leather: review.leather,
+              oak: review.oak,
+              toasted: review.toasted,
+              smokey: review.smokey,
+              peanut: review.peanut,
+              almond: review.almond,
+              pecan: review.pecan,
+              walnut: review.walnut,
+              oily: review.oily,
+              floral: review.floral,
+            }}
+            grain={{
               corn: review.corn,
               rye: review.rye,
               wheat: review.wheat,
               malt: review.malt,
-              bakingSpice: review.bakingSpice,
-            }}
-            earthy={{
-              oak: review.oaky,
-              earthy: review.earthy,
-              nutty: review.nutty,
-              floral: review.floral,
-              herbaceous: review.herbaceous,
+              dough: review.dough,
             }}
             sweet={{
+              vanilla: review.vanilla,
+              caramel: review.caramel,
+              molasses: review.molasses,
+              butterscotch: review.butterscotch,
+              honey: review.honey,
               chocolate: review.chocolate,
               toffee: review.toffee,
-              molasses: review.molasses,
-            }}
-            other={{
-              baked: review.baked,
-              buttery: review.buttery,
-              tobacco: review.tobacco,
-              leather: review.leather,
+              sugar: review.sugar,
             }}
             rating={{
               value: review.value,

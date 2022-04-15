@@ -28,30 +28,47 @@ export type FormState = {
   palate: string;
   finish: string;
   thoughts: string;
-
-  baked: number;
-  buttery: number;
-  chocolate: number;
-  toffee: number;
+  cherry: number;
+  strawberry: number;
+  raspberry: number;
+  blackberry: number;
+  blueberry: number;
+  apple: number;
+  banana: number;
+  grape: number;
+  stone: number;
+  citrus: number;
+  tropical: number;
+  pepper: number;
+  bakingSpice: number;
+  cinnamon: number;
+  herbal: number;
+  mint: number;
+  coffee: number;
+  tobacco: number;
+  leather: number;
+  oak: number;
+  toasted: number;
+  smokey: number;
+  peanut: number;
+  almond: number;
+  pecan: number;
+  walnut: number;
+  oily: number;
+  floral: number;
   corn: number;
   rye: number;
   wheat: number;
   malt: number;
-  bakingSpice: number;
+  dough: number;
+  vanilla: number;
+  caramel: number;
   molasses: number;
-  nutty: number;
-  oaky: number;
-  redFruit: number;
-  darkFruit: number;
-  berryFruit: number;
-  citrusFruit: number;
-  stoneFruit: number;
-  driedFruit: number;
-  earthy: number;
-  tobacco: number;
-  leather: number;
-  floral: number;
-  herbaceous: number;
+  butterscotch: number;
+  honey: number;
+  chocolate: number;
+  toffee: number;
+  sugar: number;
   overallRating: number;
   value: number;
 };
@@ -91,30 +108,47 @@ const initialState: FormState = {
   palate: "",
   finish: "",
   thoughts: "",
-
-  baked: 0,
-  buttery: 0,
-  chocolate: 0,
-  toffee: 0,
+  cherry: 0,
+  strawberry: 0,
+  raspberry: 0,
+  blackberry: 0,
+  blueberry: 0,
+  apple: 0,
+  banana: 0,
+  grape: 0,
+  stone: 0,
+  citrus: 0,
+  tropical: 0,
+  pepper: 0,
+  bakingSpice: 0,
+  cinnamon: 0,
+  herbal: 0,
+  mint: 0,
+  coffee: 0,
+  tobacco: 0,
+  leather: 0,
+  oak: 0,
+  toasted: 0,
+  smokey: 0,
+  peanut: 0,
+  almond: 0,
+  pecan: 0,
+  walnut: 0,
+  oily: 0,
+  floral: 0,
   corn: 0,
   rye: 0,
   wheat: 0,
   malt: 0,
-  bakingSpice: 0,
+  dough: 0,
+  vanilla: 0,
+  caramel: 0,
   molasses: 0,
-  nutty: 0,
-  oaky: 0,
-  redFruit: 0,
-  darkFruit: 0,
-  berryFruit: 0,
-  citrusFruit: 0,
-  stoneFruit: 0,
-  driedFruit: 0,
-  earthy: 0,
-  tobacco: 0,
-  leather: 0,
-  floral: 0,
-  herbaceous: 0,
+  butterscotch: 0,
+  honey: 0,
+  chocolate: 0,
+  toffee: 0,
+  sugar: 0,
   overallRating: 0,
   value: 0,
 };

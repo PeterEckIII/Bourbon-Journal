@@ -69,29 +69,57 @@ export const action: ActionFunction = async ({ request, params }) => {
   const bottleId = formData.get("bottleId")?.toString();
   const reviewId = formData.get("reviewId")?.toString();
   const createdAt = formData.get("createdAt")?.toString();
-  const baked = Number(formData.get("baked")?.toString());
-  const buttery = Number(formData.get("buttery")?.toString());
-  const chocolate = Number(formData.get("chocolate")?.toString());
-  const toffee = Number(formData.get("toffee")?.toString());
+
+  // SPICE
+  const pepper = Number(formData.get("pepper")?.toString());
+  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const cinnamon = Number(formData.get("cinnamon")?.toString());
+  const herbal = Number(formData.get("herbal")?.toString());
+  const mint = Number(formData.get("mint")?.toString());
+
+  // FRUIT
+  const cherry = Number(formData.get("cherry")?.toString());
+  const strawberry = Number(formData.get("strawberry")?.toString());
+  const raspberry = Number(formData.get("raspberry")?.toString());
+  const blackberry = Number(formData.get("blackberry")?.toString());
+  const blueberry = Number(formData.get("blueberry")?.toString());
+  const apple = Number(formData.get("apple")?.toString());
+  const banana = Number(formData.get("banana")?.toString());
+  const grape = Number(formData.get("grape")?.toString());
+  const stone = Number(formData.get("stone")?.toString());
+  const citrus = Number(formData.get("citrus")?.toString());
+  const tropical = Number(formData.get("tropical")?.toString());
+
+  // EARTHY
+  const coffee = Number(formData.get("coffee")?.toString());
+  const tobacco = Number(formData.get("tobacco")?.toString());
+  const leather = Number(formData.get("leather")?.toString());
+  const oak = Number(formData.get("oak")?.toString());
+  const toasted = Number(formData.get("toasted")?.toString());
+  const smokey = Number(formData.get("smokey")?.toString());
+  const peanut = Number(formData.get("peanut")?.toString());
+  const almond = Number(formData.get("almond")?.toString());
+  const pecan = Number(formData.get("pecan")?.toString());
+  const walnut = Number(formData.get("walnut")?.toString());
+  const oily = Number(formData.get("oily")?.toString());
+  const floral = Number(formData.get("floral")?.toString());
+
+  // GRAIN
   const corn = Number(formData.get("corn")?.toString());
   const rye = Number(formData.get("rye")?.toString());
   const wheat = Number(formData.get("wheat")?.toString());
   const malt = Number(formData.get("malt")?.toString());
-  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const dough = Number(formData.get("dough")?.toString());
+
+  const vanilla = Number(formData.get("vanilla")?.toString());
+  const caramel = Number(formData.get("caramel")?.toString());
   const molasses = Number(formData.get("molasses")?.toString());
-  const nutty = Number(formData.get("nutty")?.toString());
-  const oaky = Number(formData.get("oaky")?.toString());
-  const redFruit = Number(formData.get("redFruit")?.toString());
-  const darkFruit = Number(formData.get("darkFruit")?.toString());
-  const berryFruit = Number(formData.get("berryFruit")?.toString());
-  const citrusFruit = Number(formData.get("citrusFruit")?.toString());
-  const stoneFruit = Number(formData.get("stoneFruit")?.toString());
-  const driedFruit = Number(formData.get("driedFruit")?.toString());
-  const earthy = Number(formData.get("earthy")?.toString());
-  const tobacco = Number(formData.get("tobacco")?.toString());
-  const leather = Number(formData.get("leather")?.toString());
-  const floral = Number(formData.get("floral")?.toString());
-  const herbaceous = Number(formData.get("herbaceous")?.toString());
+  const butterscotch = Number(formData.get("butterscotch")?.toString());
+  const honey = Number(formData.get("honey")?.toString());
+  const chocolate = Number(formData.get("chocolate")?.toString());
+  const toffee = Number(formData.get("toffee")?.toString());
+  const sugar = Number(formData.get("sugar")?.toString());
+
   const overallRating = Number(formData.get("overallRating")?.toString());
   const value = Number(formData.get("value")?.toString());
   invariant(name, `Name is required`);
@@ -124,31 +152,50 @@ export const action: ActionFunction = async ({ request, params }) => {
   invariant(reviewId, "No review with id {null}");
 
   if (
-    typeof baked !== "number" ||
-    typeof buttery !== "number" ||
-    typeof chocolate !== "number" ||
-    typeof toffee !== "number" ||
+    typeof pepper !== "number" ||
+    typeof bakingSpice !== "number" ||
+    typeof cinnamon !== "number" ||
+    typeof herbal !== "number" ||
+    typeof mint !== "number" ||
+    typeof cherry !== "number" ||
+    typeof strawberry !== "number" ||
+    typeof raspberry !== "number" ||
+    typeof blackberry !== "number" ||
+    typeof blueberry !== "number" ||
+    typeof apple !== "number" ||
+    typeof banana !== "number" ||
+    typeof grape !== "number" ||
+    typeof stone !== "number" ||
+    typeof citrus !== "number" ||
+    typeof tropical !== "number" ||
+    typeof coffee !== "number" ||
+    typeof tobacco !== "number" ||
+    typeof leather !== "number" ||
+    typeof oak !== "number" ||
+    typeof toasted !== "number" ||
+    typeof smokey !== "number" ||
+    typeof peanut !== "number" ||
+    typeof almond !== "number" ||
+    typeof pecan !== "number" ||
+    typeof walnut !== "number" ||
+    typeof oily !== "number" ||
+    typeof floral !== "number" ||
+    typeof peanut !== "number" ||
     typeof corn !== "number" ||
     typeof rye !== "number" ||
     typeof wheat !== "number" ||
     typeof malt !== "number" ||
-    typeof bakingSpice !== "number" ||
+    typeof dough !== "number" ||
+    typeof vanilla !== "number" ||
+    typeof caramel !== "number" ||
     typeof molasses !== "number" ||
-    typeof nutty !== "number" ||
-    typeof oaky !== "number" ||
-    typeof redFruit !== "number" ||
-    typeof darkFruit !== "number" ||
-    typeof berryFruit !== "number" ||
-    typeof citrusFruit !== "number" ||
-    typeof stoneFruit !== "number" ||
-    typeof driedFruit !== "number" ||
-    typeof earthy !== "number" ||
-    typeof tobacco !== "number" ||
-    typeof leather !== "number" ||
-    typeof floral !== "number" ||
-    typeof herbaceous !== "number" ||
-    typeof overallRating !== "number" ||
-    typeof value !== "number"
+    typeof butterscotch !== "number" ||
+    typeof honey !== "number" ||
+    typeof chocolate !== "number" ||
+    typeof toffee !== "number" ||
+    typeof sugar !== "number" ||
+    typeof value !== "number" ||
+    typeof overallRating !== "number"
   ) {
     return json(
       { errors: { message: "One of the values was not a number" } },
@@ -171,29 +218,47 @@ export const action: ActionFunction = async ({ request, params }) => {
       palate,
       finish,
       thoughts,
-      baked,
-      buttery,
-      chocolate,
-      toffee,
+      cherry,
+      strawberry,
+      raspberry,
+      blackberry,
+      blueberry,
+      apple,
+      banana,
+      grape,
+      stone,
+      citrus,
+      tropical,
+      pepper,
+      bakingSpice,
+      cinnamon,
+      herbal,
+      mint,
+      coffee,
+      tobacco,
+      leather,
+      oak,
+      toasted,
+      smokey,
+      peanut,
+      almond,
+      pecan,
+      walnut,
+      oily,
+      floral,
       corn,
       rye,
       wheat,
       malt,
-      bakingSpice,
+      dough,
+      vanilla,
+      caramel,
       molasses,
-      nutty,
-      oaky,
-      redFruit,
-      darkFruit,
-      berryFruit,
-      citrusFruit,
-      stoneFruit,
-      driedFruit,
-      earthy,
-      tobacco,
-      leather,
-      floral,
-      herbaceous,
+      butterscotch,
+      honey,
+      chocolate,
+      toffee,
+      sugar,
       overallRating,
       value,
       userId,
@@ -427,161 +492,274 @@ export default function EditReviewRoute() {
           labelName="Additional Thoughts"
           defaultValue={data ? data?.review.thoughts : ""}
         />
+        {/* NOTES */}
         <EditTextReviewInput
-          name="baked"
-          labelName="Baked"
+          name="pepper"
+          labelName="Black Pepper"
+          defaultValue={data ? data?.review.pepper : 0}
           type="number"
-          defaultValue={data ? data?.review.baked : 0}
         />
         <EditTextReviewInput
-          name="buttery"
-          labelName="Buttery"
+          name="cinnamon"
+          labelName="Cinnamon"
+          defaultValue={data ? data?.review.cinnamon : 0}
           type="number"
-          defaultValue={data ? data?.review.buttery : 0}
-        />
-        <EditTextReviewInput
-          name="chocolate"
-          labelName="Chocolate"
-          type="number"
-          defaultValue={data ? data?.review.chocolate : 0}
-        />
-        <EditTextReviewInput
-          name="toffee"
-          labelName="Toffee"
-          type="number"
-          defaultValue={data ? data?.review.toffee : 0}
-        />
-        <EditTextReviewInput
-          name="corn"
-          labelName="Corn"
-          type="number"
-          defaultValue={data ? data?.review.corn : 0}
-        />
-        <EditTextReviewInput
-          name="rye"
-          labelName="Rye"
-          type="number"
-          defaultValue={data ? data?.review.rye : 0}
-        />
-        <EditTextReviewInput
-          name="wheat"
-          labelName="Wheat"
-          type="number"
-          defaultValue={data ? data?.review.wheat : 0}
-        />
-        <EditTextReviewInput
-          name="malt"
-          labelName="Malt"
-          type="number"
-          defaultValue={data ? data?.review.malt : 0}
         />
         <EditTextReviewInput
           name="bakingSpice"
           labelName="Baking Spice"
-          type="number"
           defaultValue={data ? data?.review.bakingSpice : 0}
-        />
-        <EditTextReviewInput
-          name="molasses"
-          labelName="Molasses"
           type="number"
-          defaultValue={data ? data?.review.molasses : 0}
         />
         <EditTextReviewInput
+          name="herbal"
+          labelName="Herbal"
+          defaultValue={data ? data?.review.herbal : 0}
           type="number"
-          name="nutty"
-          labelName="Nutty"
-          defaultValue={data ? data?.review.nutty : 0}
         />
         <EditTextReviewInput
-          name="oaky"
-          labelName="Oaky"
+          name="mint"
+          labelName="Mint"
+          defaultValue={data ? data?.review.mint : 0}
           type="number"
-          defaultValue={data ? data?.review.oaky : 0}
         />
         <EditTextReviewInput
-          name="redFruit"
-          labelName="redFruit"
+          name="cherry"
+          labelName="Cherry"
+          defaultValue={data ? data?.review.cherry : 0}
           type="number"
-          defaultValue={data ? data?.review.redFruit : 0}
         />
         <EditTextReviewInput
-          name="darkFruit"
-          labelName="Dark Fruit"
+          name="strawberry"
+          labelName="Strawberry"
+          defaultValue={data ? data?.review.strawberry : 0}
           type="number"
-          defaultValue={data ? data?.review.darkFruit : 0}
         />
         <EditTextReviewInput
-          name="berryFruit"
-          labelName="Berry Fruit"
+          name="raspberry"
+          labelName="Raspberry"
+          defaultValue={data ? data?.review.raspberry : 0}
           type="number"
-          defaultValue={data ? data?.review.berryFruit : 0}
         />
         <EditTextReviewInput
-          name="citrusFruit"
-          labelName="Citrus Fruit"
+          name="blackberry"
+          labelName="Blackberry"
+          defaultValue={data ? data?.review.blackberry : 0}
           type="number"
-          defaultValue={data ? data?.review.citrusFruit : 0}
         />
         <EditTextReviewInput
-          name="stoneFruit"
+          name="blueberry"
+          labelName="Blueberry"
+          defaultValue={data ? data?.review.blueberry : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="apple"
+          labelName="Apple"
+          defaultValue={data ? data?.review.apple : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="banana"
+          labelName="Banana"
+          defaultValue={data ? data?.review.banana : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="grape"
+          labelName="Grape"
+          defaultValue={data ? data?.review.grape : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="stone"
           labelName="Stone Fruit"
+          defaultValue={data ? data?.review.stone : 0}
           type="number"
-          defaultValue={data ? data?.review.stoneFruit : 0}
         />
-
         <EditTextReviewInput
-          name="driedFruit"
-          labelName="Dried Fruit"
+          name="citrus"
+          labelName="Citrus"
+          defaultValue={data ? data?.review.citrus : 0}
           type="number"
-          defaultValue={data ? data?.review.driedFruit : 0}
         />
-
         <EditTextReviewInput
-          name="earthy"
-          labelName="Earthy"
+          name="tropical"
+          labelName="Tropical"
+          defaultValue={data ? data?.review.tropical : 0}
           type="number"
-          defaultValue={data ? data?.review.earthy : 0}
         />
-
+        {/* EARTHY */}
+        <EditTextReviewInput
+          name="coffee"
+          labelName="Coffee"
+          defaultValue={data ? data?.review.coffee : 0}
+          type="number"
+        />
         <EditTextReviewInput
           name="tobacco"
-          labelName="Tobacco"
-          type="number"
+          labelName="Tobacco Leaf"
           defaultValue={data ? data?.review.tobacco : 0}
+          type="number"
         />
-
         <EditTextReviewInput
           name="leather"
           labelName="Leather"
-          type="number"
           defaultValue={data ? data?.review.leather : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="oak"
+          labelName="Oak"
+          defaultValue={data ? data?.review.oak : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="toasted"
+          labelName="Toasted"
+          defaultValue={data ? data?.review.toasted : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="smokey"
+          labelName="Smokey"
+          defaultValue={data ? data?.review.smokey : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="peanut"
+          labelName="Peanut"
+          defaultValue={data ? data?.review.peanut : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="almond"
+          labelName="Almond"
+          defaultValue={data ? data?.review.almond : 0}
+          type="number"
         />
 
+        <EditTextReviewInput
+          name="pecan"
+          labelName="Pecan"
+          defaultValue={data ? data?.review.pecan : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="walnut"
+          labelName="Walnut"
+          defaultValue={data ? data?.review.walnut : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="oily"
+          labelName="Oily"
+          defaultValue={data ? data?.review.oily : 0}
+          type="number"
+        />
         <EditTextReviewInput
           name="floral"
           labelName="Floral"
-          type="number"
           defaultValue={data ? data?.review.floral : 0}
+          type="number"
+        />
+        {/* GRAINS */}
+        <EditTextReviewInput
+          name="corn"
+          labelName="Corn"
+          defaultValue={data ? data?.review.corn : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="rye"
+          labelName="Rye"
+          defaultValue={data ? data?.review.rye : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="wheat"
+          labelName="Wheat"
+          defaultValue={data ? data?.review.wheat : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="malt"
+          labelName="Malt"
+          defaultValue={data ? data?.review.malt : 0}
+          type="number"
         />
 
         <EditTextReviewInput
-          name="herbaceous"
-          labelName="Herbaceous"
+          name="dough"
+          labelName="Bread / Dough"
+          defaultValue={data ? data?.review.dough : 0}
           type="number"
-          defaultValue={data ? data?.review.herbaceous : 0}
+        />
+
+        <EditTextReviewInput
+          name="vanilla"
+          labelName="Vanilla"
+          defaultValue={data ? data?.review.vanilla : 0}
+          type="number"
+        />
+
+        <EditTextReviewInput
+          name="caramel"
+          labelName="Caramel"
+          defaultValue={data ? data?.review.caramel : 0}
+          type="number"
+        />
+
+        <EditTextReviewInput
+          name="molasses"
+          labelName="Molasses"
+          defaultValue={data ? data?.review.molasses : 0}
+          type="number"
+        />
+
+        <EditTextReviewInput
+          name="butterscotch"
+          labelName="Butterscotch"
+          defaultValue={data ? data?.review.butterscotch : 0}
+          type="number"
+        />
+
+        <EditTextReviewInput
+          name="honey"
+          labelName="Honey"
+          defaultValue={data ? data?.review.honey : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="chocolate"
+          labelName="Chocolate"
+          defaultValue={data ? data?.review.chocolate : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="toffee"
+          labelName="Toffee"
+          defaultValue={data ? data?.review.toffee : 0}
+          type="number"
+        />
+        <EditTextReviewInput
+          name="sugar"
+          labelName="Confectioner's Sugar"
+          defaultValue={data ? data?.review.sugar : 0}
+          type="number"
         />
         <EditTextReviewInput
           name="value"
           labelName="Value for Money"
-          type="number"
           defaultValue={data ? data?.review.value : 0}
+          type="number"
         />
+
         <EditTextReviewInput
           name="overallRating"
           labelName="Overall Rating"
-          type="number"
           defaultValue={data ? data?.review.overallRating : 0}
+          type="number"
         />
         <div className="text-right">
           <button

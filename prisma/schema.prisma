@@ -40,32 +40,60 @@ model Review {
   finish    String
   thoughts  String?
 
-  baked       Int
-  buttery     Int
-  chocolate   Int
-  toffee      Int
-  corn        Int
-  rye         Int
-  wheat       Int
-  malt        Int
+  //  SPICE:
+  pepper      Int
   bakingSpice Int
-  molasses    Int
-  nutty       Int
-  oaky        Int
-  redFruit    Int
-  darkFruit   Int
-  berryFruit  Int
-  citrusFruit Int
-  stoneFruit  Int
-  driedFruit  Int
-  earthy      Int
-  tobacco     Int
-  leather     Int
-  floral      Int
-  herbaceous  Int
+  cinnamon    Int
+  herbal      Int
+  mint        Int
 
-  overallRating Float
+  // FRUIT
+  cherry     Int
+  strawberry Int
+  raspberry  Int
+  blackberry Int
+  blueberry  Int
+  apple      Int
+  banana     Int
+  grape      Int
+  stone      Int
+  citrus     Int
+  tropical   Int
+
+  // EARTHY
+  coffee  Int
+  tobacco Int
+  leather Int
+  oak     Int
+  toasted Int
+  smokey  Int
+  peanut  Int
+  almond  Int
+  pecan   Int
+  walnut  Int
+  oily    Int
+  floral  Int
+
+  // GRAIN
+  corn  Int
+  rye   Int
+  wheat Int
+  malt  Int
+  dough Int
+
+  // SWEET
+  vanilla      Int
+  caramel      Int
+  molasses     Int
+  butterscotch Int
+  honey        Int
+  chocolate    Int
+  toffee       Int
+  sugar        Int
+
+  // RATING
   value         Float
+  overallRating Float
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

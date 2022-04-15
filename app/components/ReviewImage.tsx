@@ -9,7 +9,7 @@ export default function ReviewImage({
 }: ReviewImageProps) {
   return (
     <div className="align-center flex flex-col justify-center">
-      <img src={imageUrl} alt={`Picture of ${bottleName}`} />
+      <img src={imageUrl} alt={`${bottleName}`} />
     </div>
   );
 }

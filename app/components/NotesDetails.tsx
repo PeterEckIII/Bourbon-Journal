@@ -1,37 +1,56 @@
 interface NotesDetailsProps {
   fruit: {
-    redFruit: number;
-    darkFruit: number;
-    berryFruit: number;
-    citrusFruit: number;
-    stoneFruit: number;
-    driedFruit: number;
+    cherry: number;
+    strawberry: number;
+    raspberry: number;
+    blackberry: number;
+    blueberry: number;
+    apple: number;
+    banana: number;
+    grape: number;
+    stone: number;
+    citrus: number;
+    tropical: number;
   };
   spice: {
+    pepper: number;
+    bakingSpice: number;
+    cinnamon: number;
+    herbal: number;
+    mint: number;
+  };
+  earthy: {
+    coffee: number;
+    tobacco: number;
+    leather: number;
+    oak: number;
+    toasted: number;
+    smokey: number;
+    peanut: number;
+    almond: number;
+    pecan: number;
+    walnut: number;
+    oily: number;
+    floral: number;
+  };
+  grain: {
     corn: number;
     rye: number;
     wheat: number;
     malt: number;
-    bakingSpice: number;
-  };
-  earthy: {
-    oak: number;
-    earthy: number;
-    nutty: number;
-    floral: number;
-    herbaceous: number;
+    dough: number;
   };
   sweet: {
+    vanilla: number;
+    caramel: number;
+    molasses: number;
+    butterscotch: number;
+    honey: number;
     chocolate: number;
     toffee: number;
-    molasses: number;
+    sugar: number;
   };
-  other: {
-    baked: number;
-    buttery: number;
-    tobacco: number;
-    leather: number;
-  };
+
   rating: {
     value: number;
     overallRating: number;
@@ -42,8 +61,8 @@ export default function NotesDetails({
   fruit,
   spice,
   earthy,
+  grain,
   sweet,
-  other,
   rating,
 }: NotesDetailsProps) {
   return (
@@ -51,49 +70,67 @@ export default function NotesDetails({
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Fruit</h4>
         <ul>
-          <li>Red: {fruit.redFruit}</li>
-          <li>Berries: {fruit.berryFruit}</li>
-          <li>Dark: {fruit.darkFruit}</li>
-          <li>Citrus: {fruit.citrusFruit}</li>
-          <li>Stone: {fruit.stoneFruit}</li>
-          <li>Dried: {fruit.driedFruit}</li>
+          <li>Cherry: {fruit.cherry}</li>
+          <li>Strawberry: {fruit.strawberry}</li>
+          <li>Raspberry: {fruit.raspberry}</li>
+          <li>Blackberry: {fruit.blackberry}</li>
+          <li>Blueberry: {fruit.blueberry}</li>
+          <li>Apple: {fruit.apple}</li>
+          <li>Banana: {fruit.banana}</li>
+          <li>Grape: {fruit.grape}</li>
+          <li>Stone Fruit: {fruit.stone}</li>
+          <li>Citrus: {fruit.citrus}</li>
+          <li>Tropical: {fruit.tropical}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Spice</h4>
         <ul>
-          <li>Corn: {spice.corn}</li>
-          <li>Rye: {spice.rye}</li>
-          <li>Wheat: {spice.wheat}</li>
-          <li>Malt: {spice.malt}</li>
+          <li>Black Pepper: {spice.pepper}</li>
           <li>Baking Spice: {spice.bakingSpice}</li>
+          <li>Cinnamon: {spice.cinnamon}</li>
+          <li>Herbal: {spice.herbal}</li>
+          <li>Mint: {spice.mint}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Sweet</h4>
         <ul>
-          <li>Chocolate: {sweet.chocolate}</li>
+          <li>Vanilla: {sweet.vanilla}</li>
+          <li>Caramel: {sweet.caramel}</li>
           <li>Molasses: {sweet.molasses}</li>
+          <li>Butterscotch: {sweet.butterscotch}</li>
+          <li>Honey: {sweet.honey}</li>
+          <li>Chocolate: {sweet.chocolate}</li>
           <li>Toffee: {sweet.toffee}</li>
+          <li>Sugar: {sweet.sugar}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Earthy</h4>
         <ul>
-          <li>Oaky: {earthy.oak}</li>
-          <li>Earthy: {earthy.earthy}</li>
-          <li>Nutty: {earthy.nutty}</li>
+          <li>Coffee: {earthy.coffee}</li>
+          <li>Tobacco: {earthy.tobacco}</li>
+          <li>Leather: {earthy.leather}</li>
+          <li>Oak: {earthy.oak}</li>
+          <li>Toasted: {earthy.toasted}</li>
+          <li>Smokey: {earthy.smokey}</li>
+          <li>Peanut: {earthy.peanut}</li>
+          <li>Almond: {earthy.almond}</li>
+          <li>Pecan: {earthy.pecan}</li>
+          <li>Walnut: {earthy.walnut}</li>
           <li>Floral: {earthy.floral}</li>
-          <li>Herbaceous: {earthy.herbaceous}</li>
+          <li>Oily: {earthy.oily}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
-        <h4 className="underline">Other</h4>
+        <h4 className="underline">Grain</h4>
         <ul>
-          <li>Baked: {other.baked}</li>
-          <li>Butter: {other.buttery}</li>
-          <li>Tobacco: {other.tobacco}</li>
-          <li>Leather: {other.leather}</li>
+          <li>Corn: {grain.corn}</li>
+          <li>Rye: {grain.rye}</li>
+          <li>Wheat: {grain.wheat}</li>
+          <li>Malt: {grain.malt}</li>
+          <li>Dough: {grain.dough}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
