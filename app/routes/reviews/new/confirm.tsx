@@ -34,29 +34,55 @@ export const action: ActionFunction = async ({ request }) => {
   const palate = formData.get("palate")?.toString();
   const finish = formData.get("finish")?.toString();
   const thoughts = formData.get("thoughts")?.toString();
-  const baked = Number(formData.get("baked")?.toString());
-  const buttery = Number(formData.get("buttery")?.toString());
-  const chocolate = Number(formData.get("chocolate")?.toString());
-  const toffee = Number(formData.get("toffee")?.toString());
+  // SPICE
+  const pepper = Number(formData.get("pepper")?.toString());
+  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const cinnamon = Number(formData.get("cinnamon")?.toString());
+  const herbal = Number(formData.get("herbal")?.toString());
+  const mint = Number(formData.get("mint")?.toString());
+
+  // FRUIT
+  const cherry = Number(formData.get("cherry")?.toString());
+  const strawberry = Number(formData.get("strawberry")?.toString());
+  const raspberry = Number(formData.get("raspberry")?.toString());
+  const blackberry = Number(formData.get("blackberry")?.toString());
+  const blueberry = Number(formData.get("blueberry")?.toString());
+  const apple = Number(formData.get("apple")?.toString());
+  const banana = Number(formData.get("banana")?.toString());
+  const grape = Number(formData.get("grape")?.toString());
+  const stone = Number(formData.get("stone")?.toString());
+  const citrus = Number(formData.get("citrus")?.toString());
+  const tropical = Number(formData.get("tropical")?.toString());
+
+  // EARTHY
+  const coffee = Number(formData.get("coffee")?.toString());
+  const tobacco = Number(formData.get("tobacco")?.toString());
+  const leather = Number(formData.get("leather")?.toString());
+  const oak = Number(formData.get("oak")?.toString());
+  const toasted = Number(formData.get("toasted")?.toString());
+  const smokey = Number(formData.get("smokey")?.toString());
+  const peanut = Number(formData.get("peanut")?.toString());
+  const almond = Number(formData.get("almond")?.toString());
+  const pecan = Number(formData.get("pecan")?.toString());
+  const walnut = Number(formData.get("walnut")?.toString());
+  const oily = Number(formData.get("oily")?.toString());
+  const floral = Number(formData.get("floral")?.toString());
+
+  // GRAIN
   const corn = Number(formData.get("corn")?.toString());
   const rye = Number(formData.get("rye")?.toString());
   const wheat = Number(formData.get("wheat")?.toString());
   const malt = Number(formData.get("malt")?.toString());
-  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const dough = Number(formData.get("dough")?.toString());
+
+  const vanilla = Number(formData.get("vanilla")?.toString());
+  const caramel = Number(formData.get("caramel")?.toString());
   const molasses = Number(formData.get("molasses")?.toString());
-  const nutty = Number(formData.get("nutty")?.toString());
-  const oaky = Number(formData.get("oaky")?.toString());
-  const redFruit = Number(formData.get("redFruit")?.toString());
-  const darkFruit = Number(formData.get("darkFruit")?.toString());
-  const berryFruit = Number(formData.get("berryFruit")?.toString());
-  const citrusFruit = Number(formData.get("citrusFruit")?.toString());
-  const stoneFruit = Number(formData.get("stoneFruit")?.toString());
-  const driedFruit = Number(formData.get("driedFruit")?.toString());
-  const earthy = Number(formData.get("earthy")?.toString());
-  const tobacco = Number(formData.get("tobacco")?.toString());
-  const leather = Number(formData.get("leather")?.toString());
-  const floral = Number(formData.get("floral")?.toString());
-  const herbaceous = Number(formData.get("herbaceous")?.toString());
+  const butterscotch = Number(formData.get("butterscotch")?.toString());
+  const honey = Number(formData.get("honey")?.toString());
+  const chocolate = Number(formData.get("chocolate")?.toString());
+  const toffee = Number(formData.get("toffee")?.toString());
+  const sugar = Number(formData.get("sugar")?.toString());
   const overallRating = Number(formData.get("overallRating")?.toString());
   const value = Number(formData.get("value")?.toString());
   if (!imageId) {
@@ -88,29 +114,47 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(thoughts, `Thoughts is required`);
 
   if (
-    typeof baked !== "number" ||
-    typeof buttery !== "number" ||
-    typeof chocolate !== "number" ||
-    typeof toffee !== "number" ||
+    typeof pepper !== "number" ||
+    typeof bakingSpice !== "number" ||
+    typeof cinnamon !== "number" ||
+    typeof herbal !== "number" ||
+    typeof mint !== "number" ||
+    typeof cherry !== "number" ||
+    typeof strawberry !== "number" ||
+    typeof raspberry !== "number" ||
+    typeof blackberry !== "number" ||
+    typeof blueberry !== "number" ||
+    typeof apple !== "number" ||
+    typeof banana !== "number" ||
+    typeof grape !== "number" ||
+    typeof stone !== "number" ||
+    typeof citrus !== "number" ||
+    typeof tropical !== "number" ||
+    typeof coffee !== "number" ||
+    typeof tobacco !== "number" ||
+    typeof leather !== "number" ||
+    typeof oak !== "number" ||
+    typeof toasted !== "number" ||
+    typeof smokey !== "number" ||
+    typeof peanut !== "number" ||
+    typeof almond !== "number" ||
+    typeof pecan !== "number" ||
+    typeof walnut !== "number" ||
+    typeof oily !== "number" ||
+    typeof floral !== "number" ||
     typeof corn !== "number" ||
     typeof rye !== "number" ||
     typeof wheat !== "number" ||
     typeof malt !== "number" ||
-    typeof bakingSpice !== "number" ||
+    typeof dough !== "number" ||
+    typeof vanilla !== "number" ||
+    typeof caramel !== "number" ||
     typeof molasses !== "number" ||
-    typeof nutty !== "number" ||
-    typeof oaky !== "number" ||
-    typeof redFruit !== "number" ||
-    typeof darkFruit !== "number" ||
-    typeof berryFruit !== "number" ||
-    typeof citrusFruit !== "number" ||
-    typeof stoneFruit !== "number" ||
-    typeof driedFruit !== "number" ||
-    typeof earthy !== "number" ||
-    typeof tobacco !== "number" ||
-    typeof leather !== "number" ||
-    typeof floral !== "number" ||
-    typeof herbaceous !== "number" ||
+    typeof butterscotch !== "number" ||
+    typeof honey !== "number" ||
+    typeof chocolate !== "number" ||
+    typeof toffee !== "number" ||
+    typeof sugar !== "number" ||
     typeof overallRating !== "number" ||
     typeof value !== "number"
   ) {
@@ -164,29 +208,47 @@ export const action: ActionFunction = async ({ request }) => {
     palate,
     finish,
     thoughts,
-    baked,
-    buttery,
-    chocolate,
-    toffee,
-    rye,
-    corn,
-    wheat,
-    malt,
+    cherry,
+    strawberry,
+    raspberry,
+    blackberry,
+    blueberry,
+    apple,
+    banana,
+    grape,
+    stone,
+    citrus,
+    tropical,
+    pepper,
     bakingSpice,
-    molasses,
-    nutty,
-    oaky,
-    redFruit,
-    darkFruit,
-    berryFruit,
-    citrusFruit,
-    stoneFruit,
-    driedFruit,
-    earthy,
+    cinnamon,
+    herbal,
+    mint,
+    coffee,
     tobacco,
     leather,
+    oak,
+    toasted,
+    smokey,
+    peanut,
+    almond,
+    pecan,
+    walnut,
+    oily,
     floral,
-    herbaceous,
+    corn,
+    rye,
+    wheat,
+    malt,
+    dough,
+    vanilla,
+    caramel,
+    molasses,
+    butterscotch,
+    honey,
+    chocolate,
+    toffee,
+    sugar,
     overallRating,
     value,
   });
@@ -235,61 +297,81 @@ export default function NewConfirmationRoute() {
           <input type="text" name="palate" defaultValue={state.palate} />
           <input type="text" name="finish" defaultValue={state.finish} />
           <input type="text" name="thoughts" defaultValue={state.thoughts} />
-          <input type="number" name="baked" defaultValue={state.baked} />
-          <input type="number" name="buttery" defaultValue={state.buttery} />
+
+          <input type="number" name="pepper" defaultValue={state.pepper} />
+          <input
+            type="number"
+            name="bakingSpice"
+            defaultValue={state.bakingSpice}
+          />
+          <input type="number" name="cinnamon" defaultValue={state.cinnamon} />
+          <input type="number" name="herbal" defaultValue={state.herbal} />
+          <input type="number" name="mint" defaultValue={state.mint} />
+
+          <input type="number" name="cherry" defaultValue={state.cherry} />
+          <input
+            type="number"
+            name="strawberry"
+            defaultValue={state.strawberry}
+          />
+          <input
+            type="number"
+            name="raspberry"
+            defaultValue={state.raspberry}
+          />
+          <input
+            type="number"
+            name="blackberry"
+            defaultValue={state.blackberry}
+          />
+          <input
+            type="number"
+            name="blueberry"
+            defaultValue={state.blueberry}
+          />
+          <input type="number" name="apple" defaultValue={state.apple} />
+          <input type="number" name="banana" defaultValue={state.banana} />
+          <input type="number" name="grape" defaultValue={state.grape} />
+          <input type="number" name="stone" defaultValue={state.stone} />
+          <input type="number" name="citrus" defaultValue={state.citrus} />
+          <input type="number" name="tropical" defaultValue={state.tropical} />
+
+          <input type="number" name="coffee" defaultValue={state.coffee} />
+          <input type="number" name="tobacco" defaultValue={state.tobacco} />
+          <input type="number" name="leather" defaultValue={state.leather} />
+          <input type="number" name="oak" defaultValue={state.oak} />
+          <input type="number" name="toasted" defaultValue={state.toasted} />
+          <input type="number" name="smokey" defaultValue={state.smokey} />
+          <input type="number" name="peanut" defaultValue={state.peanut} />
+          <input type="number" name="almond" defaultValue={state.almond} />
+          <input type="number" name="pecan" defaultValue={state.pecan} />
+          <input type="number" name="walnut" defaultValue={state.walnut} />
+          <input type="number" name="oily" defaultValue={state.oily} />
+          <input type="number" name="floral" defaultValue={state.floral} />
+
+          <input type="number" name="corn" defaultValue={state.corn} />
+          <input type="number" name="rye" defaultValue={state.rye} />
+          <input type="number" name="wheat" defaultValue={state.wheat} />
+          <input type="number" name="malt" defaultValue={state.malt} />
+          <input type="number" name="dough" defaultValue={state.dough} />
+
+          <input type="number" name="vanilla" defaultValue={state.vanilla} />
+          <input type="number" name="caramel" defaultValue={state.caramel} />
+          <input type="number" name="molasses" defaultValue={state.molasses} />
+          <input
+            type="number"
+            name="butterscotch"
+            defaultValue={state.butterscotch}
+          />
+          <input type="number" name="honey" defaultValue={state.honey} />
           <input
             type="number"
             name="chocolate"
             defaultValue={state.chocolate}
           />
           <input type="number" name="toffee" defaultValue={state.toffee} />
-          <input type="number" name="nutty" defaultValue={state.nutty} />
-          <input type="number" name="corn" defaultValue={state.corn} />
-          <input type="number" name="rye" defaultValue={state.rye} />
-          <input type="number" name="wheat" defaultValue={state.wheat} />
-          <input type="number" name="malt" defaultValue={state.malt} />
-          <input
-            type="number"
-            name="bakingSpice"
-            defaultValue={state.bakingSpice}
-          />
-          <input type="number" name="molasses" defaultValue={state.molasses} />
-          <input type="number" name="oaky" defaultValue={state.oaky} />
-          <input type="number" name="redFruit" defaultValue={state.redFruit} />
-          <input
-            type="number"
-            name="darkFruit"
-            defaultValue={state.darkFruit}
-          />
-          <input
-            type="number"
-            name="berryFruit"
-            defaultValue={state.berryFruit}
-          />
-          <input
-            type="number"
-            name="citrusFruit"
-            defaultValue={state.citrusFruit}
-          />
-          <input
-            type="number"
-            name="stoneFruit"
-            defaultValue={state.stoneFruit}
-          />
-          <input
-            type="number"
-            name="driedFruit"
-            defaultValue={state.driedFruit}
-          />
-          <input type="number" name="earthy" defaultValue={state.earthy} />
-          <input type="number" name="tobacco" defaultValue={state.tobacco} />
-          <input type="number" name="leather" defaultValue={state.leather} />
-          <input type="number" name="floral" defaultValue={state.floral} />
-          <input
-            type="number"
-            name="herbaceous"
-            defaultValue={state.herbaceous}
-          />
+          <input type="number" name="sugar" defaultValue={state.sugar} />
+
           <input type="number" name="value" defaultValue={state.value} />
           <input
             type="number"

@@ -5,29 +5,47 @@ import type { ContextType } from "~/routes/reviews/new";
 
 type ActionData = {
   errors?: {
-    baked?: string;
-    buttery?: string;
-    chocolate?: string;
-    toffee?: string;
-    corn?: string;
-    rye?: string;
-    wheat?: string;
-    malt?: string;
-    bakingSpice?: string;
-    molasses?: string;
-    nutty?: string;
-    oaky?: string;
-    redFruit?: string;
-    darkFruit?: string;
-    berryFruit?: string;
-    citrusFruit?: string;
-    stoneFruit?: string;
-    driedFruit?: string;
-    earthy?: string;
-    tobacco?: string;
-    leather?: string;
-    floral?: string;
-    herbaceous?: string;
+    cherry: string;
+    strawberry: string;
+    raspberry: string;
+    blackberry: string;
+    blueberry: string;
+    apple: string;
+    banana: string;
+    grape: string;
+    stone: string;
+    citrus: string;
+    tropical: string;
+    pepper: string;
+    bakingSpice: string;
+    cinnamon: string;
+    herbal: string;
+    mint: string;
+    coffee: string;
+    tobacco: string;
+    leather: string;
+    oak: string;
+    toasted: string;
+    smokey: string;
+    peanut: string;
+    almond: string;
+    pecan: string;
+    walnut: string;
+    oily: string;
+    floral: string;
+    corn: string;
+    rye: string;
+    wheat: string;
+    malt: string;
+    dough: string;
+    vanilla: string;
+    caramel: string;
+    molasses: string;
+    butterscotch: string;
+    honey: string;
+    chocolate: string;
+    toffee: string;
+    sugar: string;
     overallRating?: string;
     value?: string;
   };
@@ -35,61 +53,106 @@ type ActionData = {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const baked = Number(formData.get("baked")?.toString());
-  const buttery = Number(formData.get("buttery")?.toString());
-  const chocolate = Number(formData.get("chocolate")?.toString());
-  const toffee = Number(formData.get("toffee")?.toString());
+  // SPICE
+  const pepper = Number(formData.get("pepper")?.toString());
+  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const cinnamon = Number(formData.get("cinnamon")?.toString());
+  const herbal = Number(formData.get("herbal")?.toString());
+  const mint = Number(formData.get("mint")?.toString());
+
+  // FRUIT
+  const cherry = Number(formData.get("cherry")?.toString());
+  const strawberry = Number(formData.get("strawberry")?.toString());
+  const raspberry = Number(formData.get("raspberry")?.toString());
+  const blackberry = Number(formData.get("blackberry")?.toString());
+  const blueberry = Number(formData.get("blueberry")?.toString());
+  const apple = Number(formData.get("apple")?.toString());
+  const banana = Number(formData.get("banana")?.toString());
+  const grape = Number(formData.get("grape")?.toString());
+  const stone = Number(formData.get("stone")?.toString());
+  const citrus = Number(formData.get("citrus")?.toString());
+  const tropical = Number(formData.get("tropical")?.toString());
+
+  // EARTHY
+  const coffee = Number(formData.get("coffee")?.toString());
+  const tobacco = Number(formData.get("tobacco")?.toString());
+  const leather = Number(formData.get("leather")?.toString());
+  const oak = Number(formData.get("oak")?.toString());
+  const toasted = Number(formData.get("toasted")?.toString());
+  const smokey = Number(formData.get("smokey")?.toString());
+  const peanut = Number(formData.get("peanut")?.toString());
+  const almond = Number(formData.get("almond")?.toString());
+  const pecan = Number(formData.get("pecan")?.toString());
+  const walnut = Number(formData.get("walnut")?.toString());
+  const oily = Number(formData.get("oily")?.toString());
+  const floral = Number(formData.get("floral")?.toString());
+
+  // GRAIN
   const corn = Number(formData.get("corn")?.toString());
   const rye = Number(formData.get("rye")?.toString());
   const wheat = Number(formData.get("wheat")?.toString());
   const malt = Number(formData.get("malt")?.toString());
-  const bakingSpice = Number(formData.get("bakingSpice")?.toString());
+  const dough = Number(formData.get("dough")?.toString());
+
+  const vanilla = Number(formData.get("vanilla")?.toString());
+  const caramel = Number(formData.get("caramel")?.toString());
   const molasses = Number(formData.get("molasses")?.toString());
-  const nutty = Number(formData.get("nutty")?.toString());
-  const oaky = Number(formData.get("oaky")?.toString());
-  const redFruit = Number(formData.get("redFruit")?.toString());
-  const darkFruit = Number(formData.get("darkFruit")?.toString());
-  const berryFruit = Number(formData.get("berryFruit")?.toString());
-  const citrusFruit = Number(formData.get("citrusFruit")?.toString());
-  const stoneFruit = Number(formData.get("stoneFruit")?.toString());
-  const driedFruit = Number(formData.get("driedFruit")?.toString());
-  const earthy = Number(formData.get("earthy")?.toString());
-  const tobacco = Number(formData.get("tobacco")?.toString());
-  const leather = Number(formData.get("leather")?.toString());
-  const floral = Number(formData.get("floral")?.toString());
-  const herbaceous = Number(formData.get("herbaceous")?.toString());
+  const butterscotch = Number(formData.get("butterscotch")?.toString());
+  const honey = Number(formData.get("honey")?.toString());
+  const chocolate = Number(formData.get("chocolate")?.toString());
+  const toffee = Number(formData.get("toffee")?.toString());
+  const sugar = Number(formData.get("sugar")?.toString());
   const overallRating = Number(formData.get("overallRating")?.toString());
   const value = Number(formData.get("value")?.toString());
 
   if (
-    typeof baked !== "number" ||
-    typeof buttery !== "number" ||
-    typeof chocolate !== "number" ||
-    typeof toffee !== "number" ||
+    typeof pepper !== "number" ||
+    typeof bakingSpice !== "number" ||
+    typeof cinnamon !== "number" ||
+    typeof herbal !== "number" ||
+    typeof mint !== "number" ||
+    typeof cherry !== "number" ||
+    typeof strawberry !== "number" ||
+    typeof raspberry !== "number" ||
+    typeof blackberry !== "number" ||
+    typeof blueberry !== "number" ||
+    typeof apple !== "number" ||
+    typeof banana !== "number" ||
+    typeof grape !== "number" ||
+    typeof stone !== "number" ||
+    typeof citrus !== "number" ||
+    typeof tropical !== "number" ||
+    typeof coffee !== "number" ||
+    typeof tobacco !== "number" ||
+    typeof leather !== "number" ||
+    typeof oak !== "number" ||
+    typeof toasted !== "number" ||
+    typeof smokey !== "number" ||
+    typeof peanut !== "number" ||
+    typeof almond !== "number" ||
+    typeof pecan !== "number" ||
+    typeof walnut !== "number" ||
+    typeof oily !== "number" ||
+    typeof floral !== "number" ||
+    typeof peanut !== "number" ||
     typeof corn !== "number" ||
     typeof rye !== "number" ||
     typeof wheat !== "number" ||
     typeof malt !== "number" ||
-    typeof bakingSpice !== "number" ||
+    typeof dough !== "number" ||
+    typeof vanilla !== "number" ||
+    typeof caramel !== "number" ||
     typeof molasses !== "number" ||
-    typeof nutty !== "number" ||
-    typeof oaky !== "number" ||
-    typeof redFruit !== "number" ||
-    typeof darkFruit !== "number" ||
-    typeof berryFruit !== "number" ||
-    typeof citrusFruit !== "number" ||
-    typeof stoneFruit !== "number" ||
-    typeof driedFruit !== "number" ||
-    typeof earthy !== "number" ||
-    typeof tobacco !== "number" ||
-    typeof leather !== "number" ||
-    typeof floral !== "number" ||
-    typeof herbaceous !== "number" ||
+    typeof butterscotch !== "number" ||
+    typeof honey !== "number" ||
+    typeof chocolate !== "number" ||
+    typeof toffee !== "number" ||
+    typeof sugar !== "number" ||
     typeof overallRating !== "number" ||
     typeof value !== "number"
   ) {
-    return json<ActionData>(
-      { errors: { baked: "Invalid type" } },
+    return json(
+      { errors: { message: "One of the values was not a number" } },
       { status: 400 }
     );
   }
@@ -107,29 +170,176 @@ export default function NewNotesRoute() {
   return (
     <Form method="post">
       <TextReviewInput
-        name="baked"
-        labelName="Baked"
+        name="pepper"
+        labelName="Black Pepper"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
       <TextReviewInput
-        name="buttery"
-        labelName="Buttery"
+        name="cinnamon"
+        labelName="Cinnamon"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
       <TextReviewInput
-        name="chocolate"
-        labelName="Chocolate"
+        name="bakingSpice"
+        labelName="Baking Spice"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
       <TextReviewInput
-        name="toffee"
-        labelName="Toffee"
+        name="herbal"
+        labelName="Herbal"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
+      <TextReviewInput
+        name="mint"
+        labelName="Mint"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="cherry"
+        labelName="Cherry"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="strawberry"
+        labelName="Strawberry"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="raspberry"
+        labelName="Raspberry"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="blackberry"
+        labelName="Blackberry"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="blueberry"
+        labelName="Blueberry"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="apple"
+        labelName="Apple"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="banana"
+        labelName="Banana"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="grape"
+        labelName="Grape"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="stone"
+        labelName="Stone Fruit"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="citrus"
+        labelName="Citrus"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="tropical"
+        labelName="Tropical"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      {/* EARTHY */}
+      <TextReviewInput
+        name="coffee"
+        labelName="Coffee"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="tobacco"
+        labelName="Tobacco Leaf"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="leather"
+        labelName="Leather"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="oak"
+        labelName="Oak"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="toasted"
+        labelName="Toasted"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="smokey"
+        labelName="Smokey"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="peanut"
+        labelName="Peanut"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="almond"
+        labelName="Almond"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+
+      <TextReviewInput
+        name="pecan"
+        labelName="Pecan"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="walnut"
+        labelName="Walnut"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="oily"
+        labelName="Oily"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      <TextReviewInput
+        name="floral"
+        labelName="Floral"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+      {/* GRAINS */}
       <TextReviewInput
         name="corn"
         labelName="Corn"
@@ -154,99 +364,63 @@ export default function NewNotesRoute() {
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
+
       <TextReviewInput
-        name="bakingSpice"
-        labelName="Baking Spice"
+        name="dough"
+        labelName="Bread / Dough"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
+
+      <TextReviewInput
+        name="vanilla"
+        labelName="Vanilla"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+
+      <TextReviewInput
+        name="caramel"
+        labelName="Caramel"
+        changeHandler={(e) => stateSetter(e)}
+        type="number"
+      />
+
       <TextReviewInput
         name="molasses"
         labelName="Molasses"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
+
       <TextReviewInput
-        name="nutty"
-        labelName="Nutty"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="oaky"
-        labelName="Oaky"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="redFruit"
-        labelName="redFruit"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="darkFruit"
-        labelName="Dark Fruit"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="berryFruit"
-        labelName="Berry Fruit"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="citrusFruit"
-        labelName="Citrus Fruit"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="stoneFruit"
-        labelName="Stone Fruit"
+        name="butterscotch"
+        labelName="Butterscotch"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
 
       <TextReviewInput
-        name="driedFruit"
-        labelName="Dried Fruit"
+        name="honey"
+        labelName="Honey"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
-
       <TextReviewInput
-        name="earthy"
-        labelName="Earthy"
+        name="chocolate"
+        labelName="Chocolate"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
-
       <TextReviewInput
-        name="tobacco"
-        labelName="Tobacco"
+        name="toffee"
+        labelName="Toffee"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
-
       <TextReviewInput
-        name="leather"
-        labelName="Leather"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="floral"
-        labelName="Floral"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="herbaceous"
-        labelName="Herbaceous"
+        name="sugar"
+        labelName="Confectioner's Sugar"
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
@@ -256,6 +430,7 @@ export default function NewNotesRoute() {
         changeHandler={(e) => stateSetter(e)}
         type="number"
       />
+
       <TextReviewInput
         name="overallRating"
         labelName="Overall Rating"
