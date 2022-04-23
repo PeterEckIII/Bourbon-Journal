@@ -29,71 +29,71 @@ model Review {
   id       String  @id @default(cuid())
   bottle   Bottle? @relation(fields: [bottleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   bottleId String?
-  date     String
+  date     String?
   imageId  String?
 
   setting   String?
   glassware String?
   restTime  String?
-  nose      String
-  palate    String
-  finish    String
+  nose      String?
+  palate    String?
+  finish    String?
   thoughts  String?
 
   //  SPICE:
-  pepper      Int
-  bakingSpice Int
-  cinnamon    Int
-  herbal      Int
-  mint        Int
+  pepper      Int?
+  bakingSpice Int?
+  cinnamon    Int?
+  herbal      Int?
+  mint        Int?
 
   // FRUIT
-  cherry     Int
-  strawberry Int
-  raspberry  Int
-  blackberry Int
-  blueberry  Int
-  apple      Int
-  banana     Int
-  grape      Int
-  stone      Int
-  citrus     Int
-  tropical   Int
+  cherry     Int?
+  strawberry Int?
+  raspberry  Int?
+  blackberry Int?
+  blueberry  Int?
+  apple      Int?
+  banana     Int?
+  grape      Int?
+  stone      Int?
+  citrus     Int?
+  tropical   Int?
 
   // EARTHY
-  coffee  Int
-  tobacco Int
-  leather Int
-  oak     Int
-  toasted Int
-  smokey  Int
-  peanut  Int
-  almond  Int
-  pecan   Int
-  walnut  Int
-  oily    Int
-  floral  Int
+  coffee  Int?
+  tobacco Int?
+  leather Int?
+  oak     Int?
+  toasted Int?
+  smokey  Int?
+  peanut  Int?
+  almond  Int?
+  pecan   Int?
+  walnut  Int?
+  oily    Int?
+  floral  Int?
 
   // GRAIN
-  corn  Int
-  rye   Int
-  wheat Int
-  malt  Int
-  dough Int
+  corn  Int?
+  rye   Int?
+  wheat Int?
+  malt  Int?
+  dough Int?
 
   // SWEET
-  vanilla      Int
-  caramel      Int
-  molasses     Int
-  butterscotch Int
-  honey        Int
-  chocolate    Int
-  toffee       Int
-  sugar        Int
+  vanilla      Int?
+  caramel      Int?
+  molasses     Int?
+  butterscotch Int?
+  honey        Int?
+  chocolate    Int?
+  toffee       Int?
+  sugar        Int?
 
   // RATING
-  value         Float
-  overallRating Float
+  value         Float?
+  overallRating Float?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -105,20 +105,20 @@ model Review {
 model Bottle {
   id             String   @id @default(cuid())
   name           String
-  type           String
+  type           String?
   bottler        String?
   distiller      String?
   producer       String?
   country        String?
   region         String?
-  price          Float
+  price          String?
   age            String?
   year           String?
   batch          String?
-  alcoholPercent String
-  proof          String
+  alcoholPercent String?
+  proof          String?
   size           String?
-  color          String
+  color          String?
   finishing      String?
   reviews        Review[]
 }

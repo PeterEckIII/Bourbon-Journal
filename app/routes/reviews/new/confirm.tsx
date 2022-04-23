@@ -16,7 +16,7 @@ export const action: ActionFunction = async ({ request }) => {
   const producer = formData.get("producer")?.toString();
   const country = formData.get("country")?.toString();
   const region = formData.get("region")?.toString();
-  const formPrice = formData.get("price")?.toString();
+  const price = formData.get("price")?.toString();
   const age = formData.get("age")?.toString();
   const year = formData.get("year")?.toString();
   const batch = formData.get("batch")?.toString();
@@ -95,7 +95,7 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(producer, `Producer is required`);
   invariant(country, `Country is required`);
   invariant(region, `Region is required`);
-  invariant(formPrice, `Price is required`);
+  invariant(price, `Price is required`);
   invariant(age, `Age is required`);
   invariant(year, `Year is required`);
   invariant(batch, `Batch is required`);
@@ -163,8 +163,6 @@ export const action: ActionFunction = async ({ request }) => {
       { status: 400 }
     );
   }
-
-  const price = parseFloat(formPrice);
 
   const user = await getUser(request);
   invariant(user, `User must exist to post a review`);

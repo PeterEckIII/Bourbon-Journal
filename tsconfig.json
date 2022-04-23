@@ -1,7 +1,5 @@
 {
-  "exclude": [
-    "./cypress"
-  ],
+  "exclude": ["./cypress"],
   "include": [
     "remix.env.d.ts",
     "**/*.ts",
@@ -10,15 +8,8 @@
     "app/utils/s3.server.js"
   ],
   "compilerOptions": {
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2019",
-      "ES2021.String"
-    ],
-    "types": [
-      "vitest/globals"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2019", "ES2021.String"],
+    "types": ["vitest/globals"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -29,9 +20,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./app/*"
-      ]
+      "~/*": ["./app/*"]
     },
     "skipLibCheck": true,
     // Remix takes care of building everything in `remix build`.

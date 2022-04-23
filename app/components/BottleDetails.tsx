@@ -11,48 +11,61 @@ export default function BottleDetails({ bottle }: BottleDetailProps) {
       <div className="m-2 flex flex-col py-5">
         <div>
           <div className="py-1">
-            <span className="font-bold">Name</span>: {bottle.name}{" "}
+            <span className="font-bold">Name</span>:{" "}
+            <span className="">{bottle.name}</span>{" "}
             {bottle.batch !== "N/A" ? bottle.batch : null}{" "}
           </div>
           <div className="py-1">
-            <span className="font-bold">Type</span>: {bottle.type}
+            <span className="font-bold">Type</span>:{" "}
+            <span className="">{bottle.type}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Price</span>: {bottle.price}
+            <span className="font-bold">Price</span>:{" "}
+            <span className="">{bottle.price}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">ABV</span>: {bottle.alcoholPercent}
+            <span className="font-bold">ABV</span>:{" "}
+            <span className="">{bottle.alcoholPercent}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Proof</span>: {bottle.proof}pf
+            <span className="font-bold">Proof</span>:{" "}
+            <span className="">{bottle.proof}</span> proof
           </div>
           <div className="py-1">
-            <span className="font-bold">Age</span>: {bottle.age}
-          </div>
-        </div>
-        <div>
-          <div className="py-1">
-            <span className="font-bold">Year</span>: {bottle.year}
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Batch</span>: {bottle.batch}
+            <span className="font-bold">Age</span>:{" "}
+            <span className="">{bottle.age}</span>
           </div>
         </div>
         <div>
           <div className="py-1">
-            <span className="font-bold">Distiller</span>: {bottle.distiller}
+            <span className="font-bold">Year</span>:{" "}
+            <span className="">{bottle.year}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Bottler</span>: {bottle.bottler}
+            <span className="font-bold">Batch</span>:{" "}
+            <span className="">{bottle.batch}</span>
+          </div>
+        </div>
+        <div>
+          <div className="py-1">
+            <span className="font-bold">Distiller</span>:{" "}
+            <span className="">{bottle.distiller}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Producer</span>: {bottle.producer}
+            <span className="font-bold">Bottler</span>:{" "}
+            <span className="">{bottle.bottler}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Country</span>: {bottle.country}
+            <span className="font-bold">Producer</span>:{" "}
+            <span className="">{bottle.producer}</span>
           </div>
           <div className="py-1">
-            <span className="font-bold">Region</span>: {bottle.region}
+            <span className="font-bold">Country</span>:{" "}
+            <span className="">{bottle.country}</span>
+          </div>
+          <div className="py-1">
+            <span className="font-bold">Region</span>:{" "}
+            <span className="">{bottle.region}</span>
           </div>
         </div>
       </div>

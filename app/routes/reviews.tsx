@@ -8,6 +8,8 @@ import { getReviewListItems } from "~/models/review.server";
 import Hamburger from "~/components/Hamburger";
 import AddIcon from "~/components/AddIcon";
 import ArrowIcon from "~/components/ArrowIcon";
+import Glencairn from "~/components/Glencairn";
+import bourbonNookIcon from "~/images/Bourbon_Nook_Icon.png";
 
 type LoaderData = {
   reviewListItems: Awaited<ReturnType<typeof getReviewListItems>>;
@@ -30,7 +32,17 @@ export default function ReviewsPage() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Bourbon Journal</Link>
+          <Link to="." className="flex items-center text-white">
+            <div className="flex">
+              <Glencairn />
+              <img
+                src={bourbonNookIcon}
+                alt="Bourbon Nook Icon"
+                className="-pb-5"
+                style={{ height: "90px", width: "100px" }}
+              />
+            </div>
+          </Link>
         </h1>
         <p>{user.email}</p>
         <Form action="/logout" method="post">
@@ -65,7 +77,12 @@ export default function ReviewsPage() {
                         className="m-2 p-2 text-blue-900"
                         to={`/reviews/${review.id}`}
                       >
-                        {`${review?.bottle?.year} ${review?.bottle?.name}`}{" "}
+                        {`${review?.bottle?.name} ${
+                          review?.bottle?.batch &&
+                          !review.bottle.batch.startsWith("N")
+                            ? review.bottle.batch
+                            : null
+                        }`}{" "}
                         <ArrowIcon />
                       </Link>
                     </div>

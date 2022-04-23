@@ -50,7 +50,6 @@ interface NotesDetailsProps {
     toffee: number;
     sugar: number;
   };
-
   rating: {
     value: number;
     overallRating: number;
@@ -66,78 +65,78 @@ export default function NotesDetails({
   rating,
 }: NotesDetailsProps) {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex justify-between">
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Fruit</h4>
-        <ul>
-          <li>Cherry: {fruit.cherry}</li>
-          <li>Strawberry: {fruit.strawberry}</li>
-          <li>Raspberry: {fruit.raspberry}</li>
-          <li>Blackberry: {fruit.blackberry}</li>
-          <li>Blueberry: {fruit.blueberry}</li>
-          <li>Apple: {fruit.apple}</li>
-          <li>Banana: {fruit.banana}</li>
-          <li>Grape: {fruit.grape}</li>
-          <li>Stone Fruit: {fruit.stone}</li>
-          <li>Citrus: {fruit.citrus}</li>
-          <li>Tropical: {fruit.tropical}</li>
+        <ul className="">
+          <li className="my-2 py-2">Cherry: {fruit.cherry}</li>
+          <li className="my-2 py-2">Strawberry: {fruit.strawberry}</li>
+          <li className="my-2 py-2">Raspberry: {fruit.raspberry}</li>
+          <li className="my-2 py-2">Blackberry: {fruit.blackberry}</li>
+          <li className="my-2 py-2">Blueberry: {fruit.blueberry}</li>
+          <li className="my-2 py-2">Apple: {fruit.apple}</li>
+          <li className="my-2 py-2">Banana: {fruit.banana}</li>
+          <li className="my-2 py-2">Grape: {fruit.grape}</li>
+          <li className="my-2 py-2">Stone Fruit: {fruit.stone}</li>
+          <li className="my-2 py-2">Citrus: {fruit.citrus}</li>
+          <li className="my-2 py-2">Tropical: {fruit.tropical}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Spice</h4>
         <ul>
-          <li>Black Pepper: {spice.pepper}</li>
-          <li>Baking Spice: {spice.bakingSpice}</li>
-          <li>Cinnamon: {spice.cinnamon}</li>
-          <li>Herbal: {spice.herbal}</li>
-          <li>Mint: {spice.mint}</li>
+          <li className="my-2 py-2">Black Pepper: {spice.pepper}</li>
+          <li className="my-2 py-2">Baking Spice: {spice.bakingSpice}</li>
+          <li className="my-2 py-2">Cinnamon: {spice.cinnamon}</li>
+          <li className="my-2 py-2">Herbal: {spice.herbal}</li>
+          <li className="my-2 py-2">Mint: {spice.mint}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Sweet</h4>
         <ul>
-          <li>Vanilla: {sweet.vanilla}</li>
-          <li>Caramel: {sweet.caramel}</li>
-          <li>Molasses: {sweet.molasses}</li>
-          <li>Butterscotch: {sweet.butterscotch}</li>
-          <li>Honey: {sweet.honey}</li>
-          <li>Chocolate: {sweet.chocolate}</li>
-          <li>Toffee: {sweet.toffee}</li>
-          <li>Sugar: {sweet.sugar}</li>
+          <li className="my-2 py-2">Vanilla: {sweet.vanilla}</li>
+          <li className="my-2 py-2">Caramel: {sweet.caramel}</li>
+          <li className="my-2 py-2">Molasses: {sweet.molasses}</li>
+          <li className="my-2 py-2">Butterscotch: {sweet.butterscotch}</li>
+          <li className="my-2 py-2">Honey: {sweet.honey}</li>
+          <li className="my-2 py-2">Chocolate: {sweet.chocolate}</li>
+          <li className="my-2 py-2">Toffee: {sweet.toffee}</li>
+          <li className="my-2 py-2">Sugar: {sweet.sugar}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Earthy</h4>
         <ul>
-          <li>Coffee: {earthy.coffee}</li>
-          <li>Tobacco: {earthy.tobacco}</li>
-          <li>Leather: {earthy.leather}</li>
-          <li>Oak: {earthy.oak}</li>
-          <li>Toasted: {earthy.toasted}</li>
-          <li>Smokey: {earthy.smokey}</li>
-          <li>Peanut: {earthy.peanut}</li>
-          <li>Almond: {earthy.almond}</li>
-          <li>Pecan: {earthy.pecan}</li>
-          <li>Walnut: {earthy.walnut}</li>
-          <li>Floral: {earthy.floral}</li>
-          <li>Oily: {earthy.oily}</li>
+          <li className="my-2 py-2">Coffee: {earthy.coffee}</li>
+          <li className="my-2 py-2">Tobacco: {earthy.tobacco}</li>
+          <li className="my-2 py-2">Leather: {earthy.leather}</li>
+          <li className="my-2 py-2">Oak: {earthy.oak}</li>
+          <li className="my-2 py-2">Toasted: {earthy.toasted}</li>
+          <li className="my-2 py-2">Smokey: {earthy.smokey}</li>
+          <li className="my-2 py-2">Peanut: {earthy.peanut}</li>
+          <li className="my-2 py-2">Almond: {earthy.almond}</li>
+          <li className="my-2 py-2">Pecan: {earthy.pecan}</li>
+          <li className="my-2 py-2">Walnut: {earthy.walnut}</li>
+          <li className="my-2 py-2">Floral: {earthy.floral}</li>
+          <li className="my-2 py-2">Oily: {earthy.oily}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Grain</h4>
         <ul>
-          <li>Corn: {grain.corn}</li>
-          <li>Rye: {grain.rye}</li>
-          <li>Wheat: {grain.wheat}</li>
-          <li>Malt: {grain.malt}</li>
-          <li>Dough: {grain.dough}</li>
+          <li className="my-2 py-2">Corn: {grain.corn}</li>
+          <li className="my-2 py-2">Rye: {grain.rye}</li>
+          <li className="my-2 py-2">Wheat: {grain.wheat}</li>
+          <li className="my-2 py-2">Malt: {grain.malt}</li>
+          <li className="my-2 py-2">Dough: {grain.dough}</li>
         </ul>
       </div>
       <div className="m-2 border-2 p-2">
         <h4 className="underline">Rating</h4>
         <ul>
-          <li>Value for Money: {rating.value}</li>
-          <li>Overall Rating: {rating.overallRating}</li>
+          <li className="my-2 py-2">Value for Money: {rating.value}</li>
+          <li className="my-2 py-2">Overall Rating: {rating.overallRating}</li>
         </ul>
       </div>
     </div>

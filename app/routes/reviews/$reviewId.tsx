@@ -79,7 +79,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 export default function ReviewDetailsPage() {
   const data = useLoaderData() as LoaderData;
   const { review, bottle } = data;
-  const reviewDate = formatDateForReviewPage(review.date);
   const navigate = useNavigate();
   const params = useParams();
 
