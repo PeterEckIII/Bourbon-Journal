@@ -12,7 +12,7 @@ const TextReviewInput: React.FC<
   TextReviewInputType & React.HTMLProps<HTMLInputElement>
 > = ({ labelName, name, error, changeHandler, type }) => {
   return (
-    <div>
+    <div className="mx-2">
       <label className="flex w-full flex-col gap-1">
         <span>{labelName}: </span>
         <input

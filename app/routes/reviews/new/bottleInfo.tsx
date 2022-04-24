@@ -50,110 +50,152 @@ export default function NewBottleInfoRoute() {
   }
 
   return (
-    <Form action="/reviews/new/addImage">
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Name"
-        name="name"
-      />
-      {false && (
-        <div className="pt-1 text-red-700" id="body-error">
-          Error message goes here
-        </div>
-      )}
+    <Form action="/reviews/new/addImage" className="flex-col lg:flex">
+      <div className="my-2 flex lg:flex-col">
+        <TextReviewInput
+          changeHandler={(e) => stateSetter(e)}
+          type="text"
+          labelName="Name"
+          name="name"
+        />
+        {false && (
+          <div className="pt-1 text-red-700" id="body-error">
+            Error message goes here
+          </div>
+        )}
+      </div>
 
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Type"
-        name="type"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Distiller"
-        name="distiller"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Bottler"
-        name="bottler"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Producer"
-        name="producer"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Country of Origin"
-        name="country"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Region"
-        name="region"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Price"
-        name="price"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Age"
-        name="age"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Year"
-        name="year"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Batch / Barrel"
-        name="batch"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Alcohol Percent"
-        name="alcoholPercent"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Proof"
-        name="proof"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Size"
-        name="size"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Color"
-        name="color"
-      />
-      <TextReviewInput
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-        labelName="Finishing"
-        name="finishing"
-      />
-      <div className="text-right">
+      <div className="my-2 lg:flex lg:justify-between">
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Distiller"
+            name="distiller"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Bottler"
+            name="bottler"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Producer"
+            name="producer"
+          />
+        </div>
+      </div>
+      <div className="my-2 lg:flex lg:justify-between">
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Type"
+            name="type"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Country of Origin"
+            name="country"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Region"
+            name="region"
+          />
+        </div>
+      </div>
+      <div className="my-2 lg:flex">
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Price"
+            name="price"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Age"
+            name="age"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Color"
+            name="color"
+          />
+        </div>
+      </div>
+      <div className="my-2 lg:flex lg:justify-evenly">
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Year"
+            name="year"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Batch / Barrel"
+            name="batch"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Size"
+            name="size"
+          />
+        </div>
+      </div>
+      <div className="lg:flex lg:justify-between">
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Alcohol Percent"
+            name="alcoholPercent"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Proof"
+            name="proof"
+          />
+        </div>
+        <div className="flex">
+          <TextReviewInput
+            changeHandler={(e) => stateSetter(e)}
+            type="text"
+            labelName="Finishing"
+            name="finishing"
+          />
+        </div>
+      </div>
+      <div className="my-2 text-right">
         <button
           type="submit"
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"

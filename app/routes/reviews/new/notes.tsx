@@ -1,6 +1,11 @@
 import { Form, useActionData, useOutletContext } from "@remix-run/react";
 import { ActionFunction, json, redirect } from "@remix-run/server-runtime";
-import TextReviewInput from "~/components/TextReviewInput";
+import EarthNotes from "~/components/EarthNotes";
+import FruitNotes from "~/components/FruitNotes";
+import GrainNotes from "~/components/GrainNotes";
+import SpiceNotes from "~/components/SpiceNotes";
+import SweetNotes from "~/components/SweetNotes";
+import Rating from "~/components/Rating";
 import type { ContextType } from "~/routes/reviews/new";
 
 type ActionData = {
@@ -169,275 +174,20 @@ export default function NewNotesRoute() {
 
   return (
     <Form method="post">
-      <TextReviewInput
-        name="pepper"
-        labelName="Black Pepper"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="cinnamon"
-        labelName="Cinnamon"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="bakingSpice"
-        labelName="Baking Spice"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="herbal"
-        labelName="Herbal"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="mint"
-        labelName="Mint"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="cherry"
-        labelName="Cherry"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="strawberry"
-        labelName="Strawberry"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="raspberry"
-        labelName="Raspberry"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="blackberry"
-        labelName="Blackberry"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="blueberry"
-        labelName="Blueberry"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="apple"
-        labelName="Apple"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="banana"
-        labelName="Banana"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="grape"
-        labelName="Grape"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="stone"
-        labelName="Stone Fruit"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="citrus"
-        labelName="Citrus"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="tropical"
-        labelName="Tropical"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
+      {/* SPICE */}
+      <SpiceNotes changeHandler={stateSetter} />
+
+      {/* FRUIT */}
+      <FruitNotes changeHandler={stateSetter} />
       {/* EARTHY */}
-      <TextReviewInput
-        name="coffee"
-        labelName="Coffee"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="tobacco"
-        labelName="Tobacco Leaf"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="leather"
-        labelName="Leather"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="oak"
-        labelName="Oak"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="toasted"
-        labelName="Toasted"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="smokey"
-        labelName="Smokey"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="peanut"
-        labelName="Peanut"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="almond"
-        labelName="Almond"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="pecan"
-        labelName="Pecan"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="walnut"
-        labelName="Walnut"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="oily"
-        labelName="Oily"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="floral"
-        labelName="Floral"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
+      <EarthNotes changeHandler={stateSetter} />
       {/* GRAINS */}
-      <TextReviewInput
-        name="corn"
-        labelName="Corn"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="rye"
-        labelName="Rye"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="wheat"
-        labelName="Wheat"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="malt"
-        labelName="Malt"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="dough"
-        labelName="Bread / Dough"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="vanilla"
-        labelName="Vanilla"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="caramel"
-        labelName="Caramel"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="molasses"
-        labelName="Molasses"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="butterscotch"
-        labelName="Butterscotch"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="honey"
-        labelName="Honey"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="chocolate"
-        labelName="Chocolate"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="toffee"
-        labelName="Toffee"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="sugar"
-        labelName="Confectioner's Sugar"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <TextReviewInput
-        name="value"
-        labelName="Value for Money"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-
-      <TextReviewInput
-        name="overallRating"
-        labelName="Overall Rating"
-        changeHandler={(e) => stateSetter(e)}
-        type="number"
-      />
-      <div className="text-right">
+      <GrainNotes changeHandler={stateSetter} />
+      {/* SWEETS */}
+      <SweetNotes changeHandler={stateSetter} />
+      {/* RATING */}
+      <Rating changeHandler={stateSetter} />
+      <div className="my-2 text-right">
         <button
           type="submit"
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"

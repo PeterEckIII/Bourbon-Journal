@@ -50,51 +50,60 @@ export default function NewSettingRoute() {
 
   return (
     <Form method="post">
-      <TextReviewInput
-        labelName="Date"
-        name="date"
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-      />
-      <TextReviewInput
-        labelName="Setting"
-        name="setting"
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-      />
-      <TextReviewInput
-        labelName="Glassware"
-        name="glassware"
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-      />
-      <TextReviewInput
-        labelName="Rest Time"
-        name="restTime"
-        changeHandler={(e) => stateSetter(e)}
-        type="text"
-      />
-      <TextareaReviewInput
-        name="nose"
-        labelName="Nose"
-        changeHandler={(e) => stateSetter(e)}
-      />
-      <TextareaReviewInput
-        name="palate"
-        labelName="Palate"
-        changeHandler={(e) => stateSetter(e)}
-      />
-      <TextareaReviewInput
-        name="finish"
-        labelName="Finish"
-        changeHandler={(e) => stateSetter(e)}
-      />
-      <TextareaReviewInput
-        name="thoughts"
-        labelName="Additional Thoughts"
-        changeHandler={(e) => stateSetter(e)}
-      />
-      <div className="text-right">
+      <div className="my-2 flex lg:flex-col">
+        <TextReviewInput
+          labelName="Date"
+          name="date"
+          changeHandler={(e) => stateSetter(e)}
+          type="text"
+        />
+      </div>
+      <div className="my-2 lg:flex lg:justify-between">
+        <TextReviewInput
+          labelName="Rest Time"
+          name="restTime"
+          changeHandler={(e) => stateSetter(e)}
+          type="text"
+        />
+        <TextReviewInput
+          labelName="Glassware"
+          name="glassware"
+          changeHandler={(e) => stateSetter(e)}
+          type="text"
+        />
+      </div>
+      <div className="my-2 flex lg:flex-col">
+        <TextReviewInput
+          labelName="Setting"
+          name="setting"
+          changeHandler={(e) => stateSetter(e)}
+          type="text"
+        />
+      </div>
+
+      <div className="my-2">
+        <TextareaReviewInput
+          name="nose"
+          labelName="Nose"
+          changeHandler={(e) => stateSetter(e)}
+        />
+        <TextareaReviewInput
+          name="palate"
+          labelName="Palate"
+          changeHandler={(e) => stateSetter(e)}
+        />
+        <TextareaReviewInput
+          name="finish"
+          labelName="Finish"
+          changeHandler={(e) => stateSetter(e)}
+        />
+        <TextareaReviewInput
+          name="thoughts"
+          labelName="Additional Thoughts"
+          changeHandler={(e) => stateSetter(e)}
+        />
+      </div>
+      <div className="my-2 text-right">
         <button
           type="submit"
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
