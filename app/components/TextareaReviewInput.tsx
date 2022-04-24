@@ -14,7 +14,7 @@ export default function TextareaReviewInput({
   changeHandler,
 }: TextareaReviewInputProps) {
   return (
-    <div>
+    <div className="mx-2 my-2">
       <label className="flex w-full flex-col gap-1">
         <span>{labelName}: </span>
         <textarea
