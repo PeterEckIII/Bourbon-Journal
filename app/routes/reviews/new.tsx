@@ -175,7 +175,6 @@ export default function NewReviewPage() {
 
   return (
     <div className="m-4 p-4">
-      <h1>New Review</h1>
       <Outlet context={context} />
     </div>
   );
