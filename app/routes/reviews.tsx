@@ -1,5 +1,5 @@
 import { Form, useLoaderData, Outlet, Link } from "@remix-run/react";
-import { LoaderFunction, json } from "@remix-run/server-runtime";
+import { LoaderFunction, json, LinksFunction } from "@remix-run/server-runtime";
 import { useState } from "react";
 
 import { requireUserId } from "~/session.server";
@@ -9,7 +9,23 @@ import Hamburger from "~/components/Hamburger";
 import AddIcon from "~/components/AddIcon";
 import ArrowIcon from "~/components/ArrowIcon";
 import Glencairn from "~/components/Glencairn";
-import bourbonNookIcon from "~/images/Bourbon_Nook_Icon.png";
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Courgette&family=Satisfy&display=swap",
+    },
+  ];
+};
 
 type LoaderData = {
   reviewListItems: Awaited<ReturnType<typeof getReviewListItems>>;
@@ -35,16 +51,17 @@ export default function ReviewsPage() {
           <Link to="." className="flex items-center text-white">
             <div className="flex">
               <Glencairn />
-              <img
-                src={bourbonNookIcon}
-                alt="Bourbon Nook Icon"
-                className="-pb-5"
-                style={{ height: "90px", width: "100px" }}
-              />
+              <div className="text-center font-['Satisfy'] text-2xl leading-7">
+                THE
+                <br />
+                BOURBON
+                <br />
+                NOOK
+              </div>
             </div>
           </Link>
         </h1>
-        <p>{user.email}</p>
+        <p className="font-['Courgette'] text-xl">{user.email}</p>
         <Form action="/logout" method="post">
           <button
             type="submit"

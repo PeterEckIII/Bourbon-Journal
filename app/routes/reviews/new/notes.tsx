@@ -5,7 +5,13 @@ import FruitNotes from "~/components/FruitNotes";
 import GrainNotes from "~/components/GrainNotes";
 import SpiceNotes from "~/components/SpiceNotes";
 import SweetNotes from "~/components/SweetNotes";
+import TestFruitNotes from "~/components/TestFruitNotes";
+import TestSpiceNotes from "~/components/TestSpiceNotes";
+import TestEarthyNotes from "~/components/TestEarthyNotes";
+import TestGrainNotes from "~/components/TestGrainNotes";
+import TestSweetNotes from "~/components/TestSweetNotes";
 import Rating from "~/components/Rating";
+import TestRating from "~/components/TestRating";
 import type { ContextType } from "~/routes/reviews/new";
 
 type ActionData = {
@@ -175,18 +181,18 @@ export default function NewNotesRoute() {
   return (
     <Form method="post">
       {/* SPICE */}
-      <SpiceNotes changeHandler={stateSetter} />
+      <TestSpiceNotes changeHandler={stateSetter} />
 
       {/* FRUIT */}
-      <FruitNotes changeHandler={stateSetter} />
+      <TestFruitNotes changeHandler={stateSetter} />
       {/* EARTHY */}
-      <EarthNotes changeHandler={stateSetter} />
+      <TestEarthyNotes changeHandler={stateSetter} />
       {/* GRAINS */}
-      <GrainNotes changeHandler={stateSetter} />
+      <TestGrainNotes changeHandler={stateSetter} />
       {/* SWEETS */}
-      <SweetNotes changeHandler={stateSetter} />
+      <TestSweetNotes changeHandler={stateSetter} />
       {/* RATING */}
-      <Rating changeHandler={stateSetter} />
+      <TestRating changeHandler={stateSetter} />
       <div className="my-2 text-right">
         <button
           type="submit"
