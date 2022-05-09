@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { Form, useOutletContext } from "@remix-run/react";
+import { Form, useActionData, useOutletContext } from "@remix-run/react";
 import { json, redirect, ActionFunction } from "@remix-run/server-runtime";
 import invariant from "tiny-invariant";
 import { createReview } from "~/models/review.server";
@@ -250,17 +251,26 @@ export const action: ActionFunction = async ({ request }) => {
     overallRating,
     value,
   });
-  if (!newReview) throw new Error(`Error posting review. Please try again`);
+  if (!newReview) {
+    return json(
+      { errors: { message: "ERROR SUBMITTING REVIEW!" } },
+      { status: 400 }
+    );
+  }
   return redirect(`/reviews/${newReview.id}`);
 };
 
 export default function NewConfirmationRoute() {
   const { state, stateSetter } = useOutletContext<ContextType>();
+  const data = useActionData();
+  if (data) {
+    console.log(`DATA: ${JSON.stringify(data, null, 2)}`);
+  }
 
   if (state === undefined || !stateSetter) {
     throw new Error(`Error with the Outlet Context`);
   }
-  console.log(`State: ${JSON.stringify(state, null, 2)}`);
+
   return (
     <div>
       <h1>Confirm your Review</h1>

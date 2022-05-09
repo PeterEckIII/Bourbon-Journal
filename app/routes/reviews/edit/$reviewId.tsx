@@ -6,8 +6,8 @@ import {
   json,
 } from "@remix-run/server-runtime";
 import { useActionData, useLoaderData, Form } from "@remix-run/react";
-import EditTextReviewInput from "~/components/EditTextReviewInput";
-import EditTextReviewTextarea from "~/components/EditTextReviewTextarea";
+import EditTextReviewInput from "~/components/Form/EditTextReviewInput";
+import EditTextReviewTextarea from "~/components/Form/EditTextReviewTextarea";
 import { editReview, getReview } from "~/models/review.server";
 import { requireUserId } from "~/session.server";
 import { editBottle, getBottle } from "~/models/bottle.server";
