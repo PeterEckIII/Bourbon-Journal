@@ -8,7 +8,6 @@ import {
 import {
   useLoaderData,
   useCatch,
-  Form,
   useNavigate,
   useParams,
 } from "@remix-run/react";
@@ -17,13 +16,8 @@ import { getBottle } from "~/models/bottle.server";
 import type { Review } from "~/models/review.server";
 import { deleteReview, getReview } from "~/models/review.server";
 import { requireUserId } from "~/session.server";
-import { formatDateForReviewPage } from "~/utils/date";
-import BottleDetails from "~/components/BottleDetails";
-import SettingDetails from "~/components/SettingDetails";
-import DeleteIcon from "~/components/DeleteIcon";
-import EditIcon from "~/components/EditIcon";
 import { transformImage } from "~/utils/cloudinary.server";
-import ReviewPage from "~/components/ReviewPage";
+import ReviewPage from "~/components/Review/ReviewPage";
 
 type LoaderData = {
   review: Review;

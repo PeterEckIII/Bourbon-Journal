@@ -1,8 +1,8 @@
 import { Bottle, Review } from "@prisma/client";
 import BottleDetails from "./BottleDetails";
 import SettingDetails from "./SettingDetails";
-import EditIcon from "./EditIcon";
-import DeleteIcon from "./DeleteIcon";
+import EditIcon from "~/components/Icons/EditIcon";
+import DeleteIcon from "~/components/Icons/DeleteIcon";
 import { Form } from "@remix-run/react";
 import NotesDetails from "./NotesDetails";
 import ReviewImage from "./ReviewImage";
@@ -32,9 +32,11 @@ export default function ReviewPage({
       <div className="flex pl-2">
         <p className="py-4">{review.date} </p>
       </div>
-      <div className="align-center my-2 flex">
+      <div className="align-center my-2 -mb-4 flex">
         <BottleDetails bottle={bottle} />
-        <ReviewImage imageUrl={imageUrl} bottleName={bottle.name} />
+        <div className="-mt-6">
+          <ReviewImage imageUrl={imageUrl} bottleName={bottle.name} />
+        </div>
       </div>
       <div className="flex">
         <div className="flex">

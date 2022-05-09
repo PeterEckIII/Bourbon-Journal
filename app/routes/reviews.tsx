@@ -5,10 +5,10 @@ import { useState } from "react";
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
 import { getReviewListItems } from "~/models/review.server";
-import Hamburger from "~/components/Hamburger";
-import AddIcon from "~/components/AddIcon";
-import ArrowIcon from "~/components/ArrowIcon";
-import Glencairn from "~/components/Glencairn";
+import Hamburger from "~/components/Icons/Hamburger";
+import AddIcon from "~/components/Icons/AddIcon";
+import ArrowIcon from "~/components/Icons/ArrowIcon";
+import Glencairn from "~/components/Icons/Glencairn";
 
 export const links: LinksFunction = () => {
   return [
@@ -98,7 +98,7 @@ export default function ReviewsPage() {
                           review?.bottle?.batch &&
                           !review.bottle.batch.startsWith("N")
                             ? review.bottle.batch
-                            : null
+                            : ""
                         }`}{" "}
                         <ArrowIcon />
                       </Link>

@@ -79,6 +79,7 @@ export type ContextType = {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   setFormState?: React.Dispatch<React.SetStateAction<FormState>>;
+  handleLocalStorageState?: (nextState: FormState) => void;
 };
 
 const initialState: FormState = {

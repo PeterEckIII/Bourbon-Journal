@@ -9,7 +9,7 @@ import { uploadImage } from "~/utils/cloudinary.server";
 import { getUser } from "~/session.server";
 import { ContextType } from "../new";
 import { ChangeEvent, useEffect, useState } from "react";
-import CheckIcon from "~/components/CheckIcon";
+import CheckIcon from "~/components/Icons/CheckIcon";
 
 type ActionData = {
   errorMessage?: string;
