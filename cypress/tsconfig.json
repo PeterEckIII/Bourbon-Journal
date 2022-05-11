@@ -13,6 +13,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "isolatedModules": false,
     "noEmit": true,
     "types": ["node", "cypress", "@testing-library/cypress"],
     "esModuleInterop": true,

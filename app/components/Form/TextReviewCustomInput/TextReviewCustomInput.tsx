@@ -10,17 +10,21 @@ type TextReviewInputType = {
   type: string;
   note: string;
   noteSource: string;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const TextReviewCustomInput: React.FC<
   TextReviewInputType & React.HTMLProps<HTMLInputElement>
-> = ({ labelName, name, value, error, type, note, noteSource }) => {
-  const { stateSetter } = useOutletContext<ContextType>();
-
-  if (typeof stateSetter === "undefined") {
-    throw new Error(`STATE SETTER UNDEFINED!!`);
-  }
-
+> = ({
+  labelName,
+  name,
+  value,
+  error,
+  type,
+  note,
+  noteSource,
+  changeHandler,
+}) => {
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -57,9 +61,11 @@ const TextReviewCustomInput: React.FC<
         </span>
         <input
           type={type}
+          id={name}
           name={name}
           value={value}
-          onChange={(e) => stateSetter(e)}
+          aria-label={`${name.toLowerCase()}-input`}
+          onChange={changeHandler}
           onBlur={() => handleBlur(name, value)}
           className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
         />

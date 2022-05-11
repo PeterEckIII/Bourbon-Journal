@@ -7,6 +7,7 @@ import SpiceNotes from "~/components/Notes/SpiceNotes/SpiceNotes";
 import SweetNotes from "~/components/Notes/SweetNotes/SweetNotes";
 import Rating from "~/components/Notes/Rating/Rating";
 import type { ContextType } from "~/routes/reviews/new";
+import PrimaryButton from "~/components/Form/PrimaryButton";
 
 type ActionData = {
   errors?: {
@@ -173,20 +174,13 @@ export default function NewNotesRoute() {
 
   return (
     <Form method="post">
-      <SpiceNotes state={state} />
-      <FruitNotes state={state} />
-      <EarthNotes state={state} />
-      <GrainNotes state={state} />
-      <SweetNotes state={state} />
-      <Rating state={state} />
-      <div className="my-2 text-right">
-        <button
-          type="submit"
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Review
-        </button>
-      </div>
+      <SpiceNotes state={state} changeHandler={stateSetter} />
+      <FruitNotes state={state} changeHandler={stateSetter} />
+      <EarthNotes state={state} changeHandler={stateSetter} />
+      <GrainNotes state={state} changeHandler={stateSetter} />
+      <SweetNotes state={state} changeHandler={stateSetter} />
+      <Rating state={state} changeHandler={stateSetter} />
+      <PrimaryButton callToAction="Review" />
     </Form>
   );
 }

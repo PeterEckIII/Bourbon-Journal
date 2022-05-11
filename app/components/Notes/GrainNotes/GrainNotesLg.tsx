@@ -1,14 +1,15 @@
 import wheat from "~/images/wheat.png";
 import rye from "~/images/rye.png";
-import TextReviewInput from "~/components/Form/TextReviewInput";
-import TextReviewCustomInput from "~/components/Form/TextReviewCustomInput";
+import TextReviewInput from "~/components/Form/TextReviewInput/TextReviewInput";
+import TextReviewCustomInput from "~/components/Form/TextReviewCustomInput/TextReviewCustomInput";
 import { FormState } from "~/routes/reviews/new";
 
-interface GrainProps {
+interface GrainNoteProps {
   state: FormState;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function GrainNotesLg({ state }: GrainProps) {
+export default function GrainNotesLg({ state, changeHandler }: GrainNoteProps) {
   return (
     <>
       <h5 className="text-lg underline">Grain</h5>
@@ -19,12 +20,14 @@ export default function GrainNotesLg({ state }: GrainProps) {
             value={state.corn}
             emoji="🌽"
             labelName="Corn"
+            changeHandler={(e) => changeHandler(e)}
             type="number"
           />
           <TextReviewCustomInput
             name="rye"
             labelName="Rye"
             value={state.rye}
+            changeHandler={(e) => changeHandler(e)}
             type="number"
             noteSource={rye}
             note="rye"
@@ -33,6 +36,7 @@ export default function GrainNotesLg({ state }: GrainProps) {
             name="wheat"
             labelName="Wheat"
             value={state.wheat}
+            changeHandler={(e) => changeHandler(e)}
             type="number"
             note="wheat"
             noteSource={wheat}
@@ -44,6 +48,7 @@ export default function GrainNotesLg({ state }: GrainProps) {
             emoji="🍺"
             value={state.malt}
             labelName="Malt"
+            changeHandler={(e) => changeHandler(e)}
             type="number"
           />
           <TextReviewInput
@@ -51,6 +56,7 @@ export default function GrainNotesLg({ state }: GrainProps) {
             emoji="🥖"
             value={state.dough}
             labelName="Dough / Bread"
+            changeHandler={(e) => changeHandler(e)}
             type="number"
           />
         </div>

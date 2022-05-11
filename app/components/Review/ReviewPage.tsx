@@ -125,6 +125,7 @@ export default function ReviewPage({
       <div className="flex justify-end">
         <div className="m-1 inline text-right">
           <button
+            id="edit-button"
             onClick={handleEditClick}
             className="my-4 rounded bg-blue-500 py-2 px-6 text-white hover:bg-blue-700 focus:bg-blue-400"
           >
@@ -134,6 +135,7 @@ export default function ReviewPage({
         <Form method="post" className="m-1 inline text-right">
           <input type="hidden" name="_deleted" value="_deleted" />
           <button
+            id="delete-button"
             type="submit"
             className="my-4 rounded bg-red-500 py-2 px-4 text-white hover:bg-red-700 focus:bg-red-400"
           >

@@ -19,6 +19,8 @@ export default function EditTextReviewTextarea({
         rows={6}
         name={name}
         defaultValue={defaultValue ?? ""}
+        id={name}
+        aria-label={`${name}-input`}
       />
     </div>
   );

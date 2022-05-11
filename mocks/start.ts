@@ -1,8 +1,9 @@
 import { setupServer } from "msw/node";
+import { handlers } from "./handler";
 
 import "~/utils";
 
-const server = setupServer();
+const server = setupServer(...handlers);
 
 server.listen({ onUnhandledRequest: "warn" });
 console.info("🔶 Mock server running");
