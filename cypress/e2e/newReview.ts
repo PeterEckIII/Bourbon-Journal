@@ -89,22 +89,6 @@ describe("New Review", () => {
       `${Cypress.config("baseUrl")}/reviews/new/addImage`
     );
   });
-  it("Successfully uploads an image and continues", () => {
-    cy.visit("/reviews/new/addImage");
-    cy.fixture("lostMonarch.png").then((contents) => {
-      cy.get('input[type="file"]').attachFile({
-        fileContent: contents.toString(),
-        fileName: "lostMonarch.png",
-        mimeType: "image/png",
-      });
-    });
-    cy.get("#upload-button").click();
-    cy.get("#next-button").click();
-    cy.url().should(
-      "equal",
-      `${Cypress.config("baseUrl")}/reviews/new/setting`
-    );
-  });
   it("Successfully fills out the settings", () => {
     cy.visit(`/reviews/new/setting`);
     cy.get('[aria-label="date-input"]').should("be.visible").type("05/10/2022");
@@ -366,5 +350,22 @@ describe("New Review", () => {
     cy.get('[name="overallRating"]').should("be.visible").clear().type("3");
     cy.get("#submitreview-button").click();
     cy.url().should("match", /http:\/\/localhost:(\d){4,4}\/reviews\/(\w){4,}/);
+  });
+  it("Successfully uploads an image and continues", () => {
+    cy.visit("/reviews/new/addImage");
+    cy.fixture("lostMonarch.png").then((contents) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: contents.toString(),
+        fileName: "lostMonarch.png",
+        mimeType: "image/png",
+      });
+    });
+    cy.get("#upload-button").click();
+    cy.get("img");
+    cy.get("#next-button").click();
+    cy.url().should(
+      "equal",
+      `${Cypress.config("baseUrl")}/reviews/new/setting`
+    );
   });
 });
