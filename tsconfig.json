@@ -1,5 +1,6 @@
 {
-  "exclude": ["./cypress"],
+  "extends": "./tsconfig.e2e.json",
+  "exclude": ["./cypress/**/*"],
   "include": [
     "remix.env.d.ts",
     "**/*.ts",
@@ -9,7 +10,12 @@
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019", "ES2021.String"],
-    "types": ["vitest/globals"],
+    "types": [
+      "vitest/globals",
+      "cypress",
+      "cypress-file-upload",
+      "cypress-localstorage-commands"
+    ],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",

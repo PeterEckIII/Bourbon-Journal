@@ -1,4 +1,6 @@
 import faker from "@faker-js/faker";
+import "cypress-file-upload";
+import "cypress-localstorage-commands";
 
 declare global {
   namespace Cypress {

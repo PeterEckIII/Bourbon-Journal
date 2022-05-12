@@ -10,6 +10,7 @@ import { getUser } from "~/session.server";
 import { ContextType } from "../new";
 import { ChangeEvent, useEffect, useState } from "react";
 import CheckIcon from "~/components/Icons/CheckIcon";
+import PrimaryButton from "~/components/Form/PrimaryButton";
 
 type ActionData = {
   errorMessage?: string;
@@ -95,6 +96,7 @@ export default function NewAddImageRoute() {
               name="img"
               className="my-2 flex-1 px-3 text-lg leading-loose text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-blue-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
               id="img"
+              data-cy="file-input"
               onChange={(e) => handlePreviewImage(e)}
               accept="image/*"
             />
@@ -116,20 +118,16 @@ export default function NewAddImageRoute() {
             <img src={previewUrl} alt="The image you uploaded" />
           </div>
         )}
-        <div className="mt-2 text-right">
-          <button
-            type="submit"
-            className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-          >
-            Upload
-          </button>
-        </div>
+        <PrimaryButton callToAction="Upload" />
       </Form>
       {data?.errorMessage && (
         <div className="text-red-500">Error uploading: {data.errorMessage}</div>
       )}
       {data?.imageSrc && confirmed === true && (
-        <div className="border-black-100 align-center m-4 flex justify-center rounded-md p-4 text-green-700">
+        <div
+          id="upload-confirmation"
+          className="border-black-100 align-center m-4 flex justify-center rounded-md p-4 text-green-700"
+        >
           <CheckIcon /> <span>&nbsp;</span>Successfully uploaded
         </div>
       )}
@@ -137,8 +135,10 @@ export default function NewAddImageRoute() {
         <Link
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
           to="/reviews/new/setting"
+          aria-label="next-button"
+          id="next-button"
         >
-          {data?.imageSrc ? "Next" : "Skip"}
+          Next
         </Link>
       </div>
     </div>

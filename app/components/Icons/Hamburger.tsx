@@ -1,7 +1,7 @@
-type HamburgerProps = {
+export interface HamburgerProps {
   opened: boolean;
   setOpened: () => void;
-};
+}
 
 export default function Hamburger({ opened, setOpened }: HamburgerProps) {
   return (

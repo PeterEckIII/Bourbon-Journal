@@ -21,6 +21,8 @@ export default function EditTextReviewInput({
         type={type}
         name={name}
         defaultValue={defaultValue ?? ""}
+        id={name}
+        aria-label={`${name.toLowerCase()}-input`}
       />
     </div>
   );

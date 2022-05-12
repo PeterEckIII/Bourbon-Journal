@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { Form, useActionData, useOutletContext } from "@remix-run/react";
 import { json, redirect, ActionFunction } from "@remix-run/server-runtime";
@@ -7,6 +6,7 @@ import { createReview } from "~/models/review.server";
 import { createBottle } from "~/models/bottle.server";
 import { getUser } from "~/session.server";
 import type { ContextType } from "../new";
+import PrimaryButton from "~/components/Form/PrimaryButton";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -188,6 +188,12 @@ export const action: ActionFunction = async ({ request }) => {
     color,
     finishing,
   });
+  if (!newBottle) {
+    return json(
+      { errors: { message: "Error submitting bottle!" } },
+      { status: 400 }
+    );
+  }
 
   const today = new Date();
   const reviewId = uuid();
@@ -297,7 +303,12 @@ export default function NewConfirmationRoute() {
           <input type="text" name="color" defaultValue={state.color} />
           <input type="text" name="finishing" defaultValue={state.finishing} />
           <input type="text" name="date" defaultValue={state.date} />
-          <input type="hidden" name="imageId" defaultValue={state.imageId} />
+          <input
+            type="text"
+            className="hidden"
+            name="imageId"
+            defaultValue={state.imageId}
+          />
           <input type="text" name="setting" defaultValue={state.setting} />
           <input type="text" name="glassware" defaultValue={state.glassware} />
           <input type="text" name="restTime" defaultValue={state.restTime} />
@@ -386,14 +397,7 @@ export default function NewConfirmationRoute() {
             name="overallRating"
             defaultValue={state.overallRating}
           />
-          <div className="text-right">
-            <button
-              type="submit"
-              className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-            >
-              Submit Review
-            </button>
-          </div>
+          <PrimaryButton callToAction="Submit Review" />
         </Form>
       </div>
     </div>

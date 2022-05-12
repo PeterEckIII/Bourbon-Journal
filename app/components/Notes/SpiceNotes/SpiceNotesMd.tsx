@@ -3,14 +3,15 @@ import pepper from "~/images/pepper.webp";
 import anise from "~/images/anise.jpeg";
 import mint from "~/images/mint.png";
 import { FormState } from "~/routes/reviews/new";
-import TextReviewCustomInput from "~/components/Form/TextReviewCustomInput";
-import TextReviewInput from "~/components/Form/TextReviewInput";
+import TextReviewCustomInput from "~/components/Form/TextReviewCustomInput/TextReviewCustomInput";
+import TextReviewInput from "~/components/Form/TextReviewInput/TextReviewInput";
 
-interface SpiceProps {
+interface SpiceNoteProps {
   state: FormState;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function SpiceNotesMd({ state }: SpiceProps) {
+export default function SpiceNotesMd({ state, changeHandler }: SpiceNoteProps) {
   return (
     <>
       <h5 className="text-lg underline">Spice</h5>
@@ -22,7 +23,8 @@ export default function SpiceNotesMd({ state }: SpiceProps) {
             name="pepper"
             labelName="Black Pepper"
             value={state.pepper}
-            type="number"
+            changeHandler={(e) => changeHandler(e)}
+            type="text"
           />
 
           <TextReviewCustomInput
@@ -31,7 +33,8 @@ export default function SpiceNotesMd({ state }: SpiceProps) {
             name="cinnamon"
             labelName="Cinnamon"
             value={state.cinnamon}
-            type="number"
+            changeHandler={(e) => changeHandler(e)}
+            type="text"
           />
         </div>
         <div className="hidden md:flex lg:hidden">
@@ -41,14 +44,16 @@ export default function SpiceNotesMd({ state }: SpiceProps) {
             name="bakingSpice"
             labelName="Baking Spice"
             value={state.bakingSpice}
-            type="number"
+            changeHandler={(e) => changeHandler(e)}
+            type="text"
           />
 
           <TextReviewInput
             name="herbal"
             labelName="Herbal"
             value={state.herbal}
-            type="number"
+            changeHandler={(e) => changeHandler(e)}
+            type="text"
             emoji="🌿"
           />
         </div>
@@ -59,7 +64,8 @@ export default function SpiceNotesMd({ state }: SpiceProps) {
             name="mint"
             labelName="Mint"
             value={state.mint}
-            type="number"
+            changeHandler={(e) => changeHandler(e)}
+            type="text"
           />
         </div>
       </div>

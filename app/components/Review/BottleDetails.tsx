@@ -1,4 +1,5 @@
 import { Bottle } from "@prisma/client";
+import ReviewField from "./ReviewField/ReviewField";
 
 type BottleDetailProps = {
   bottle: Bottle;
@@ -9,64 +10,37 @@ export default function BottleDetails({ bottle }: BottleDetailProps) {
     <div className="p-1">
       <h4 className="text-l underline">Bottle Details:</h4>
       <div className="m-2 flex flex-col py-5">
-        <div>
-          <div className="py-1">
-            <span className="font-bold">Name</span>:{" "}
-            <span className="">{bottle.name}</span>{" "}
-            {bottle.batch !== "N/A" ? bottle.batch : null}{" "}
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Type</span>:{" "}
-            <span className="">{bottle.type}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Price</span>:{" "}
-            <span className="">{bottle.price}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">ABV</span>:{" "}
-            <span className="">{bottle.alcoholPercent}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Proof</span>:{" "}
-            <span className="">{bottle.proof}</span> proof
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Age</span>:{" "}
-            <span className="">{bottle.age}</span>
-          </div>
+        <div id="bottleDetails">
+          {bottle.batch !== "N/A" ? (
+            <ReviewField
+              labelName="Name"
+              value={`${bottle.name} ${bottle.batch}`}
+            />
+          ) : (
+            <ReviewField labelName="Name" value={`${bottle.name}`} />
+          )}
+          <ReviewField labelName="Type" value={bottle.type as string} />
+          <ReviewField labelName="Price" value={bottle.price as string} />
+          <ReviewField
+            labelName="ABV"
+            value={bottle.alcoholPercent as string}
+          />
+          <ReviewField labelName="Proof" value={bottle.proof as string} />
+          <ReviewField labelName="Age" value={bottle.age as string} />
         </div>
         <div>
-          <div className="py-1">
-            <span className="font-bold">Year</span>:{" "}
-            <span className="">{bottle.year}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Batch</span>:{" "}
-            <span className="">{bottle.batch}</span>
-          </div>
+          <ReviewField labelName="Year" value={bottle.year as string} />
+          <ReviewField labelName="Batch" value={bottle.batch ?? ""} />
         </div>
         <div>
-          <div className="py-1">
-            <span className="font-bold">Distiller</span>:{" "}
-            <span className="">{bottle.distiller}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Bottler</span>:{" "}
-            <span className="">{bottle.bottler}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Producer</span>:{" "}
-            <span className="">{bottle.producer}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Country</span>:{" "}
-            <span className="">{bottle.country}</span>
-          </div>
-          <div className="py-1">
-            <span className="font-bold">Region</span>:{" "}
-            <span className="">{bottle.region}</span>
-          </div>
+          <ReviewField
+            labelName="Distiller"
+            value={bottle.distiller as string}
+          />
+          <ReviewField labelName="Bottler" value={bottle.bottler as string} />
+          <ReviewField labelName="Producer" value={bottle.producer as string} />
+          <ReviewField labelName="Country" value={bottle.country as string} />
+          <ReviewField labelName="Region" value={bottle.region as string} />
         </div>
       </div>
     </div>

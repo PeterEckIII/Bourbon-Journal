@@ -76,10 +76,9 @@ export type FormState = {
 export type ContextType = {
   state: FormState;
   stateSetter?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   setFormState?: React.Dispatch<React.SetStateAction<FormState>>;
-  handleLocalStorageState?: (nextState: FormState) => void;
 };
 
 const initialState: FormState = {
@@ -158,10 +157,10 @@ export default function NewReviewPage() {
   const [formState, setFormState] = React.useState<FormState>(initialState);
 
   const handleValueChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const value = event.target.value;
-    const name = event.target.name;
+    const value = e.target.value;
+    const name = e.target.name;
     setFormState({
       ...formState,
       [name]: value,

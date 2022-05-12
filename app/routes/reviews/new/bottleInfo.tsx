@@ -1,8 +1,9 @@
 import { ActionFunction, redirect } from "@remix-run/server-runtime";
 import { Form, useOutletContext } from "@remix-run/react";
 import type { ContextType } from "~/routes/reviews/new";
-import TextReviewInput from "~/components/Form/TextReviewInput";
+import TextReviewInput from "~/components/Form/TextReviewInput/TextReviewInput";
 import invariant from "tiny-invariant";
+import PrimaryButton from "~/components/Form/PrimaryButton";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -58,6 +59,7 @@ export default function NewBottleInfoRoute() {
           labelName="Name"
           name="name"
           value={state.name}
+          changeHandler={(e) => stateSetter(e)}
           emoji="📛"
         />
         {false && (
@@ -74,6 +76,7 @@ export default function NewBottleInfoRoute() {
             labelName="Distiller"
             name="distiller"
             value={state.distiller}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🌱"
           />
         </div>
@@ -83,6 +86,7 @@ export default function NewBottleInfoRoute() {
             labelName="Bottler"
             name="bottler"
             value={state.bottler}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🍾"
           />
         </div>
@@ -92,6 +96,7 @@ export default function NewBottleInfoRoute() {
             labelName="Producer"
             name="producer"
             value={state.producer}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🏗️"
           />
         </div>
@@ -103,6 +108,7 @@ export default function NewBottleInfoRoute() {
             labelName="Type"
             name="type"
             value={state.type}
+            changeHandler={(e) => stateSetter(e)}
             emoji="©️"
           />
         </div>
@@ -112,6 +118,7 @@ export default function NewBottleInfoRoute() {
             labelName="Country of Origin"
             name="country"
             value={state.country}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🌎"
           />
         </div>
@@ -121,6 +128,7 @@ export default function NewBottleInfoRoute() {
             labelName="Region"
             name="region"
             value={state.region}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🏔️"
           />
         </div>
@@ -132,6 +140,7 @@ export default function NewBottleInfoRoute() {
             labelName="Price"
             name="price"
             value={state.price}
+            changeHandler={(e) => stateSetter(e)}
             emoji="💲"
           />
         </div>
@@ -141,6 +150,7 @@ export default function NewBottleInfoRoute() {
             labelName="Age"
             name="age"
             value={state.age}
+            changeHandler={(e) => stateSetter(e)}
             emoji="👴"
           />
         </div>
@@ -150,6 +160,7 @@ export default function NewBottleInfoRoute() {
             labelName="Color"
             name="color"
             value={state.color}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🌈"
           />
         </div>
@@ -161,6 +172,7 @@ export default function NewBottleInfoRoute() {
             labelName="Year"
             name="year"
             value={state.year}
+            changeHandler={(e) => stateSetter(e)}
             emoji="📆"
           />
         </div>
@@ -170,6 +182,7 @@ export default function NewBottleInfoRoute() {
             labelName="Batch / Barrel"
             name="batch"
             value={state.batch}
+            changeHandler={(e) => stateSetter(e)}
             emoji="2️⃣"
           />
         </div>
@@ -179,6 +192,7 @@ export default function NewBottleInfoRoute() {
             labelName="Size"
             name="size"
             value={state.size}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🍆"
           />
         </div>
@@ -190,6 +204,7 @@ export default function NewBottleInfoRoute() {
             labelName="Alcohol Percent"
             name="alcoholPercent"
             value={state.alcoholPercent}
+            changeHandler={(e) => stateSetter(e)}
             emoji="💫"
           />
         </div>
@@ -199,6 +214,7 @@ export default function NewBottleInfoRoute() {
             labelName="Proof"
             name="proof"
             value={state.proof}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🔥"
           />
         </div>
@@ -208,18 +224,12 @@ export default function NewBottleInfoRoute() {
             labelName="Finishing"
             name="finishing"
             value={state.finishing}
+            changeHandler={(e) => stateSetter(e)}
             emoji="🍷"
           />
         </div>
       </div>
-      <div className="my-2 text-right">
-        <button
-          type="submit"
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Next
-        </button>
-      </div>
+      <PrimaryButton callToAction="Next" />
     </Form>
   );
 }

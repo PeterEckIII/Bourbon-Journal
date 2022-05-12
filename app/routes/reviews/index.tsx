@@ -5,7 +5,11 @@ export default function ReviewIndexPage() {
     <div>
       <p>
         No review selected. Select a review on the left, or{" "}
-        <Link to="/reviews/new/bottleInfo" className="text-blue-500 underline">
+        <Link
+          to="/reviews/new/bottleInfo"
+          className="text-blue-500 underline"
+          id="create-new-review-link"
+        >
           create a new review.
         </Link>
       </p>
