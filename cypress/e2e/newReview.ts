@@ -89,20 +89,22 @@ describe("New Review", () => {
       `${Cypress.config("baseUrl")}/reviews/new/addImage`
     );
   });
-  // it("Successfully fills out the bottle image", () => {
-  //   cy.visit(`/reviews/new/addImage`);
-  //   cy.get('[data-cy="file-input"]').attachFile("lostMonarch.png");
-  //   // UPLOAD BUTTON
-  //   cy.get("#upload-button").click();
-  //   cy.wait(5000);
-  //   cy.get("#next-button").click();
-  //   // NEW URL -- /reviews/new/setting
-  //   cy.url().should(
-  //     "equal",
-  //     `${Cypress.config("baseUrl")}/reviews/new/setting`
-  //   );
-  // });
-
+  it("Successfully uploads an image and continues", () => {
+    cy.visit("/reviews/new/addImage");
+    cy.fixture("lostMonarch.png").then((contents) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: contents.toString(),
+        fileName: "lostMonarch.png",
+        mimeType: "image/png",
+      });
+    });
+    cy.get("#upload-button").click();
+    cy.get("#next-button").click();
+    cy.url().should(
+      "equal",
+      `${Cypress.config("baseUrl")}/reviews/new/setting`
+    );
+  });
   it("Successfully fills out the settings", () => {
     cy.visit(`/reviews/new/setting`);
     cy.get('[aria-label="date-input"]').should("be.visible").type("05/10/2022");
@@ -138,7 +140,6 @@ describe("New Review", () => {
     // NEW URL -- /reviews/new/notes
     cy.url().should("equal", `${Cypress.config("baseUrl")}/reviews/new/notes`);
   });
-
   it("Successfully fills out the notes", () => {
     cy.visit(`/reviews/new/notes`);
     cy.get('[aria-label="pepper-input"]')
