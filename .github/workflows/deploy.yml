@@ -71,10 +71,14 @@ jobs:
         run: npm run test -- --coverage
 
   cypress:
-    name: ⚫️ Cypress
+    name: 🧪 Cypress
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3]
     steps:
-      - name: 🛑 Cancel Previous Runs
+      - name: 🙅‍♀️ Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
 
       - name: ⬇️ Checkout repo
@@ -100,10 +104,15 @@ jobs:
       - name: 🌳 Cypress run
         uses: cypress-io/github-action@v3
         with:
+          record: true
+          parallel: true
           start: npm run start:mocks
           wait-on: "http://localhost:8811"
         env:
           PORT: "8811"
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
 
   build:
     name: 🐳 Build

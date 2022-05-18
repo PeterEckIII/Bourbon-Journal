@@ -2,7 +2,7 @@ import { rest } from "msw";
 
 export const handlers = [
   rest.post(
-    "https://api.cloudinary.com/v1_1/jpeckiii/image/upload/dedb9eda-f21d-48a0-94e3-533c7c3a29fa",
+    "https://api.cloudinary.com/v1_1/jpeckiii/image/upload",
     (req, res, ctx) => {
       return res(
         ctx.status(200),
