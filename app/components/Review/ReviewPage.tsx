@@ -43,7 +43,7 @@ export default function ReviewPage({
           <SettingDetails bottle={bottle} review={review} />
         </div>
       </div>
-      <div className="flex w-full flex-col ">
+      <div className="flex w-1/2 flex-col ">
         <div>
           <div className="my-3 rounded border-2 py-3 pl-2">
             <span className="font-bold underline">Nose</span>:
