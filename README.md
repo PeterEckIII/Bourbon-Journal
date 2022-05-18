@@ -1,6 +1,6 @@
 # Bourbon Journal
 
-![EHT Taylor lineup](/app/images/EHT.png "EH Taylor Lineup")
+![Bourbon Journal Login](/app/images/frontpage.png "Bourbon Journal")
 
 ## Powered by...
 
