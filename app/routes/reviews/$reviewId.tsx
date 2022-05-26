@@ -17,7 +17,7 @@ import type { Review } from "~/models/review.server";
 import { deleteReview, getReview } from "~/models/review.server";
 import { requireUserId } from "~/session.server";
 import { transformImage } from "~/utils/cloudinary.server";
-import ReviewPage from "~/components/Review/ReviewPage";
+import ReviewPage from "~/components/Review/ReviewPage/ReviewPage";
 
 type LoaderData = {
   review: Review;
@@ -81,7 +81,7 @@ export default function ReviewDetailsPage() {
   };
 
   return (
-    <div>
+    <div className="align-center flex justify-center">
       <ReviewPage
         bottle={bottle}
         review={review}

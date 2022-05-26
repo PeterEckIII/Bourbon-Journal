@@ -8,17 +8,8 @@ type BottleDetailProps = {
 export default function BottleDetails({ bottle }: BottleDetailProps) {
   return (
     <div className="p-1">
-      <h4 className="text-l underline">Bottle Details:</h4>
       <div className="m-2 flex flex-col py-5">
         <div id="bottleDetails">
-          {bottle.batch !== "N/A" ? (
-            <ReviewField
-              labelName="Name"
-              value={`${bottle.name} ${bottle.batch}`}
-            />
-          ) : (
-            <ReviewField labelName="Name" value={`${bottle.name}`} />
-          )}
           <ReviewField labelName="Type" value={bottle.type as string} />
           <ReviewField labelName="Price" value={bottle.price as string} />
           <ReviewField
