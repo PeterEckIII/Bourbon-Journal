@@ -2,8 +2,8 @@ import { Bottle, Review } from "@prisma/client";
 import EditIcon from "~/components/Icons/EditIcon";
 import DeleteIcon from "~/components/Icons/DeleteIcon";
 import { Form } from "@remix-run/react";
-import ReviewImage from "./ReviewImage";
-import NoteTabs from "./NoteTabs/NoteTabs";
+import ReviewImage from "../ReviewImage";
+import NoteTabs from "../NoteTabs/NoteTabs";
 
 interface ReviewPageProps {
   bottle?: Bottle;
@@ -24,21 +24,21 @@ export default function ReviewPage({
   return (
     // CONTAINER
     <div className="my-2 flex flex-col">
-      <div className="flex flex-col p-4">
-        <h1 className="text-2xl font-bold">
+      <div className="flex flex-col">
+        <h1 className="my-2 text-2xl font-bold">
           {bottle.name}{" "}
           {bottle.batch !== "None" && bottle.batch !== "N/A"
             ? bottle.batch
             : ""}{" "}
         </h1>
-        <p>{review.date}</p>
+        <p className="mb-8">{review.date}</p>
         {/* IMAGE */}
-        <div>
+        <div className="mb-6">
           <ReviewImage imageUrl={imageUrl} bottleName={bottle.name} />
         </div>
         {/*  BOTTLE  */}
-        <h4 className="mb-4 text-left text-2xl">Bottle</h4>
-        <div className="flex rounded-lg border border-gray-200 bg-white shadow-md">
+        <h4 className="my-4 text-left text-2xl">Bottle</h4>
+        <div className="mb-6 flex rounded-lg border border-gray-200 bg-white shadow-md">
           <div className="flex w-1/2 flex-col border-r-2 bg-yellow-50">
             <div className="border py-1 text-center">Type</div>
             <div className="border py-1 text-center">Price</div>
@@ -109,24 +109,32 @@ export default function ReviewPage({
             </div>
           </div>
           <div className="text-md mt-6 flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h6 className="my-2">Nose</h6>
+            <h6 className="-mt-2">
+              <strong>Nose</strong>
+            </h6>
             {review.nose}
           </div>
           <div className="text-md mt-6 flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h6 className="my-2">Palate</h6>
+            <h6 className="-mt-2">
+              <strong>Palate</strong>
+            </h6>
             {review.palate}
           </div>
           <div className="text-md mt-6 flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h6 className="my-2">Finish</h6>
+            <h6 className="-mt-2">
+              <strong>Finish</strong>
+            </h6>
             {review.finish}
           </div>
           <div className="text-md mt-6 flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h6 className="my-2">Final Thoughts</h6>
+            <h6 className="-mt-2">
+              <strong>Final Thoughts</strong>
+            </h6>
             {review.thoughts}
           </div>
         </div>
       </div>
-      <div className="flex">
+      <div className="mt-4 flex">
         <NoteTabs
           fruit={{
             cherry: review.cherry as number,

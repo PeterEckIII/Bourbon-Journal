@@ -1,16 +1,22 @@
 import { Link, Form, useActionData, useOutletContext } from "@remix-run/react";
-import { ActionFunction, json, redirect } from "@remix-run/server-runtime";
 import {
-  unstable_parseMultipartFormData,
+  ActionFunction,
+  json,
+  redirect,
+  unstable_composeUploadHandlers as composeUploadHandlers,
+  unstable_createMemoryUploadHandler as createMemoryUploadHandler,
+  unstable_parseMultipartFormData as parseMultipartFormData,
   UploadHandler,
-} from "@remix-run/node";
+} from "@remix-run/server-runtime";
 import { v4 as uuid } from "uuid";
-import { uploadImage } from "~/utils/cloudinary.server";
-import { getUser } from "~/session.server";
+import { getUserId } from "~/session.server";
 import { ContextType } from "../new";
 import { ChangeEvent, useEffect, useState } from "react";
 import CheckIcon from "~/components/Icons/CheckIcon";
 import PrimaryButton from "~/components/Form/PrimaryButton";
+import { ICloudinaryUploadResponse, upload } from "~/utils/cloudinary.server";
+import invariant from "tiny-invariant";
+import { UploadApiResponse } from "cloudinary";
 
 type ActionData = {
   errorMessage?: string;
@@ -20,27 +26,30 @@ type ActionData = {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  // Get user
-  const user = await getUser(request);
-  if (!user?.id) {
-    console.log(`ERROR: Must have a user session`);
-    return redirect(`/login`);
+  const userId = await getUserId(request);
+  invariant(userId, "Need user ID");
+  if (typeof userId === "undefined" || userId === undefined) {
+    redirect("/login");
   }
-
   const imageId = uuid();
 
-  // Create UploadHandler
-  const uploadHandler: UploadHandler = async ({ name, stream }) => {
-    if (name !== "img") {
-      stream.resume();
-    }
-    // Upload image and return URL
-    const uploadedImage = (await uploadImage(stream, user?.id, imageId)) as any;
-    return uploadedImage.secure_url;
-  };
+  const uploadHandler: UploadHandler = composeUploadHandlers(
+    async ({ name, contentType, data, filename }) => {
+      if (name !== "img") {
+        return undefined;
+      }
+      const uploadedImage = (await upload({
+        data,
+        userId,
+        publicId: imageId,
+      })) as ICloudinaryUploadResponse;
+      return uploadedImage.secure_url;
+    },
+    createMemoryUploadHandler()
+  );
 
   // Parse Form
-  const form = await unstable_parseMultipartFormData(request, uploadHandler);
+  const form = await parseMultipartFormData(request, uploadHandler);
 
   const imageSrc = form.get("img")?.toString();
   const imageDesc = form.get("imageDesc")?.toString();

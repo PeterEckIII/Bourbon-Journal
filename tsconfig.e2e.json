@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "outDir": "../../dist/out-tsc/apps/bourbon-journal-e2e/src",
     "lib": ["es2015", "dom"],
     "types": ["cypress", "node"]
