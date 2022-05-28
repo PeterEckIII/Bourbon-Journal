@@ -11,7 +11,6 @@ import {
   useNavigate,
   useParams,
 } from "@remix-run/react";
-import invariant from "tiny-invariant";
 import { getBottle } from "~/models/bottle.server";
 import type { Review } from "~/models/review.server";
 import { deleteReview, getReview } from "~/models/review.server";
@@ -27,9 +26,8 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const userId = await requireUserId(request);
-  invariant(params.reviewId, "reviewId not found");
 
-  const review = await getReview({ userId, id: params.reviewId });
+  const review = await getReview({ userId, id: params.reviewId as string });
 
   if (review === undefined || review === null) {
     throw new Response("Not Found", { status: 404 });
@@ -57,13 +55,12 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export const action: ActionFunction = async ({ request, params }) => {
   const userId = await requireUserId(request);
-  invariant(params.reviewId, "reviewId not found");
 
   const form = await request.formData();
   const _deleted = await form.get("_deleted")?.toString();
 
   if (_deleted) {
-    await deleteReview({ userId, id: params.reviewId });
+    await deleteReview({ userId, id: params.reviewId as string });
     return redirect("/reviews");
   } else {
     return redirect(`/reviews/${params.id}`);

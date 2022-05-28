@@ -1,4 +1,4 @@
-import { Link, Form, useActionData, useOutletContext } from "@remix-run/react";
+import { Link, useActionData, useOutletContext } from "@remix-run/react";
 import {
   ActionFunction,
   json,
@@ -13,15 +13,13 @@ import { getUserId } from "~/session.server";
 import { ContextType } from "../new";
 import { ChangeEvent, useEffect, useState } from "react";
 import CheckIcon from "~/components/Icons/CheckIcon";
-import PrimaryButton from "~/components/Form/PrimaryButton";
 import { ICloudinaryUploadResponse, upload } from "~/utils/cloudinary.server";
 import invariant from "tiny-invariant";
-import { UploadApiResponse } from "cloudinary";
+import FileUpload from "~/components/Form/FileUpload/FileUpload";
 
 type ActionData = {
   errorMessage?: string;
   imageSrc?: string;
-  imageDesc?: string;
   publicId?: string;
 };
 
@@ -52,15 +50,12 @@ export const action: ActionFunction = async ({ request }) => {
   const form = await parseMultipartFormData(request, uploadHandler);
 
   const imageSrc = form.get("img")?.toString();
-  const imageDesc = form.get("imageDesc")?.toString();
   if (!imageSrc) {
     return json<ActionData>({ errorMessage: `Cloudinary upload failed` });
   }
-  console.log(
-    `SERVER:\nimage source: ${imageSrc}\nimage description: ${imageDesc}`
-  );
+  console.log(`SERVER:\nimage source: ${imageSrc}`);
   // Return image URL and imageDesc
-  return json<ActionData>({ imageSrc, imageDesc, publicId: imageId });
+  return json<ActionData>({ imageSrc, publicId: imageId });
 };
 
 export default function NewAddImageRoute() {
@@ -96,7 +91,12 @@ export default function NewAddImageRoute() {
 
   return (
     <div className="m-2 p-2">
-      <Form method="post" encType="multipart/form-data">
+      <FileUpload
+        previewUrl={previewUrl}
+        confirmed={confirmed}
+        handleChange={(e) => handlePreviewImage(e)}
+      />
+      {/* <Form method="post" encType="multipart/form-data">
         <div>
           <label htmlFor="img" className="flex w-full flex-col gap-1">
             <span>Image to upload: </span>
@@ -128,7 +128,7 @@ export default function NewAddImageRoute() {
           </div>
         )}
         <PrimaryButton callToAction="Upload" />
-      </Form>
+      </Form> */}
       {data?.errorMessage && (
         <div className="text-red-500">Error uploading: {data.errorMessage}</div>
       )}
