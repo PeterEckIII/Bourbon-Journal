@@ -1,13 +1,7 @@
-import { Form, useOutletContext } from "@remix-run/react";
-import { ActionFunction, json, redirect } from "@remix-run/server-runtime";
-import EarthNotes from "~/components/Notes/EarthNotes/EarthNotes";
-import FruitNotes from "~/components/Notes/FruitNotes/FruitNotes";
-import GrainNotes from "~/components/Notes/GrainNotes/GrainNotes";
-import SpiceNotes from "~/components/Notes/SpiceNotes/SpiceNotes";
-import SweetNotes from "~/components/Notes/SweetNotes/SweetNotes";
-import Rating from "~/components/Notes/Rating/Rating";
+import { useOutletContext } from "@remix-run/react";
+import { ActionFunction, redirect } from "@remix-run/server-runtime";
 import type { ContextType } from "~/routes/reviews/new";
-import PrimaryButton from "~/components/Form/PrimaryButton";
+import NotesForm from "~/components/Form/NotesForm/NotesForm";
 
 type ActionData = {
   errors?: {
@@ -173,14 +167,8 @@ export default function NewNotesRoute() {
   }
 
   return (
-    <Form method="post">
-      <SpiceNotes state={state} changeHandler={stateSetter} />
-      <FruitNotes state={state} changeHandler={stateSetter} />
-      <EarthNotes state={state} changeHandler={stateSetter} />
-      <GrainNotes state={state} changeHandler={stateSetter} />
-      <SweetNotes state={state} changeHandler={stateSetter} />
-      <Rating state={state} changeHandler={stateSetter} />
-      <PrimaryButton callToAction="Review" />
-    </Form>
+    <div className="flex justify-center">
+      <NotesForm />
+    </div>
   );
 }

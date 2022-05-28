@@ -1,44 +1,41 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-export interface TextReviewInputType {
+interface ITextInputProps {
   error?: string;
   labelName: string;
   name: string;
   type: string;
-  value: string | number;
+  value: string;
   emoji?: string;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextReviewInput: React.FC<
-  TextReviewInputType & React.HTMLProps<HTMLInputElement>
-> = ({ labelName, name, value, error, type, emoji, changeHandler }) => {
+export default function TextInput({
+  labelName,
+  name,
+  type,
+  value,
+  emoji,
+  changeHandler,
+}: ITextInputProps) {
   useBeforeUnload(
     useCallback(() => {
-      if (typeof value === "number") {
-        localStorage.setItem(name, String(value));
-      }
-      if (typeof value === "string") {
-        localStorage.setItem(name, value);
-      }
+      localStorage.setItem(name, value);
     }, [])
   );
 
-  const handleBlur = (key: string, value: string | number) => {
+  const handleBlur = (key: string, value: string) => {
     if (typeof window !== "undefined") {
-      if (typeof value === "string") {
-        return window.localStorage.setItem(key, value);
-      } else if (typeof value === "number") {
-        return window.localStorage.setItem(key, String(value));
-      }
+      return window.localStorage.setItem(key, value);
     }
   };
 
   return (
     <div className="flex w-full flex-col">
-      <label className="my-2 flex w-full flex-col gap-1" htmlFor={name}>
-        {labelName} {emoji}{" "}
+      <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
+        {labelName}
+        {emoji ? emoji : ""}{" "}
       </label>
       <div className="flex">
         <input
@@ -54,6 +51,4 @@ const TextReviewInput: React.FC<
       </div>
     </div>
   );
-};
-
-export default TextReviewInput;
+}

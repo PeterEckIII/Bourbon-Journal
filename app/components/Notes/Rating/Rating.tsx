@@ -1,33 +1,35 @@
-import RatingSm from "./RatingSm";
-import RatingMd from "./RatingMd";
-import RatingLg from "./RatingLg";
+import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import { FormState } from "~/routes/reviews/new";
-import useBreakpoint from "~/utils/useBreakpoint";
 
-interface RatingProps {
+interface IRatingProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function TestRating({ state, changeHandler }: RatingProps) {
-  const breakpoint = useBreakpoint() as number;
+export default function Rating({ state, changeHandler }: IRatingProps) {
   return (
-    <div>
-      {breakpoint >= 640 && breakpoint < 768 && (
-        <div className="my-3">
-          <RatingSm state={state} changeHandler={changeHandler} />
+    <>
+      <h4>Rating</h4>
+      <div className="-mx-3 my-3 mb-6 flex flex-wrap rounded-xl border border-gray-200 bg-white bg-gradient-to-r p-2 sm:p-6">
+        <div className="mb-2 w-full px-3 md:mb-0 md:w-1/2">
+          <NoteInput
+            labelName="Value for Money"
+            name="value"
+            value={state.value}
+            changeHandler={(e) => changeHandler(e)}
+            emoji="💰"
+          />
         </div>
-      )}
-      {breakpoint >= 768 && breakpoint < 1024 && (
-        <div className="my-3 md:block">
-          <RatingMd state={state} changeHandler={changeHandler} />
+        <div className="mb-2 w-full px-3 md:mb-0 md:w-1/2">
+          <NoteInput
+            labelName="Overall Rating"
+            name="overallRating"
+            value={state.overallRating}
+            changeHandler={(e) => changeHandler(e)}
+            emoji="💯"
+          />
         </div>
-      )}
-      {breakpoint >= 1024 && (
-        <div className="my-3 lg:block">
-          <RatingLg state={state} changeHandler={changeHandler} />
-        </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }

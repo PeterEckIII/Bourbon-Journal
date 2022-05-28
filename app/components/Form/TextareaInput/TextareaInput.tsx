@@ -1,24 +1,24 @@
 import { useBeforeUnload } from "@remix-run/react";
-import React, { useCallback } from "react";
+import React from "react";
 
-type TextareaReviewInputProps = {
+interface ITextareaInputProps {
   error?: string;
   labelName: string;
   name: string;
   value: string;
   emoji: string;
   changeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+}
 
-export default function TextareaReviewInput({
+export default function TextareaInput({
+  labelName,
   name,
   value,
-  labelName,
   emoji,
   changeHandler,
-}: TextareaReviewInputProps) {
+}: ITextareaInputProps) {
   useBeforeUnload(
-    useCallback(() => {
+    React.useCallback(() => {
       if (typeof window !== "undefined") {
         return window.localStorage.setItem(name, value);
       }
@@ -32,11 +32,12 @@ export default function TextareaReviewInput({
   };
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="mx-3 flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName} {emoji}{" "}
+        {labelName}
+        {emoji}{" "}
       </label>
-      <div className="fle">
+      <div className="flex">
         <textarea
           name={name}
           id={name}
