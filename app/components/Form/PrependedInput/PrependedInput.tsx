@@ -1,19 +1,26 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-export interface TextReviewInputType {
+interface IPrependedInputProps {
   error?: string;
   labelName: string;
   name: string;
   type: string;
   value: string | number;
+  prependedCharacter: string;
   emoji?: string;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextReviewInput: React.FC<
-  TextReviewInputType & React.HTMLProps<HTMLInputElement>
-> = ({ labelName, name, value, error, type, emoji, changeHandler }) => {
+export default function PrependedInput({
+  labelName,
+  name,
+  type,
+  value,
+  prependedCharacter,
+  emoji,
+  changeHandler,
+}: IPrependedInputProps) {
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -37,10 +44,13 @@ const TextReviewInput: React.FC<
 
   return (
     <div className="flex w-full flex-col">
-      <label className="my-2 flex w-full flex-col gap-1" htmlFor={name}>
+      <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
         {labelName} {emoji}{" "}
       </label>
       <div className="flex">
+        <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+          {prependedCharacter}
+        </span>
         <input
           id={name}
           type={type}
@@ -49,11 +59,9 @@ const TextReviewInput: React.FC<
           onChange={changeHandler}
           aria-label={`${name}-input`}
           onBlur={() => handleBlur(name, value)}
-          className="block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          className="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         />
       </div>
     </div>
   );
-};
-
-export default TextReviewInput;
+}

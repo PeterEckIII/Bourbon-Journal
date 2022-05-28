@@ -118,7 +118,7 @@ export default function ReviewsPage() {
           </div>
         )}
 
-        <div className="flex p-6">
+        <div className="flex w-full p-6">
           <Outlet />
         </div>
       </main>
