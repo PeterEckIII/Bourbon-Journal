@@ -1,24 +1,24 @@
 import { useBeforeUnload } from "@remix-run/react";
-import React, { useCallback } from "react";
+import React from "react";
 
-type TextareaReviewInputProps = {
+interface ITextareaInputProps {
   error?: string;
   labelName: string;
   name: string;
   value: string;
   emoji: string;
   changeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+}
 
-export default function TextareaReviewInput({
+export default function TextareaInput({
+  labelName,
   name,
   value,
-  labelName,
   emoji,
   changeHandler,
-}: TextareaReviewInputProps) {
+}: ITextareaInputProps) {
   useBeforeUnload(
-    useCallback(() => {
+    React.useCallback(() => {
       if (typeof window !== "undefined") {
         return window.localStorage.setItem(name, value);
       }
@@ -32,21 +32,23 @@ export default function TextareaReviewInput({
   };
 
   return (
-    <div className="mx-2 my-2">
-      <label className="flex w-full flex-col gap-1">
-        <span>
-          {labelName} {emoji}{" "}
-        </span>
+    <div className="mx-3 flex w-full flex-col">
+      <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
+        {labelName}
+        {emoji}{" "}
+      </label>
+      <div className="flex">
         <textarea
           name={name}
+          id={name}
           rows={6}
           value={value}
           aria-label={`${name}-input`}
-          className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
           onChange={changeHandler}
           onBlur={() => handleBlur(name, value)}
+          className="block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         />
-      </label>
+      </div>
     </div>
   );
 }

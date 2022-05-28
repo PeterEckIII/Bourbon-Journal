@@ -174,7 +174,7 @@ export default function NewReviewPage() {
   };
 
   return (
-    <div className="m-4 p-4">
+    <div className="m-4 w-full p-4">
       <Outlet context={context} />
     </div>
   );

@@ -1,19 +1,26 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-export interface TextReviewInputType {
+interface IPostpendedInputProps {
   error?: string;
   labelName: string;
   name: string;
   type: string;
   value: string | number;
+  postpendedCharacter: string;
   emoji?: string;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextReviewInput: React.FC<
-  TextReviewInputType & React.HTMLProps<HTMLInputElement>
-> = ({ labelName, name, value, error, type, emoji, changeHandler }) => {
+export default function PostpendedInput({
+  labelName,
+  name,
+  type,
+  value,
+  postpendedCharacter,
+  emoji,
+  changeHandler,
+}: IPostpendedInputProps) {
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -36,24 +43,25 @@ const TextReviewInput: React.FC<
   };
 
   return (
-    <div className="mx-2 my-1">
-      <label className="flex w-full flex-col gap-1" htmlFor={name}>
-        <span>
-          {labelName} {emoji}{" "}
-        </span>
+    <div className="flex w-full flex-col">
+      <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
+        {labelName} {emoji}{" "}
+      </label>
+      <div className="flex">
         <input
           id={name}
-          type={type}
           name={name}
           value={value}
-          onChange={changeHandler}
+          type={type}
           aria-label={`${name}-input`}
+          onChange={changeHandler}
           onBlur={() => handleBlur(name, value)}
-          className="mt-1 flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
+          className="block w-full min-w-0 flex-1 rounded-none rounded-l-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         />
-      </label>
+        <span className="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+          {postpendedCharacter}
+        </span>
+      </div>
     </div>
   );
-};
-
-export default TextReviewInput;
+}

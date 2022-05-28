@@ -10,31 +10,31 @@ import PrimaryButton from "~/components/Form/PrimaryButton";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const name = formData.get("name")?.toString();
-  const type = formData.get("type")?.toString();
-  const distiller = formData.get("distiller")?.toString();
-  const bottler = formData.get("bottler")?.toString();
-  const producer = formData.get("producer")?.toString();
-  const country = formData.get("country")?.toString();
-  const region = formData.get("region")?.toString();
-  const price = formData.get("price")?.toString();
-  const age = formData.get("age")?.toString();
-  const year = formData.get("year")?.toString();
-  const batch = formData.get("batch")?.toString();
-  const alcoholPercent = formData.get("alcoholPercent")?.toString();
-  const proof = formData.get("proof")?.toString();
-  const size = formData.get("size")?.toString();
-  const color = formData.get("color")?.toString();
-  const finishing = formData.get("finishing")?.toString();
-  const imageId = formData.get("imageId")?.toString();
-  const date = formData.get("date")?.toString();
-  const setting = formData.get("setting")?.toString();
-  const glassware = formData.get("glassware")?.toString();
-  const restTime = formData.get("restTime")?.toString();
-  const nose = formData.get("nose")?.toString();
-  const palate = formData.get("palate")?.toString();
-  const finish = formData.get("finish")?.toString();
-  const thoughts = formData.get("thoughts")?.toString();
+  const name = formData.get("name")?.toString() as string;
+  const type = formData.get("type")?.toString() as string;
+  const distiller = formData.get("distiller")?.toString() as string;
+  const bottler = formData.get("bottler")?.toString() as string;
+  const producer = formData.get("producer")?.toString() as string;
+  const country = formData.get("country")?.toString() as string;
+  const region = formData.get("region")?.toString() as string;
+  const price = formData.get("price")?.toString() as string;
+  const age = formData.get("age")?.toString() as string;
+  const year = formData.get("year")?.toString() as string;
+  const batch = formData.get("batch")?.toString() as string;
+  const alcoholPercent = formData.get("alcoholPercent")?.toString() as string;
+  const proof = formData.get("proof")?.toString() as string;
+  const size = formData.get("size")?.toString() as string;
+  const color = formData.get("color")?.toString() as string;
+  const finishing = formData.get("finishing")?.toString() as string;
+  const imageId = formData.get("imageId")?.toString() as string;
+  const date = formData.get("date")?.toString() as string;
+  const setting = formData.get("setting")?.toString() as string;
+  const glassware = formData.get("glassware")?.toString() as string;
+  const restTime = formData.get("restTime")?.toString() as string;
+  const nose = formData.get("nose")?.toString() as string;
+  const palate = formData.get("palate")?.toString() as string;
+  const finish = formData.get("finish")?.toString() as string;
+  const thoughts = formData.get("thoughts")?.toString() as string;
   // SPICE
   const pepper = Number(formData.get("pepper")?.toString());
   const bakingSpice = Number(formData.get("bakingSpice")?.toString());
@@ -89,30 +89,6 @@ export const action: ActionFunction = async ({ request }) => {
   if (!imageId) {
     return;
   }
-  invariant(name, `Name is required`);
-  invariant(type, `Type is required`);
-  invariant(distiller, `Distiller is required`);
-  invariant(bottler, `Bottler is required`);
-  invariant(producer, `Producer is required`);
-  invariant(country, `Country is required`);
-  invariant(region, `Region is required`);
-  invariant(price, `Price is required`);
-  invariant(age, `Age is required`);
-  invariant(year, `Year is required`);
-  invariant(batch, `Batch is required`);
-  invariant(alcoholPercent, `Alcohol Percent is required`);
-  invariant(proof, `Proof is required`);
-  invariant(size, `Size is required`);
-  invariant(color, `Color is required`);
-  invariant(finishing, `Finishing is required`);
-  invariant(date, `Date is required`);
-  invariant(setting, `Setting is required`);
-  invariant(glassware, `Glassware is required`);
-  invariant(restTime, `Rest Time is required`);
-  invariant(nose, `Nose is required`);
-  invariant(palate, `Palate is required`);
-  invariant(finish, `Finish is required`);
-  invariant(thoughts, `Thoughts is required`);
 
   if (
     typeof pepper !== "number" ||

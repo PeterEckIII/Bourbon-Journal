@@ -1,30 +1,26 @@
 import React, { useCallback } from "react";
-import { useOutletContext, useBeforeUnload } from "@remix-run/react";
-import type { ContextType } from "~/routes/reviews/new";
+import { useBeforeUnload } from "@remix-run/react";
 
-type TextReviewInputType = {
+interface IPrependedInputProps {
   error?: string;
   labelName: string;
   name: string;
-  value: number;
   type: string;
-  note: string;
-  noteSource: string;
+  value: string | number;
+  prependedCharacter: string;
+  emoji?: string;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
-const TextReviewCustomInput: React.FC<
-  TextReviewInputType & React.HTMLProps<HTMLInputElement>
-> = ({
+export default function PrependedInput({
   labelName,
   name,
-  value,
-  error,
   type,
-  note,
-  noteSource,
+  value,
+  prependedCharacter,
+  emoji,
   changeHandler,
-}) => {
+}: IPrependedInputProps) {
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -47,31 +43,25 @@ const TextReviewCustomInput: React.FC<
   };
 
   return (
-    <div className="mx-2 my-2">
-      <label className="flex w-full flex-col gap-1">
-        <span>
-          {labelName} &nbsp;
-          <img
-            className="inline"
-            height={20}
-            width={20}
-            src={noteSource}
-            alt={`${note} emoji`}
-          />{" "}
+    <div className="flex w-full flex-col">
+      <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
+        {labelName} {emoji}{" "}
+      </label>
+      <div className="flex">
+        <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
+          {prependedCharacter}
         </span>
         <input
-          type={type}
           id={name}
+          type={type}
           name={name}
           value={value}
-          aria-label={`${name.toLowerCase()}-input`}
           onChange={changeHandler}
+          aria-label={`${name}-input`}
           onBlur={() => handleBlur(name, value)}
-          className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
+          className="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         />
-      </label>
+      </div>
     </div>
   );
-};
-
-export default TextReviewCustomInput;
+}
