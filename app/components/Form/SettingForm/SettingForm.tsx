@@ -1,6 +1,7 @@
 import { Form } from "@remix-run/react";
 import React from "react";
 import { FormState } from "~/routes/reviews/new";
+import PrimaryButton from "../PrimaryButton";
 import TextareaInput from "../TextareaInput/TextareaInput";
 import TextInput from "../TextInput/TextInput";
 
@@ -98,6 +99,7 @@ export default function SettingForm({
           emoji="💭"
         />
       </div>
+      <PrimaryButton callToAction="Next" />
     </Form>
   );
 }
