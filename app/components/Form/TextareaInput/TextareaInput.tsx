@@ -34,7 +34,7 @@ export default function TextareaInput({
   return (
     <div className="mx-3 flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName}
+        {labelName}&nbsp;
         {emoji}{" "}
       </label>
       <div className="flex">
