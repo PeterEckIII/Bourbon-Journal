@@ -3,13 +3,19 @@ import wheat from "~/images/wheat.png";
 import { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface IGrainNoteProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
+export default function GrainNotes({
+  state,
+  changeHandler,
+  formData,
+}: IGrainNoteProps) {
   return (
     <>
       <h4>Grain Notes</h4>
@@ -18,6 +24,7 @@ export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
           <NoteInput
             name="corn"
             value={state.corn}
+            defaultValue={formData?.corn}
             emoji="🌽"
             labelName="Corn"
             changeHandler={(e) => changeHandler(e)}
@@ -28,6 +35,7 @@ export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
             name="rye"
             labelName="Rye"
             value={state.rye}
+            defaultValue={formData?.rye}
             changeHandler={(e) => changeHandler(e)}
             noteSource={rye}
           />
@@ -37,6 +45,7 @@ export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
             name="wheat"
             labelName="Wheat"
             value={state.wheat}
+            defaultValue={formData?.wheat}
             changeHandler={(e) => changeHandler(e)}
             noteSource={wheat}
           />
@@ -46,6 +55,7 @@ export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
             name="malt"
             emoji="🍺"
             value={state.malt}
+            defaultValue={formData?.malt}
             labelName="Malt"
             changeHandler={(e) => changeHandler(e)}
           />
@@ -55,6 +65,7 @@ export default function GrainNotes({ state, changeHandler }: IGrainNoteProps) {
             name="dough"
             emoji="🥖"
             value={state.dough}
+            defaultValue={formData?.dough}
             labelName="Dough / Bread"
             changeHandler={(e) => changeHandler(e)}
           />
