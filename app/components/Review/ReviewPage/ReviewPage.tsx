@@ -33,11 +33,11 @@ export default function ReviewPage({
         </h1>
         <p className="mb-8">{review.date}</p>
         {/* IMAGE */}
-        <div className="mb-6">
+        <div className="mb-2 sm:mb-12 sm:h-[500px] sm:w-[500px]">
           <ReviewImage imageUrl={imageUrl} bottleName={bottle.name} />
         </div>
         {/*  BOTTLE  */}
-        <h4 className="my-4 text-left text-2xl">Bottle</h4>
+        <h4 className="mb-6 mt-12 text-left text-2xl sm:mt-36">Bottle</h4>
         <div className="mb-6 flex rounded-lg border border-gray-200 bg-white shadow-md">
           <div className="flex w-1/2 flex-col border-r-2 bg-yellow-50">
             <div className="border py-1 text-center">Type</div>
