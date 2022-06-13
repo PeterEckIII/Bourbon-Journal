@@ -1,12 +1,18 @@
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import { FormState } from "~/routes/reviews/new";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface IRatingProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function Rating({ state, changeHandler }: IRatingProps) {
+export default function Rating({
+  state,
+  changeHandler,
+  formData,
+}: IRatingProps) {
   return (
     <>
       <h4>Rating</h4>
@@ -16,6 +22,7 @@ export default function Rating({ state, changeHandler }: IRatingProps) {
             labelName="Value for Money"
             name="value"
             value={state.value}
+            defaultValue={formData?.value}
             changeHandler={(e) => changeHandler(e)}
             emoji="💰"
           />
@@ -25,6 +32,7 @@ export default function Rating({ state, changeHandler }: IRatingProps) {
             labelName="Overall Rating"
             name="overallRating"
             value={state.overallRating}
+            defaultValue={formData?.overallRating}
             changeHandler={(e) => changeHandler(e)}
             emoji="💯"
           />

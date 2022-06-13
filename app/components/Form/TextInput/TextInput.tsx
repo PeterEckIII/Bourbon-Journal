@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { InputHTMLAttributes, useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface ITextInputProps {
+interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;

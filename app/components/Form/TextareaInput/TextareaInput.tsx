@@ -1,7 +1,7 @@
 import { useBeforeUnload } from "@remix-run/react";
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 
-interface ITextareaInputProps {
+interface ITextareaInputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   labelName: string;
   name: string;
