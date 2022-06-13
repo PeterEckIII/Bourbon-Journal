@@ -109,7 +109,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     await saveToRedis(formDataObject);
   }
-  return redirect(`/reviews/new/test?id=${id}`);
+  return redirect(`/reviews/new/addImage?id=${id}`);
 };
 
 export const loader: LoaderFunction = async ({ request }) => {

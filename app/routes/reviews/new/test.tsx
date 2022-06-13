@@ -1,11 +1,8 @@
 import {
   Link,
-  useActionData,
-  useBeforeUnload,
   useFetcher,
   useLoaderData,
   useOutletContext,
-  useSearchParams,
 } from "@remix-run/react";
 import {
   ActionFunction,
@@ -20,14 +17,12 @@ import {
 import { v4 as uuid } from "uuid";
 import { getUserId } from "~/session.server";
 import { ContextType } from "../new";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import CheckIcon from "~/components/Icons/CheckIcon";
 import { ICloudinaryUploadResponse, upload } from "~/utils/cloudinary.server";
 import invariant from "tiny-invariant";
-import FileUpload from "~/components/Form/FileUpload/FileUpload";
 import {
   getDataFromRedis,
-  pollForKeys,
   requireFormData,
   saveToRedis,
 } from "~/utils/redis.server";
