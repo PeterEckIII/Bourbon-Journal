@@ -5,16 +5,23 @@ import PrependedInput from "~/components/Form/PrependedInput/PrependedInput";
 import PostpendedInput from "~/components/Form/PostpendedInput/PostpendedInput";
 import React from "react";
 import { Form } from "@remix-run/react";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface IBottleFormProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData | null;
 }
 
-export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
+export default function BottleForm({
+  state,
+  changeHandler,
+  formData,
+}: IBottleFormProps) {
   return (
     <Form method="post" className="flex w-full flex-col">
       <h2>Bottle Information</h2>
+      <input type="hidden" name="id" value={formData?.redisId} />
       <div className="-mx-3 my-3 mb-6 flex flex-wrap rounded-xl border border-gray-200 bg-white bg-gradient-to-r p-2 sm:p-6">
         <div className="mb-2 w-full px-3 md:mb-0">
           <TextInput
@@ -22,6 +29,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Name"
             name="name"
             value={state.name}
+            defaultValue={formData?.name}
             changeHandler={(e) => changeHandler(e)}
             emoji="📛"
           />
@@ -32,6 +40,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Distiller"
             name="distiller"
             value={state.distiller}
+            defaultValue={formData?.distiller}
             changeHandler={(e) => changeHandler(e)}
             emoji="🌱"
           />
@@ -42,6 +51,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Bottler"
             name="bottler"
             value={state.bottler}
+            defaultValue={formData?.bottler}
             changeHandler={(e) => changeHandler(e)}
             emoji="🍾"
           />
@@ -52,6 +62,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Producer"
             name="producer"
             value={state.producer}
+            defaultValue={formData?.producer}
             changeHandler={(e) => changeHandler(e)}
             emoji="🏗️"
           />
@@ -62,6 +73,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Type"
             name="type"
             value={state.type}
+            defaultValue={formData?.type}
             changeHandler={(e) => changeHandler(e)}
             emoji="©️"
           />
@@ -72,6 +84,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Country of Origin"
             name="country"
             value={state.country}
+            defaultValue={formData?.country}
             changeHandler={(e) => changeHandler(e)}
             emoji="🌎"
           />
@@ -82,6 +95,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Region"
             name="region"
             value={state.region}
+            defaultValue={formData?.region}
             changeHandler={(e) => changeHandler(e)}
             emoji="🏔️"
           />
@@ -93,6 +107,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Price"
             name="price"
             value={state.price}
+            defaultValue={formData?.price}
             changeHandler={(e) => changeHandler(e)}
             emoji="💲"
           />
@@ -103,6 +118,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Age"
             name="age"
             value={state.age}
+            defaultValue={formData?.age}
             changeHandler={(e) => changeHandler(e)}
             emoji="👴"
           />
@@ -113,6 +129,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Color"
             name="color"
             value={state.color}
+            defaultValue={formData?.color}
             changeHandler={(e) => changeHandler(e)}
             emoji="🌈"
           />
@@ -123,6 +140,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Year"
             name="year"
             value={state.year}
+            defaultValue={formData?.year}
             changeHandler={(e) => changeHandler(e)}
             emoji="📆"
           />
@@ -133,6 +151,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Batch / Barrel"
             name="batch"
             value={state.batch}
+            defaultValue={formData?.batch}
             changeHandler={(e) => changeHandler(e)}
             emoji="2️⃣"
           />
@@ -143,6 +162,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Size"
             name="size"
             value={state.size}
+            defaultValue={formData?.size}
             changeHandler={(e) => changeHandler(e)}
             emoji="🍆"
           />
@@ -154,6 +174,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Alcohol Percent"
             name="alcoholPercent"
             value={state.alcoholPercent}
+            defaultValue={formData?.alcoholPercent}
             changeHandler={(e) => changeHandler(e)}
             emoji="💫"
           />
@@ -165,6 +186,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Proof"
             name="proof"
             value={state.proof}
+            defaultValue={formData?.proof}
             changeHandler={(e) => changeHandler(e)}
             emoji="🔥"
           />
@@ -175,6 +197,7 @@ export default function BottleForm({ state, changeHandler }: IBottleFormProps) {
             labelName="Finishing"
             name="finishing"
             value={state.finishing}
+            defaultValue={formData?.finishing}
             changeHandler={(e) => changeHandler(e)}
             emoji="🍷"
           />

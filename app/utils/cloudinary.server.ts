@@ -71,20 +71,11 @@ async function upload({ data, userId, publicId }: IUploadProps) {
 }
 
 async function transformImage(imageId: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
-      const image = cloudinary
-        .url(imageId, {
-          secure: true,
-          transformation: [
-            { width: 300, height: 475 },
-            { format: "auto" },
-            { quality: "auto" },
-            { crop: "fill" },
-          ],
-        })
-        .toString();
-      resolve(image);
+      const image = await cloudinary.url(imageId).toString();
+      const imageUrl = image.replace(/v([0-9]*)\//g, "");
+      resolve(imageUrl);
     } catch (e) {
       reject(e);
     }

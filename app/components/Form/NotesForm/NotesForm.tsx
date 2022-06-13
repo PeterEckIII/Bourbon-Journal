@@ -7,8 +7,13 @@ import GrainNotes from "~/components/Notes/GrainNotes/GrainNotes";
 import SpiceNotes from "~/components/Notes/SpiceNotes/SpiceNotes";
 import SweetNotes from "~/components/Notes/SweetNotes/SweetNotes";
 import Rating from "~/components/Notes/Rating/Rating";
+import { CustomFormData } from "~/utils/helpers.server";
 
-export default function NotesForm() {
+interface INoteFormProps {
+  formData: CustomFormData;
+}
+
+export default function NotesForm({ formData }: INoteFormProps) {
   const { state, stateSetter } = useOutletContext<ContextType>();
 
   if (state === undefined || !stateSetter) {
@@ -17,12 +22,33 @@ export default function NotesForm() {
 
   return (
     <Form method="post" className="w-full max-w-xl">
-      <EarthNotes state={state} changeHandler={stateSetter} />
-      <FruitNotes state={state} changeHandler={stateSetter} />
-      <GrainNotes state={state} changeHandler={stateSetter} />
-      <SpiceNotes state={state} changeHandler={stateSetter} />
-      <SweetNotes state={state} changeHandler={stateSetter} />
-      <Rating state={state} changeHandler={stateSetter} />
+      <input type="hidden" name="id" value={formData?.redisId} />
+      <EarthNotes
+        state={state}
+        changeHandler={stateSetter}
+        formData={formData}
+      />
+      <FruitNotes
+        state={state}
+        changeHandler={stateSetter}
+        formData={formData}
+      />
+      <GrainNotes
+        state={state}
+        changeHandler={stateSetter}
+        formData={formData}
+      />
+      <SpiceNotes
+        state={state}
+        changeHandler={stateSetter}
+        formData={formData}
+      />
+      <SweetNotes
+        state={state}
+        changeHandler={stateSetter}
+        formData={formData}
+      />
+      <Rating state={state} changeHandler={stateSetter} formData={formData} />
       <PrimaryButton callToAction="Submit" />
     </Form>
   );

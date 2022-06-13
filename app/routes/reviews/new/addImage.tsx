@@ -1,7 +1,14 @@
-import { Link, useActionData, useOutletContext } from "@remix-run/react";
+import {
+  Link,
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+  useSearchParams,
+} from "@remix-run/react";
 import {
   ActionFunction,
   json,
+  LoaderFunction,
   redirect,
   unstable_composeUploadHandlers as composeUploadHandlers,
   unstable_createMemoryUploadHandler as createMemoryUploadHandler,
@@ -16,6 +23,7 @@ import CheckIcon from "~/components/Icons/CheckIcon";
 import { ICloudinaryUploadResponse, upload } from "~/utils/cloudinary.server";
 import invariant from "tiny-invariant";
 import FileUpload from "~/components/Form/FileUpload/FileUpload";
+import { pollForKeys } from "~/utils/redis.server";
 
 type ActionData = {
   errorMessage?: string;
@@ -25,14 +33,18 @@ type ActionData = {
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await getUserId(request);
-  invariant(userId, "Need user ID");
+  invariant(userId, "No user ID in session");
+
   if (typeof userId === "undefined" || userId === undefined) {
     redirect("/login");
   }
+
+  await pollForKeys();
+
   const imageId = uuid();
 
   const uploadHandler: UploadHandler = composeUploadHandlers(
-    async ({ name, contentType, data, filename }) => {
+    async ({ name, data }) => {
       if (name !== "img") {
         return undefined;
       }
@@ -46,23 +58,27 @@ export const action: ActionFunction = async ({ request }) => {
     createMemoryUploadHandler()
   );
 
-  // Parse Form
   const form = await parseMultipartFormData(request, uploadHandler);
 
   const imageSrc = form.get("img")?.toString();
-  if (!imageSrc) {
-    return json<ActionData>({ errorMessage: `Cloudinary upload failed` });
+  if (typeof imageSrc === "undefined" || !imageSrc) {
+    return json<ActionData>({
+      errorMessage: "Cloudinary upload failed",
+    });
   }
-  console.log(`SERVER:\nimage source: ${imageSrc}`);
-  // Return image URL and imageDesc
-  return json<ActionData>({ imageSrc, publicId: imageId });
+
+  return json<ActionData>({
+    imageSrc,
+    publicId: imageId,
+  });
 };
 
 export default function NewAddImageRoute() {
   const data = useActionData<ActionData>();
+  const redisId = useLoaderData<string>();
   const { state, setFormState } = useOutletContext<ContextType>();
-  const [previewUrl, setPreviewUrl] = useState<string>("");
-  const [confirmed, setConfirmed] = useState<boolean>(false);
+  const [previewUrl, setPreviewUrl] = useState<string>();
+  const [confirmed, setConfirmed] = useState<boolean>();
 
   if (setFormState === undefined) {
     throw new Error(`Error, please return to the bottle info page`);
@@ -71,81 +87,48 @@ export default function NewAddImageRoute() {
   useEffect(() => {
     setFormState({
       ...state,
-      imageId: data?.publicId ? data?.publicId : "",
+      imageId: data?.publicId ?? "",
     });
     if (data?.imageSrc) {
       setConfirmed(true);
     }
   }, [data?.publicId, setFormState]);
 
-  const handlePreviewImage = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePreviewChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.currentTarget;
     if (!files) throw new Error(`Error reading files from import`);
     if (files && files[0] !== undefined) {
       const newUrl = URL.createObjectURL(files[0]);
       setPreviewUrl(newUrl);
     } else {
-      return setPreviewUrl("");
+      setPreviewUrl("");
     }
   };
 
   return (
     <div className="m-2 p-2">
       <FileUpload
-        previewUrl={previewUrl}
-        confirmed={confirmed}
-        handleChange={(e) => handlePreviewImage(e)}
+        previewUrl={previewUrl ?? ""}
+        confirmed={confirmed ?? false}
+        handleChange={(e) => handlePreviewChange(e)}
       />
-      {/* <Form method="post" encType="multipart/form-data">
-        <div>
-          <label htmlFor="img" className="flex w-full flex-col gap-1">
-            <span>Image to upload: </span>
-            <input
-              type="file"
-              name="img"
-              className="my-2 flex-1 px-3 text-lg leading-loose text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-blue-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
-              id="img"
-              data-cy="file-input"
-              onChange={(e) => handlePreviewImage(e)}
-              accept="image/*"
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="imgDesc" className="flex w-full flex-col gap-1">
-            <span>Image description: </span>
-            <input
-              type="text"
-              name="imgDesc"
-              className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
-              id="img-desc"
-            />
-          </label>
-        </div>
-        {previewUrl !== "" && confirmed === false && (
-          <div className="align-center h-50 w-25 m-3 flex justify-center">
-            <img src={previewUrl} alt="The image you uploaded" />
-          </div>
-        )}
-        <PrimaryButton callToAction="Upload" />
-      </Form> */}
       {data?.errorMessage && (
         <div className="text-red-500">Error uploading: {data.errorMessage}</div>
       )}
       {data?.imageSrc && confirmed === true && (
         <div
-          id="upload-confirmation"
-          className="border-black-100 align-center m-4 flex justify-center rounded-md p-4 text-green-700"
+          id="uploadConfirmation"
+          className="border-black-100 m-4 flex items-center justify-center rounded-md p-4 text-green-700"
         >
-          <CheckIcon /> <span>&nbsp;</span>Successfully uploaded
+          <CheckIcon />
+          <span>&nbsp;</span>Successfully uploaded!
         </div>
       )}
       <div className="my-8 text-right">
         <Link
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-          to="/reviews/new/setting"
-          aria-label="next-button"
           id="next-button"
+          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          to={`/reviews/new/setting?id=${redisId}`}
         >
           Next
         </Link>
