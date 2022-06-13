@@ -55,11 +55,11 @@ export default function ReviewPage({
           </div>
           <div className="flex w-1/2 flex-col">
             <div className="border py-1 text-center">{bottle.type}</div>
-            <div className="border py-1 text-center">{bottle.price}</div>
+            <div className="border py-1 text-center">${bottle.price}</div>
             <div className="border py-1 text-center">
-              {bottle.alcoholPercent}
+              {bottle.alcoholPercent}%
             </div>
-            <div className="border py-1 text-center">{bottle.proof}</div>
+            <div className="border py-1 text-center">{bottle.proof}pf</div>
             <div className="border py-1 text-center">{bottle.age}</div>
             <div className="border py-1 text-center">{bottle.year}</div>
             <div className="border py-1 text-center">{bottle.batch}</div>

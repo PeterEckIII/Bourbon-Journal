@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface INoteInputProps {
+interface INoteInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: number;
   labelName: string;

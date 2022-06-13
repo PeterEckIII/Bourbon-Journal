@@ -3,13 +3,19 @@ import blackberry from "~/images/blackberry.webp";
 import { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface IFruitNoteProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
+export default function FruitNotes({
+  state,
+  changeHandler,
+  formData,
+}: IFruitNoteProps) {
   return (
     <>
       <h4>Fruit Notes</h4>
@@ -20,6 +26,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍒"
             name="cherry"
             value={state.cherry}
+            defaultValue={formData?.cherry}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -29,6 +36,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍓"
             name="strawberry"
             value={state.strawberry}
+            defaultValue={formData?.strawberry}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -37,6 +45,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             name="raspberry"
             labelName="Raspberry"
             value={state.raspberry}
+            defaultValue={formData?.raspberry}
             changeHandler={(e) => changeHandler(e)}
             noteSource={raspberry}
           />
@@ -46,6 +55,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             name="blackberry"
             labelName="Blackberry"
             value={state.blackberry}
+            defaultValue={formData?.blackberry}
             changeHandler={(e) => changeHandler(e)}
             noteSource={blackberry}
           />
@@ -56,6 +66,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🫐"
             name="blueberry"
             value={state.blueberry}
+            defaultValue={formData?.blueberry}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -65,6 +76,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍎"
             name="apple"
             value={state.apple}
+            defaultValue={formData?.apple}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -74,6 +86,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍌"
             name="banana"
             value={state.banana}
+            defaultValue={formData?.banana}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -83,6 +96,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍇"
             name="grape"
             value={state.grape}
+            defaultValue={formData?.grape}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -92,6 +106,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍑"
             name="stone"
             value={state.stone}
+            defaultValue={formData?.stone}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -101,6 +116,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍋"
             name="citrus"
             value={state.citrus}
+            defaultValue={formData?.citrus}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -110,6 +126,7 @@ export default function FruitNotes({ state, changeHandler }: IFruitNoteProps) {
             emoji="🍍"
             name="tropical"
             value={state.tropical}
+            defaultValue={formData?.tropical}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>

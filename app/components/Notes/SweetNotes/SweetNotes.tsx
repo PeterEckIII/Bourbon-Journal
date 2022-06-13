@@ -1,12 +1,18 @@
 import { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface ISweetNoteProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
+export default function SweetNotes({
+  state,
+  changeHandler,
+  formData,
+}: ISweetNoteProps) {
   return (
     <>
       <h4>Sweet Notes</h4>
@@ -17,6 +23,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             emoji="🍦"
             name="vanilla"
             value={state.vanilla}
+            defaultValue={formData?.vanilla}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -26,6 +33,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             emoji="🍮"
             name="caramel"
             value={state.caramel}
+            defaultValue={formData?.caramel}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -34,6 +42,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             name="molasses"
             labelName="Molasses"
             value={state.molasses}
+            defaultValue={formData?.molasses}
             changeHandler={(e) => changeHandler(e)}
             emoji="🥞"
           />
@@ -43,6 +52,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             name="butterscotch"
             labelName="Butterscotch"
             value={state.butterscotch}
+            defaultValue={formData?.butterscotch}
             changeHandler={(e) => changeHandler(e)}
             emoji="🧈"
           />
@@ -54,6 +64,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             emoji="🍯"
             name="honey"
             value={state.honey}
+            defaultValue={formData?.honey}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -63,6 +74,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             emoji="🍫"
             name="chocolate"
             value={state.chocolate}
+            defaultValue={formData?.chocolate}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -71,6 +83,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             name="toffee"
             labelName="Toffee"
             value={state.toffee}
+            defaultValue={formData?.toffee}
             changeHandler={(e) => changeHandler(e)}
             emoji="🍬"
           />
@@ -81,6 +94,7 @@ export default function SweetNotes({ state, changeHandler }: ISweetNoteProps) {
             emoji="🥄"
             name="sugar"
             value={state.sugar}
+            defaultValue={formData?.sugar}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>

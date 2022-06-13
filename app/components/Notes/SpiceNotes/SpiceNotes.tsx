@@ -6,13 +6,19 @@ import { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
 import React from "react";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface ISpiceNoteProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
+export default function SpiceNotes({
+  state,
+  changeHandler,
+  formData,
+}: ISpiceNoteProps) {
   return (
     <>
       <h4>Spice Notes</h4>
@@ -23,6 +29,7 @@ export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
             name="pepper"
             labelName="Black Pepper"
             value={state.pepper}
+            defaultValue={formData?.pepper}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -32,6 +39,7 @@ export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
             name="cinnamon"
             labelName="Cinnamon"
             value={state.cinnamon}
+            defaultValue={formData?.cinnamon}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -41,6 +49,7 @@ export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
             name="bakingSpice"
             labelName="Baking Spice"
             value={state.bakingSpice}
+            defaultValue={formData?.bakingSpice}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -50,6 +59,7 @@ export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
             name="herbal"
             labelName="Herbal"
             value={state.herbal}
+            defaultValue={formData?.herbal}
             changeHandler={(e) => changeHandler(e)}
             emoji="🌿"
           />
@@ -60,6 +70,7 @@ export default function SpiceNotes({ state, changeHandler }: ISpiceNoteProps) {
             name="mint"
             labelName="Mint"
             value={state.mint}
+            defaultValue={formData?.mint}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>

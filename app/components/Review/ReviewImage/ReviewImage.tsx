@@ -11,8 +11,9 @@ export default function ReviewImage({
     <div>
       <figure>
         <picture>
-          <source media="(min-width: 640)" srcSet={imageUrl} />
-          <img src="" alt="" />
+          <source media="(min-width: 640px)" srcSet={imageUrl} />
+          <img src={imageUrl} alt={`Bottle of ${bottleName}`} />
+          {/* Consider adding object-fit: cover to image to maintain aspect ratio */}
         </picture>
       </figure>
     </div>
