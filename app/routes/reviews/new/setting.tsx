@@ -1,33 +1,74 @@
-import { Form, useOutletContext } from "@remix-run/react";
-import { ActionFunction, redirect } from "@remix-run/server-runtime";
+import { Form, useLoaderData, useOutletContext } from "@remix-run/react";
+import {
+  ActionFunction,
+  LoaderFunction,
+  redirect,
+} from "@remix-run/server-runtime";
 import SettingForm from "~/components/Form/SettingForm/SettingForm";
 
 import type { ContextType } from "~/routes/reviews/new";
 import PrimaryButton from "~/components/Form/PrimaryButton";
+import {
+  getDataFromRedis,
+  requireFormData,
+  saveToRedis,
+} from "~/utils/redis.server";
+import { CustomFormData } from "~/utils/helpers.server";
 
 export const action: ActionFunction = async ({ request }) => {
-  // const formData = await request.formData();
-  // const date = formData.get("date")?.toString();
-  // const setting = formData.get("setting")?.toString();
-  // const glassware = formData.get("glassware")?.toString();
-  // const restTime = formData.get("restTime")?.toString();
-  // const nose = formData.get("nose")?.toString();
-  // const palate = formData.get("palate")?.toString();
-  // const finish = formData.get("finish")?.toString();
-  // const thoughts = formData.get("thoughts")?.toString();
-  // invariant(date, `Date is required`);
-  // invariant(setting, `Setting is required`);
-  // invariant(glassware, `Glassware is required`);
-  // invariant(restTime, `Rest Time is required`);
-  // invariant(nose, `Nose is required`);
-  // invariant(palate, `Palate is required`);
-  // invariant(finish, `Finish is required`);
-  // invariant(thoughts, `Thoughts is required`);
+  const formData = await request.formData();
 
-  return redirect("/reviews/new/notes");
+  const redisId = formData.get("id")?.toString();
+  const date = formData.get("date")?.toString();
+  const setting = formData.get("setting")?.toString();
+  const glassware = formData.get("glassware")?.toString();
+  const restTime = formData.get("restTime")?.toString();
+  const nose = formData.get("nose")?.toString();
+  const palate = formData.get("palate")?.toString();
+  const finish = formData.get("finish")?.toString();
+  const thoughts = formData.get("thoughts")?.toString();
+
+  if (
+    typeof redisId !== "string" ||
+    typeof date !== "string" ||
+    typeof setting !== "string" ||
+    typeof glassware !== "string" ||
+    typeof restTime !== "string" ||
+    typeof nose !== "string" ||
+    typeof palate !== "string" ||
+    typeof finish !== "string" ||
+    typeof thoughts !== "string"
+  ) {
+    throw new Error(`Invalid inputs on Settings form!`);
+  }
+
+  const customFormData = await getDataFromRedis(redisId);
+
+  if (!customFormData) {
+    throw Error(`Form data note found!`);
+  }
+
+  customFormData.date = date;
+  customFormData.setting = setting;
+  customFormData.glassware = glassware;
+  customFormData.restTime = restTime;
+  customFormData.nose = nose;
+  customFormData.thoughts = thoughts;
+  customFormData.finish = finish;
+  customFormData.thoughts = thoughts;
+
+  saveToRedis(customFormData);
+
+  return redirect(`/reviews/new/notes?id=${customFormData.redisId}`);
+};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const formData = await requireFormData(request);
+  return formData;
 };
 
 export default function NewSettingRoute() {
+  const formData = useLoaderData<CustomFormData>();
   const { state, stateSetter } = useOutletContext<ContextType>();
 
   if (state === undefined || !stateSetter) {
@@ -36,79 +77,11 @@ export default function NewSettingRoute() {
 
   return (
     <>
-      <SettingForm state={state} changeHandler={stateSetter} />
+      <SettingForm
+        formData={formData}
+        state={state}
+        changeHandler={stateSetter}
+      />
     </>
-    // <Form method="post">
-    //   <div className="my-2 flex lg:flex-col">
-    //     <TextReviewInput
-    //       labelName="Date"
-    //       name="date"
-    //       type="text"
-    //       value={state.date}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="📅"
-    //     />
-    //   </div>
-    //   <div className="my-2 lg:flex lg:justify-between">
-    //     <TextReviewInput
-    //       labelName="Rest Time"
-    //       name="restTime"
-    //       type="text"
-    //       value={state.restTime}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="🛏️"
-    //     />
-    //     <TextReviewInput
-    //       labelName="Glassware"
-    //       name="glassware"
-    //       type="text"
-    //       value={state.glassware}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="🥃"
-    //     />
-    //   </div>
-    //   <div className="my-2 flex lg:flex-col">
-    //     <TextReviewInput
-    //       labelName="Setting"
-    //       name="setting"
-    //       type="text"
-    //       value={state.setting}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="🌆"
-    //     />
-    //   </div>
-
-    //   <div className="my-2">
-    //     <TextareaReviewInput
-    //       name="nose"
-    //       labelName="Nose"
-    //       value={state.nose}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="👃"
-    //     />
-    //     <TextareaReviewInput
-    //       name="palate"
-    //       labelName="Palate"
-    //       value={state.palate}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="👅"
-    //     />
-    //     <TextareaReviewInput
-    //       name="finish"
-    //       labelName="Finish"
-    //       value={state.finish}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="😳"
-    //     />
-    //     <TextareaReviewInput
-    //       name="thoughts"
-    //       labelName="Additional Thoughts"
-    //       value={state.thoughts}
-    //       changeHandler={(e) => stateSetter(e)}
-    //       emoji="💭"
-    //     />
-    //   </div>
-    //   <PrimaryButton callToAction="Next" />
-    // </Form>
   );
 }

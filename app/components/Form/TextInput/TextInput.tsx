@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { InputHTMLAttributes, useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface ITextInputProps {
+interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -34,7 +34,7 @@ export default function TextInput({
   return (
     <div className="flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName}
+        {labelName}&nbsp;
         {emoji ? emoji : ""}{" "}
       </label>
       <div className="flex">

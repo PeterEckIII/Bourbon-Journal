@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, InputHTMLAttributes } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface IPostpendedInputProps {
+interface IPostpendedInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -45,7 +45,7 @@ export default function PostpendedInput({
   return (
     <div className="flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName} {emoji}{" "}
+        {labelName}&nbsp; {emoji}{" "}
       </label>
       <div className="flex">
         <input

@@ -8,13 +8,19 @@ import leather from "~/images/leather.webp";
 import almond from "~/images/almond.png";
 import pecan from "~/images/pecan.png";
 import walnut from "~/images/walnut.webp";
+import { CustomFormData } from "~/utils/helpers.server";
 
 interface IEarthNoteProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  formData: CustomFormData;
 }
 
-export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
+export default function EarthNotes({
+  state,
+  changeHandler,
+  formData,
+}: IEarthNoteProps) {
   return (
     <>
       <h4>Earth Notes</h4>
@@ -25,6 +31,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="☕"
             name="coffee"
             value={state.coffee}
+            defaultValue={formData.coffee}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -34,6 +41,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🍁"
             name="tobacco"
             value={state.tobacco}
+            defaultValue={formData.tobacco}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -42,6 +50,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             name="leather"
             labelName="Leather"
             value={state.leather}
+            defaultValue={formData.leather}
             changeHandler={(e) => changeHandler(e)}
             noteSource={leather}
           />
@@ -52,6 +61,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🪵"
             name="oak"
             value={state.oak}
+            defaultValue={formData.oak}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -61,6 +71,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🍞"
             name="toasted"
             value={state.toasted}
+            defaultValue={formData.toasted}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -70,6 +81,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="💨"
             name="smokey"
             value={state.smokey}
+            defaultValue={formData.smokey}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -79,6 +91,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🥜"
             name="peanut"
             value={state.peanut}
+            defaultValue={formData.peanut}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -88,6 +101,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             noteSource={almond}
             name="almond"
             value={state.almond}
+            defaultValue={formData.almond}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -97,6 +111,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             noteSource={pecan}
             name="pecan"
             value={state.pecan}
+            defaultValue={formData.pecan}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -106,6 +121,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             noteSource={walnut}
             name="walnut"
             value={state.walnut}
+            defaultValue={formData.walnut}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -115,6 +131,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🛢️"
             name="oily"
             value={state.oily}
+            defaultValue={formData.oily}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -124,6 +141,7 @@ export default function EarthNotes({ state, changeHandler }: IEarthNoteProps) {
             emoji="🌹"
             name="floral"
             value={state.floral}
+            defaultValue={formData.floral}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>

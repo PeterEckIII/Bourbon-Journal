@@ -1,10 +1,21 @@
-import { ActionFunction, redirect } from "@remix-run/server-runtime";
-import { useOutletContext } from "@remix-run/react";
+import { redirect } from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
 import type { ContextType } from "~/routes/reviews/new";
 import BottleForm from "~/components/Form/BottleForm/BottleForm";
+import {
+  getDataFromRedis,
+  pollForKeys,
+  saveToRedis,
+} from "~/utils/redis.server";
+import { generateCode } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
+import { v4 as uuid } from "uuid";
+import { getSession } from "~/session.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
+
   const name = formData.get("name")?.toString();
   const type = formData.get("type")?.toString();
   const distiller = formData.get("distiller")?.toString();
@@ -22,27 +33,104 @@ export const action: ActionFunction = async ({ request }) => {
   const color = formData.get("color")?.toString();
   const finishing = formData.get("finishing")?.toString();
 
-  // invariant(name, `Name is required`);
-  // invariant(type, `Type is required`);
-  // invariant(distiller, `Distiller is required`);
-  // invariant(bottler, `Bottler is required`);
-  // invariant(producer, `Producer is required`);
-  // invariant(country, `Country is required`);
-  // invariant(region, `Region is required`);
-  // invariant(price, `Price is required`);
-  // invariant(age, `Age is required`);
-  // invariant(year, `Year is required`);
-  // invariant(batch, `Batch is required`);
-  // invariant(alcoholPercent, `Alcohol Percent is required`);
-  // invariant(proof, `Proof is required`);
-  // invariant(size, `Size is required`);
-  // invariant(color, `Color is required`);
-  // invariant(finishing, `Finishing is required`);
+  if (
+    typeof name !== "string" ||
+    typeof type !== "string" ||
+    typeof distiller !== "string" ||
+    typeof producer !== "string" ||
+    typeof bottler !== "string" ||
+    typeof country !== "string" ||
+    typeof region !== "string" ||
+    typeof price !== "string" ||
+    typeof age !== "string" ||
+    typeof year !== "string" ||
+    typeof batch !== "string" ||
+    typeof alcoholPercent !== "string" ||
+    typeof proof !== "string" ||
+    typeof size !== "string" ||
+    typeof color !== "string" ||
+    typeof finishing !== "string"
+  ) {
+    throw Error(`Invalid input in bottle form!`);
+  }
 
-  return redirect("/reviews/new/addImage");
+  const formId = formData.get("id");
+  let id = "";
+
+  if (typeof formId === "string" && formId !== "") {
+    console.log(formId);
+    id = formId;
+
+    const formDataObject = await getDataFromRedis(id);
+    if (!formDataObject) {
+      throw Error(`Form data not found`);
+    }
+
+    formDataObject.name = name;
+    formDataObject.type = type;
+    formDataObject.distiller = distiller;
+    formDataObject.producer = producer;
+    formDataObject.bottler = bottler;
+    formDataObject.country = country;
+    formDataObject.region = region;
+    formDataObject.price = price;
+    formDataObject.age = age;
+    formDataObject.year = year;
+    formDataObject.batch = batch;
+    formDataObject.alcoholPercent = alcoholPercent;
+    formDataObject.proof = proof;
+    formDataObject.size = size;
+    formDataObject.color = color;
+    formDataObject.finishing = finishing;
+
+    await saveToRedis(formDataObject);
+  } else {
+    id = generateCode(6);
+
+    const formDataObject: CustomFormData = {
+      redisId: id,
+      name,
+      type,
+      distiller,
+      producer,
+      bottler,
+      country,
+      region,
+      price,
+      age,
+      year,
+      batch,
+      alcoholPercent,
+      proof,
+      size,
+      color,
+      finishing,
+    };
+
+    await saveToRedis(formDataObject);
+  }
+  return redirect(`/reviews/new/test?id=${id}`);
+};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+
+  if (typeof id !== "string" || !id) {
+    return null;
+  }
+
+  const formData = await getDataFromRedis(id);
+
+  if (!formData) {
+    return null;
+  }
+
+  return formData;
 };
 
 export default function NewBottleInfoRoute() {
+  const data = useLoaderData<CustomFormData | null>();
   const { state, stateSetter } = useOutletContext<ContextType>();
 
   if (state === undefined || !stateSetter) {
@@ -51,7 +139,7 @@ export default function NewBottleInfoRoute() {
 
   return (
     <div>
-      <BottleForm state={state} changeHandler={stateSetter} />
+      <BottleForm formData={data} state={state} changeHandler={stateSetter} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { InputHTMLAttributes, useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface IPrependedInputProps {
+interface IPrependedInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -45,7 +45,7 @@ export default function PrependedInput({
   return (
     <div className="flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName} {emoji}{" "}
+        {labelName}&nbsp; {emoji}{" "}
       </label>
       <div className="flex">
         <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">

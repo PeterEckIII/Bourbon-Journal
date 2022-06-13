@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface INoteInputProps {
+interface INoteInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: number;
   labelName: string;
@@ -31,8 +31,7 @@ export default function NoteInput({
   return (
     <div className="flex w-full flex-col">
       <label htmlFor={name} className="my-2 flex w-full flex-col gap-1">
-        {labelName}
-        {emoji ? emoji : ""}{" "}
+        {labelName}&nbsp; {emoji ? emoji : ""}{" "}
       </label>
       <div className="flex">
         <input
