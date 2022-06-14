@@ -28,6 +28,25 @@ export const getReviewListItems = async ({
   return reviews;
 };
 
+export const getReviewsForTable = async ({
+  userId,
+}: {
+  userId: User["id"];
+}) => {
+  const reviews = prisma.review.findMany({
+    include: {
+      bottle: {
+        select: {
+          name: true,
+          type: true,
+          distiller: true,
+        },
+      },
+    },
+  });
+  return reviews;
+};
+
 export const createReview = async ({
   bottleId,
   date,

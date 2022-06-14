@@ -15,7 +15,8 @@
       "cypress",
       "cypress-file-upload",
       "cypress-localstorage-commands",
-      "@headlessui/react"
+      "@headlessui/react",
+      "react-table",
     ],
     "isolatedModules": true,
     "esModuleInterop": true,
