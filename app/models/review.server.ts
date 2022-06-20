@@ -40,6 +40,7 @@ export const getReviewsForTable = async ({
           name: true,
           type: true,
           distiller: true,
+          producer: true,
         },
       },
     },

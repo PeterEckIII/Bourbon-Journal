@@ -56,6 +56,7 @@ export default function ConfirmForm({ formData, imageId }: IConfirmFormProps) {
         </div>
         <div className="my-2 text-right">
           <Link
+            prefetch="intent"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             to={`/review/new/bottleInfo?id=${formData.redisId}`}
           >
@@ -120,6 +121,7 @@ export default function ConfirmForm({ formData, imageId }: IConfirmFormProps) {
         </div>
         <div className="my-2 text-right">
           <Link
+            prefetch="intent"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             to={`/review/new/setting?id=${formData.redisId}`}
           >
@@ -189,6 +191,7 @@ export default function ConfirmForm({ formData, imageId }: IConfirmFormProps) {
         </div>
         <div className="my-2 text-right">
           <Link
+            prefetch="intent"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             to={`/review/new/notes?id=${formData.redisId}`}
           >

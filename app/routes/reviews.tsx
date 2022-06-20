@@ -77,7 +77,11 @@ export default function ReviewsPage() {
           // SIDE NAVBAR
           <div className="min-h-screen w-80 border-r bg-gray-50 duration-300 ease-in-out">
             <div className="flex justify-between">
-              <Link to="new/bottleInfo" className="p-4 text-lg text-blue-500">
+              <Link
+                prefetch="intent"
+                to="new/bottleInfo"
+                className="p-4 text-lg text-blue-500"
+              >
                 <div>
                   <AddIcon /> New Review
                 </div>
@@ -91,6 +95,7 @@ export default function ReviewsPage() {
                   return (
                     <div className="flex" key={review.id}>
                       <Link
+                        prefetch="intent"
                         className="m-2 p-2 text-blue-900"
                         to={`/reviews/${review.id}`}
                       >

@@ -160,6 +160,7 @@ export default function Join() {
             <div className="text-center text-sm text-gray-500">
               Already have an account?{" "}
               <Link
+                prefetch="intent"
                 className="text-blue-500 underline"
                 to={{
                   pathname: "/login",
