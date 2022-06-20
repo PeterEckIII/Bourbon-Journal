@@ -174,6 +174,7 @@ export default function LoginPage() {
             <div className="text-center text-sm text-gray-500">
               Don't have an account?{" "}
               <Link
+                prefetch="intent"
                 className="text-blue-500 underline"
                 to={{
                   pathname: "/join",
