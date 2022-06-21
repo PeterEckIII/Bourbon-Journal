@@ -1,6 +1,5 @@
-import { useFetcher, useTransition } from "@remix-run/react";
-import { ChangeEvent } from "react";
-import PrimaryButton from "~/components/Form/PrimaryButton";
+import { useFetcher } from "@remix-run/react";
+import type { ChangeEvent } from "react";
 import Spinner from "~/components/Icons/Spinner";
 
 interface IFileUploadProps {
@@ -16,10 +15,10 @@ export default function FileUpload({
 }: IFileUploadProps) {
   const image = useFetcher();
   const isUploading = image.state === "submitting";
-  const isReloading = image.state === "loading";
-  const doneFetching = image.state === "idle" && image.type === "done";
-  const imageData = image.data;
-  const imageSubmission = image.submission;
+  // const isReloading = image.state === "loading";
+  // const doneFetching = image.state === "idle" && image.type === "done";
+  // const imageData = image.data;
+  // const imageSubmission = image.submission;
   return (
     <image.Form
       method="post"
@@ -65,7 +64,7 @@ export default function FileUpload({
       </div>
       {previewUrl !== "" && confirmed === false && (
         <div className="h-50 w-25 m-3 flex items-center justify-center">
-          <img src={previewUrl} alt="The image you uploaded" />
+          <img src={previewUrl} alt="The bottle you uploaded" />
         </div>
       )}
       <div className="my-2 text-right">

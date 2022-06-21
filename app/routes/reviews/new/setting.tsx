@@ -1,19 +1,15 @@
-import { Form, useLoaderData, useOutletContext } from "@remix-run/react";
-import {
-  ActionFunction,
-  LoaderFunction,
-  redirect,
-} from "@remix-run/server-runtime";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
+import { redirect } from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
 import SettingForm from "~/components/Form/SettingForm/SettingForm";
 
 import type { ContextType } from "~/routes/reviews/new";
-import PrimaryButton from "~/components/Form/PrimaryButton";
 import {
   getDataFromRedis,
   requireFormData,
   saveToRedis,
 } from "~/utils/redis.server";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();

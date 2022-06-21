@@ -1,10 +1,6 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
-import {
-  ActionFunction,
-  redirect,
-  json,
-  LoaderFunction,
-} from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { redirect } from "@remix-run/server-runtime";
 import type { ContextType } from "~/routes/reviews/new";
 import NotesForm from "~/components/Form/NotesForm/NotesForm";
 import {
@@ -12,55 +8,7 @@ import {
   requireFormData,
   saveToRedis,
 } from "~/utils/redis.server";
-import { CustomFormData } from "~/utils/helpers.server";
-
-type ActionData = {
-  errors?: {
-    cherry: string;
-    strawberry: string;
-    raspberry: string;
-    blackberry: string;
-    blueberry: string;
-    apple: string;
-    banana: string;
-    grape: string;
-    stone: string;
-    citrus: string;
-    tropical: string;
-    pepper: string;
-    bakingSpice: string;
-    cinnamon: string;
-    herbal: string;
-    mint: string;
-    coffee: string;
-    tobacco: string;
-    leather: string;
-    oak: string;
-    toasted: string;
-    smokey: string;
-    peanut: string;
-    almond: string;
-    pecan: string;
-    walnut: string;
-    oily: string;
-    floral: string;
-    corn: string;
-    rye: string;
-    wheat: string;
-    malt: string;
-    dough: string;
-    vanilla: string;
-    caramel: string;
-    molasses: string;
-    butterscotch: string;
-    honey: string;
-    chocolate: string;
-    toffee: string;
-    sugar: string;
-    overallRating?: string;
-    value?: string;
-  };
-};
+import type { CustomFormData } from "~/utils/helpers.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();

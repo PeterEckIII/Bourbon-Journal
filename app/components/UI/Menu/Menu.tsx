@@ -8,7 +8,7 @@ interface IMenuProps {
 export default function Menu({ opened, setOpened }: IMenuProps) {
   return (
     <div>
-      <Link to="/"></Link>
+      <Link to="/">Home</Link>
       <nav>
         <section className="flex lg:hidden">
           <div

@@ -1,5 +1,5 @@
 import ReviewField from "./ReviewField";
-import { render, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { expect } from "vitest";
 
 const setup = () => {
@@ -10,7 +10,7 @@ const setup = () => {
     />
   );
 
-  const input = utils.getByLabelText("Palate-field");
+  const input = screen.getByLabelText("Palate-field");
 
   return {
     input,
@@ -20,12 +20,12 @@ const setup = () => {
 
 describe("<ReviewField />", () => {
   test("Should render with provided props", () => {
-    const { input, getByText } = setup();
-    expect(input).toBeDefined();
+    const { input } = setup();
+    expect(input).toBeInTheDocument();
     expect(
-      getByText(
+      screen.getByText(
         `The palate begins with cherries and chocolate before moving on to cinnamon, anise, and some nice rye spice.`
       )
-    ).toBeDefined();
+    ).toBeInTheDocument();
   });
 });

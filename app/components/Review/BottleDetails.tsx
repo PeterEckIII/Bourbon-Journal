@@ -1,4 +1,4 @@
-import { Bottle } from "@prisma/client";
+import type { Bottle } from "@prisma/client";
 import ReviewField from "./ReviewField/ReviewField";
 
 type BottleDetailProps = {

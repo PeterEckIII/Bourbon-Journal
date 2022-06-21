@@ -1,4 +1,4 @@
-import { Bottle, Review } from "@prisma/client";
+import type { Bottle, Review } from "@prisma/client";
 import EditIcon from "~/components/Icons/EditIcon";
 import DeleteIcon from "~/components/Icons/DeleteIcon";
 import { Form } from "@remix-run/react";

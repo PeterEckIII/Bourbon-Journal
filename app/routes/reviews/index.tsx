@@ -1,7 +1,7 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import Table from "~/components/Table/Table";
-import TestTable from "~/components/Table/TestTable";
-import { json, LoaderFunction } from "remix";
+import { json } from "remix";
+import type { LoaderFunction } from "@remix-run/server-runtime";
 import { requireUserId } from "~/session.server";
 import { getReviewsForTable } from "~/models/review.server";
 
@@ -31,7 +31,6 @@ export default function ReviewIndexPage() {
           create a new review.
         </Link>
       </p>
-      {/* <Table reviews={reviewListItems} userId={userId} /> */}
       <Table reviews={reviewListItems} userId={userId} />
       <div className="flex min-h-full flex-col justify-center">
         <Outlet />

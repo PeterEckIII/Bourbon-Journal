@@ -1,7 +1,8 @@
 import { useBeforeUnload } from "@remix-run/react";
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 
-interface ITextareaInputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
+interface ITextareaInputProps
+  extends React.InputHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -22,7 +23,7 @@ export default function TextareaInput({
       if (typeof window !== "undefined") {
         return window.localStorage.setItem(name, value);
       }
-    }, [])
+    }, [name, value])
   );
 
   const handleBlur = (key: string, value: string) => {

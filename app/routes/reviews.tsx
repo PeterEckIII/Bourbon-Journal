@@ -1,13 +1,11 @@
-import { Form, useLoaderData, Outlet, Link } from "@remix-run/react";
-import { LoaderFunction, json, LinksFunction } from "@remix-run/server-runtime";
+import { Outlet, Link } from "@remix-run/react";
+import { json } from "@remix-run/server-runtime";
+import type { LoaderFunction, LinksFunction } from "@remix-run/server-runtime";
 import { useState } from "react";
 
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
 import { getReviewListItems } from "~/models/review.server";
-import Hamburger from "~/components/Icons/Hamburger";
-import AddIcon from "~/components/Icons/AddIcon";
-import ArrowIcon from "~/components/Icons/ArrowIcon";
 import Glencairn from "~/components/Icons/Glencairn";
 import Menu from "~/components/UI/Menu/Menu";
 
@@ -39,7 +37,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function ReviewsPage() {
-  const data = useLoaderData() as LoaderData;
   const user = useUser();
   const [opened, setOpened] = useState<boolean>(false);
 

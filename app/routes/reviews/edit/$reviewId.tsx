@@ -1,10 +1,6 @@
 import type { Bottle, Review } from "@prisma/client";
-import {
-  LoaderFunction,
-  ActionFunction,
-  redirect,
-  json,
-} from "@remix-run/server-runtime";
+import { redirect, json } from "@remix-run/server-runtime";
+import type { LoaderFunction, ActionFunction } from "@remix-run/server-runtime";
 import { useActionData, useLoaderData, Form } from "@remix-run/react";
 import EditTextReviewInput from "~/components/Form/EditTextReviewInput";
 import EditTextReviewTextarea from "~/components/Form/EditTextReviewTextarea";

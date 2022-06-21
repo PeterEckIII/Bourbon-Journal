@@ -19,7 +19,7 @@ export default function NoteInput({
   useBeforeUnload(
     React.useCallback(() => {
       localStorage.setItem(name, String(value));
-    }, [])
+    }, [name, value])
   );
 
   const handleBlur = (key: string, value: string | number) => {

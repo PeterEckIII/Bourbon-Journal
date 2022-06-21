@@ -1,16 +1,12 @@
 import { useMemo } from "react";
-import { getReviewsForTable } from "~/models/review.server";
+import type { getReviewsForTable } from "~/models/review.server";
 import {
   useTable,
   useGlobalFilter,
-  ColumnWithLooseAccessor,
   useSortBy,
   usePagination,
-  useResizeColumns,
-  useFlexLayout,
-  reduceHooks,
-  loopHooks,
 } from "react-table";
+import type { ColumnWithLooseAccessor } from "react-table";
 import GlobalFilter from "./GlobalFilter/GlobalFilter";
 import ChevronRight from "../Icons/ChevronRight";
 import ChevronDoubleRight from "../Icons/ChevronDoubleRight";
@@ -55,7 +51,7 @@ export default function Table({ reviews, userId }: ITableProps) {
 
   const breakpoint = useBreakpoint() as number;
 
-  const data = useMemo(() => reviewList, []);
+  const data = useMemo(() => reviewList, [reviewList]);
 
   const columns: ColumnWithLooseAccessor[] = useMemo(
     () => [
@@ -91,7 +87,7 @@ export default function Table({ reviews, userId }: ITableProps) {
         Cell: LinkCell,
       },
     ],
-    []
+    [breakpoint]
   );
 
   const {
@@ -148,15 +144,17 @@ export default function Table({ reviews, userId }: ITableProps) {
                   {headerGroups.map((headerGroup) => (
                     <tr
                       {...headerGroup.getHeaderGroupProps()}
+                      key={headerGroup.id}
                       className="table-row md:mx-4"
                     >
-                      {headerGroup.headers.map((column) => (
+                      {headerGroup.headers.map((column, i) => (
                         <th
                           scope="col"
                           className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500"
                           {...column.getHeaderProps(
                             column.getSortByToggleProps()
                           )}
+                          key={column.id}
                         >
                           <div className="flex items-center justify-between">
                             {column.render("Header")}
@@ -185,13 +183,18 @@ export default function Table({ reviews, userId }: ITableProps) {
                   {page.map((row) => {
                     prepareRow(row);
                     return (
-                      <tr {...row.getRowProps()} className="hover:bg-gray-100">
-                        {row.cells.map((cell) => {
+                      <tr
+                        {...row.getRowProps()}
+                        className="hover:bg-gray-100"
+                        key={row.id}
+                      >
+                        {row.cells.map((cell, i) => {
                           return (
                             // TABLE DATA
                             <td
                               {...cell.getCellProps()}
                               className="relative p-[0.5rem] px-4 py-4"
+                              key={i}
                               role="cell"
                             >
                               {/* TABLE CELL */}

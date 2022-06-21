@@ -5,7 +5,7 @@ import PrependedInput from "~/components/Form/PrependedInput/PrependedInput";
 import PostpendedInput from "~/components/Form/PostpendedInput/PostpendedInput";
 import React from "react";
 import { Form } from "@remix-run/react";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface IBottleFormProps {
   state: FormState;

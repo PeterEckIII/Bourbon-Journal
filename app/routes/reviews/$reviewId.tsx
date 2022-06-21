@@ -1,10 +1,6 @@
-import { Bottle } from "@prisma/client";
-import {
-  LoaderFunction,
-  ActionFunction,
-  json,
-  redirect,
-} from "@remix-run/server-runtime";
+import type { Bottle } from "@prisma/client";
+import type { LoaderFunction, ActionFunction } from "@remix-run/server-runtime";
+import { json, redirect } from "@remix-run/server-runtime";
 import {
   useLoaderData,
   useCatch,

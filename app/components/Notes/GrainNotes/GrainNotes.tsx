@@ -1,9 +1,9 @@
 import rye from "~/images/rye.png";
 import wheat from "~/images/wheat.png";
-import { FormState } from "~/routes/reviews/new";
+import type { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface IGrainNoteProps {
   state: FormState;
