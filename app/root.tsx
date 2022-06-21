@@ -8,13 +8,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import {
-  json,
+import type {
   LinksFunction,
   MetaFunction,
   LoaderFunction,
 } from "@remix-run/server-runtime";
-
+import { json } from "@remix-run/server-runtime";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
 

@@ -1,5 +1,5 @@
 import { Form, useOutletContext } from "@remix-run/react";
-import { ContextType } from "~/routes/reviews/new";
+import type { ContextType } from "~/routes/reviews/new";
 import EarthNotes from "~/components/Notes/EarthNotes/EarthNotes";
 import FruitNotes from "~/components/Notes/FruitNotes/FruitNotes";
 import PrimaryButton from "~/components/Form/PrimaryButton";
@@ -7,7 +7,7 @@ import GrainNotes from "~/components/Notes/GrainNotes/GrainNotes";
 import SpiceNotes from "~/components/Notes/SpiceNotes/SpiceNotes";
 import SweetNotes from "~/components/Notes/SweetNotes/SweetNotes";
 import Rating from "~/components/Notes/Rating/Rating";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface INoteFormProps {
   formData: CustomFormData;

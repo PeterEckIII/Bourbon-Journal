@@ -1,5 +1,5 @@
-import { useFetcher, useTransition } from "@remix-run/react";
-import { ChangeEvent } from "react";
+import { useFetcher } from "@remix-run/react";
+import type { ChangeEvent } from "react";
 import PrimaryButton from "~/components/Form/PrimaryButton";
 
 interface IFileUploadProps {
@@ -14,7 +14,6 @@ export default function FileUpload({
   confirmed,
 }: IFileUploadProps) {
   const image = useFetcher();
-  const isUploading = image.submission?.formData.get("img")?.toString() !== "";
   return (
     <image.Form method="post" encType="multipart/form-data">
       <div className="flex w-full items-center justify-center">
@@ -56,7 +55,7 @@ export default function FileUpload({
       </div>
       {previewUrl !== "" && confirmed === false && (
         <div className="h-50 w-25 m-3 flex items-center justify-center">
-          <img src={previewUrl} alt="The image you uploaded" />
+          <img src={previewUrl} alt="The bottle you uploaded" />
         </div>
       )}
       <PrimaryButton callToAction="Upload Image" />

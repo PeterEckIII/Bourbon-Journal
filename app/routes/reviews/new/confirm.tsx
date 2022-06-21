@@ -1,15 +1,7 @@
 import { v4 as uuid } from "uuid";
-import {
-  useActionData,
-  useLoaderData,
-  useOutletContext,
-} from "@remix-run/react";
-import {
-  json,
-  redirect,
-  ActionFunction,
-  LoaderFunction,
-} from "@remix-run/server-runtime";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { redirect, json } from "@remix-run/server-runtime";
 import { createReview } from "~/models/review.server";
 import { createBottle } from "~/models/bottle.server";
 import { getUser } from "~/session.server";
@@ -19,9 +11,8 @@ import {
   getDataFromRedis,
   requireFormData,
 } from "~/utils/redis.server";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 import ConfirmForm from "~/components/Form/ConfirmForm/ConfirmForm";
-import { transformImage } from "~/utils/cloudinary.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await getUser(request);

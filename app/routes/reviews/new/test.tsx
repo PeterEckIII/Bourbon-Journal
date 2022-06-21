@@ -5,21 +5,25 @@ import {
   useOutletContext,
 } from "@remix-run/react";
 import {
-  ActionFunction,
   json,
-  LoaderFunction,
   redirect,
   unstable_composeUploadHandlers as composeUploadHandlers,
   unstable_createMemoryUploadHandler as createMemoryUploadHandler,
   unstable_parseMultipartFormData as parseMultipartFormData,
+} from "@remix-run/server-runtime";
+import type {
+  ActionFunction,
+  LoaderFunction,
   UploadHandler,
 } from "@remix-run/server-runtime";
 import { v4 as uuid } from "uuid";
 import { getUserId } from "~/session.server";
-import { ContextType } from "../new";
-import { ChangeEvent, useEffect, useState } from "react";
+import type { ContextType } from "../new";
+import { useEffect, useState } from "react";
+import type { ChangeEvent } from "react";
 import CheckIcon from "~/components/Icons/CheckIcon";
-import { ICloudinaryUploadResponse, upload } from "~/utils/cloudinary.server";
+import { upload } from "~/utils/cloudinary.server";
+import type { ICloudinaryUploadResponse } from "~/utils/cloudinary.server";
 import invariant from "tiny-invariant";
 import {
   getDataFromRedis,
@@ -27,7 +31,7 @@ import {
   saveToRedis,
 } from "~/utils/redis.server";
 import Spinner from "~/components/Icons/Spinner";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 type ActionData = {
   errorMessage?: string;
@@ -117,13 +121,13 @@ export default function NewAddImageRoute() {
     } else {
       return;
     }
-  }, []);
+  }, [image.data.publicId, state, setFormState, image.type, image.state]);
 
   useEffect(() => {
     if (image.type === "done") {
       setConfirmed(true);
     }
-  }, []);
+  }, [image.type]);
 
   const handlePreviewChange = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmed(false);
@@ -159,7 +163,7 @@ export default function NewAddImageRoute() {
         </div>
         {previewUrl !== "" && confirmed === false && image.data === undefined && (
           <div className="h-50 w-25 m-3 flex items-center justify-center">
-            <img src={previewUrl} alt="The image you uploaded" />
+            <img src={previewUrl} alt="The bottle you uploaded" />
           </div>
         )}
         <div className="my-2 text-right">

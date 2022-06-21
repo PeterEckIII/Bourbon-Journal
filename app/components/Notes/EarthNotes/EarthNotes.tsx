@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormState } from "~/routes/reviews/new";
+import type { FormState } from "~/routes/reviews/new";
 
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
@@ -8,7 +8,7 @@ import leather from "~/images/leather.webp";
 import almond from "~/images/almond.png";
 import pecan from "~/images/pecan.png";
 import walnut from "~/images/walnut.webp";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface IEarthNoteProps {
   state: FormState;

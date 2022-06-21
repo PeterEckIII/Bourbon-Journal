@@ -1,4 +1,4 @@
-import { Bottle, User } from "@prisma/client";
+import type { Bottle } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 

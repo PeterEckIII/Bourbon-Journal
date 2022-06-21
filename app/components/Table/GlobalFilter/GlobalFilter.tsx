@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useGlobalFilter, useAsyncDebounce, Row } from "react-table";
+import { useAsyncDebounce } from "react-table";
+import type { Row } from "react-table";
 
 interface IFilterProps {
   preGlobalFilteredRows: Row[];

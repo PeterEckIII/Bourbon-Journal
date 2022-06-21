@@ -1,9 +1,9 @@
 import raspberry from "~/images/raspberry.webp";
 import blackberry from "~/images/blackberry.webp";
-import { FormState } from "~/routes/reviews/new";
+import type { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface IFruitNoteProps {
   state: FormState;

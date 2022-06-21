@@ -1,7 +1,8 @@
-import React, { useCallback, InputHTMLAttributes } from "react";
+import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface IPostpendedInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IPostpendedInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -29,7 +30,7 @@ export default function PostpendedInput({
       if (typeof value === "string") {
         localStorage.setItem(name, value);
       }
-    }, [])
+    }, [name, value])
   );
 
   const handleBlur = (key: string, value: string | number) => {

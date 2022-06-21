@@ -2,11 +2,11 @@ import cinnamon from "~/images/cinnamon.webp";
 import pepper from "~/images/pepper.webp";
 import anise from "~/images/anise.jpeg";
 import mint from "~/images/mint.png";
-import { FormState } from "~/routes/reviews/new";
+import type { FormState } from "~/routes/reviews/new";
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
 import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
 import React from "react";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface ISpiceNoteProps {
   state: FormState;

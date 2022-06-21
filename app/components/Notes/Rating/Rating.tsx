@@ -1,6 +1,6 @@
 import NoteInput from "~/components/Form/NoteInput/NoteInput";
-import { FormState } from "~/routes/reviews/new";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { FormState } from "~/routes/reviews/new";
+import type { CustomFormData } from "~/utils/helpers.server";
 
 interface IRatingProps {
   state: FormState;

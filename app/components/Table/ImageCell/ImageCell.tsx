@@ -1,4 +1,4 @@
-import { Column, Row } from "react-table";
+import type { Column, Row } from "react-table";
 
 interface IImageProps {
   value: string;
@@ -13,7 +13,7 @@ export default function ImageCell({ value, column, row }: IImageProps) {
         <img
           // @ts-ignore-next-line
           src={row.original[column["imgAccessor"]]}
-          alt=""
+          alt="bottle for review"
           className="h-10 w-10 rounded-md"
         />
       </div>

@@ -1,7 +1,7 @@
 import { Form } from "@remix-run/react";
 import React from "react";
-import { FormState } from "~/routes/reviews/new";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { FormState } from "~/routes/reviews/new";
+import type { CustomFormData } from "~/utils/helpers.server";
 import PrimaryButton from "../PrimaryButton";
 import TextareaInput from "../TextareaInput/TextareaInput";
 import TextInput from "../TextInput/TextInput";

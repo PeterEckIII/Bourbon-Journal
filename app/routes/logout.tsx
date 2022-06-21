@@ -1,8 +1,5 @@
-import {
-  ActionFunction,
-  LoaderFunction,
-  redirect,
-} from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { redirect } from "@remix-run/server-runtime";
 import { logout } from "~/session.server";
 
 export const action: ActionFunction = async ({ request }) => {

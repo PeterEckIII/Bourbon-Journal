@@ -1,7 +1,6 @@
 import { Form, Link } from "@remix-run/react";
 import NoteTabs from "~/components/Review/NoteTabs/NoteTabs";
-import ReviewImage from "~/components/Review/ReviewImage";
-import { CustomFormData } from "~/utils/helpers.server";
+import type { CustomFormData } from "~/utils/helpers.server";
 import PrimaryButton from "../PrimaryButton";
 
 interface IConfirmFormProps {

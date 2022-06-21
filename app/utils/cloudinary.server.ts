@@ -1,12 +1,6 @@
 import "dotenv/config";
 import { v2 as cloudinary } from "cloudinary";
-import {
-  writeReadableStreamToWritable,
-  writeAsyncIterableToWritable,
-  UploadHandler,
-  unstable_createFileUploadHandler,
-} from "@remix-run/node";
-import type { UploadApiResponse } from "cloudinary";
+import { writeAsyncIterableToWritable } from "@remix-run/node";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

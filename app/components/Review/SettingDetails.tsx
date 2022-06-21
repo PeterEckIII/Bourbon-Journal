@@ -1,4 +1,4 @@
-import { Bottle, Review } from "@prisma/client";
+import type { Bottle, Review } from "@prisma/client";
 import ReviewField from "~/components/Review/ReviewField";
 
 type SettingDetailsProps = {

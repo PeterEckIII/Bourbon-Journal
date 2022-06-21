@@ -3,15 +3,9 @@ import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import type { ContextType } from "~/routes/reviews/new";
 import BottleForm from "~/components/Form/BottleForm/BottleForm";
-import {
-  getDataFromRedis,
-  pollForKeys,
-  saveToRedis,
-} from "~/utils/redis.server";
+import { getDataFromRedis, saveToRedis } from "~/utils/redis.server";
 import { generateCode } from "~/utils/helpers.server";
 import type { CustomFormData } from "~/utils/helpers.server";
-import { v4 as uuid } from "uuid";
-import { getSession } from "~/session.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();

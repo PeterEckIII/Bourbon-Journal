@@ -1,7 +1,7 @@
-import React, { InputHTMLAttributes, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
 
-interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface ITextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   labelName: string;
   name: string;
@@ -22,7 +22,7 @@ export default function TextInput({
   useBeforeUnload(
     useCallback(() => {
       localStorage.setItem(name, value);
-    }, [])
+    }, [name, value])
   );
 
   const handleBlur = (key: string, value: string) => {
