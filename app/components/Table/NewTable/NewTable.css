@@ -1,0 +1,160 @@
+html {
+  font-family: arial;
+}
+
+caption {
+  font-family: Roboto;
+  padding: 20px;
+  font-style: italic;
+  caption-side: bottom;
+  color: #666;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+th {
+  letter-spacing: 1.75px;
+}
+
+.date-header,
+.type-header,
+.distiller-header,
+.producer-header,
+.rating-header,
+.link-header {
+  text-align: center;
+}
+
+td {
+  letter-spacing: .75px;
+  text-align: center;
+}
+
+.name {
+  text-align: left;
+}
+
+thead th,
+tfoot th {
+  font-family: 'Roboto';
+}
+
+table {
+  border-radius: 10px;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid rgb(28 100 242);
+}
+
+thead th:nth-child(1) {
+  width: 20%
+}
+
+thead th:nth-child(2) {
+  width: 10%
+}
+
+thead th:nth-child(3) {
+  width: 10%
+}
+
+thead th:nth-child(4) {
+  width: 15%
+}
+
+thead th:nth-child(5) {
+  width: 15%
+}
+
+thead th:nth-child(6) {
+  width: 8%
+}
+
+thead th:nth-child(7) {
+  width: 10%
+}
+
+.bottle-image {
+  height: 50px;
+  width: 50px;
+}
+
+th {
+  background: rgb(28 100 242);
+  color: white;
+  text-align: left;
+  padding: 3px;
+}
+
+tr td {
+  padding: 5px;
+  margin: 5px;
+}
+
+tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+td:nth-child(3) {}
+
+.name {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+.image-container {
+  margin-right: 5px;
+}
+
+.rating {}
+
+@media screen and (max-width: 1225px) and (min-width: 1045px) {
+  .producer-col {
+    display: none;
+  }
+
+  .name {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 1045px) and (min-width: 835px) {
+  .producer-col {
+    display: none;
+  }
+
+  .type-col {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 835px) and (min-width: 300px) {
+  .producer-col {
+    display: none;
+  }
+
+  .type-col {
+    display: none;
+  }
+
+  .distiller-col {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .producer-col {
+    display: none;
+  }
+
+  .type-col {
+    display: none;
+  }
+
+  .distiller-col {
+    display: none;
+  }
+}

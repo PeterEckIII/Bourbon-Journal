@@ -1,18 +1,21 @@
-import type { Column, Row } from "react-table";
+import type {
+  CellComponent,
+  FormatterParams,
+} from "types/react-tabulator-config";
 
 interface IImageProps {
-  value: string;
-  column: Column;
-  row: Row;
+  cell: CellComponent;
+  formatterParams: FormatterParams;
 }
 
-export default function ImageCell({ value, column, row }: IImageProps) {
+export default function ImageCell({ cell, formatterParams }: IImageProps) {
+  const value = cell.getValue() || "";
   return (
     <div className="flex items-center">
       <div className="h-10 w-10 flex-shrink-0">
         <img
           // @ts-ignore-next-line
-          src={row.original[column["imgAccessor"]]}
+          src={value}
           alt="bottle for review"
           className="h-10 w-10 rounded-md"
         />

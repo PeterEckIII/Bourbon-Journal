@@ -14,9 +14,9 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
             className="cursor-pointer space-y-2"
             onClick={() => setOpened(!opened)}
           >
-            <span className="block h-0.5 w-8 bg-gray-600 text-white"></span>
-            <span className="block h-0.5 w-8 bg-gray-600 text-white"></span>
-            <span className="block h-0.5 w-8 bg-gray-600 text-white"></span>
+            <span className="block h-0.5 w-8 bg-gray-50 text-white"></span>
+            <span className="block h-0.5 w-8 bg-gray-50 text-white"></span>
+            <span className="block h-0.5 w-8 bg-gray-50 text-white"></span>
           </div>
           <div
             className={
@@ -30,7 +30,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
               onClick={() => setOpened(!opened)}
             >
               <svg
-                className="h-8 w-8 text-gray-600"
+                className="h-8 w-8 text-gray-50"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

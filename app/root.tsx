@@ -48,6 +48,10 @@ export default function App() {
         <Outlet />
         <LiveReload />
         <ScrollRestoration />
+        <script
+          type="text/javascript"
+          src="https://unpkg.com/tabulator-tables@5.2.7/dist/js/tabulator.min.js"
+        />
         <Scripts />
       </body>
     </html>

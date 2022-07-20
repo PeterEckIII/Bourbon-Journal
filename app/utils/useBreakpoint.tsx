@@ -16,22 +16,24 @@ import { useState, useEffect } from "react";
 //   }
 // };
 
-const useBreakpoint = () => {
-  const getCurrentWidth = () => {
+const useBreakpoint = (): number => {
+  const getCurrentWidth = (): number => {
     if (typeof window !== "undefined") {
       return window.innerWidth;
+    } else {
+      return 0;
     }
   };
+
   const [breakpoint, setBreakpoint] = useState(getCurrentWidth());
 
   useEffect(() => {
     const calculateInnerWidth = () => {
       setTimeout(() => {
         setBreakpoint(window.innerWidth);
-      }, 200);
+      }, 1000);
     };
     window.addEventListener("resize", calculateInnerWidth);
-
     return () => window.removeEventListener("resize", calculateInnerWidth);
   }, []);
 

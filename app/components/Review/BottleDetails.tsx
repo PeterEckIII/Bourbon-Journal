@@ -1,5 +1,4 @@
 import type { Bottle } from "@prisma/client";
-import ReviewField from "./ReviewField/ReviewField";
 
 type BottleDetailProps = {
   bottle: Bottle;
@@ -7,33 +6,90 @@ type BottleDetailProps = {
 
 export default function BottleDetails({ bottle }: BottleDetailProps) {
   return (
-    <div className="p-1">
-      <div className="m-2 flex flex-col py-5">
-        <div id="bottleDetails">
-          <ReviewField labelName="Type" value={bottle.type as string} />
-          <ReviewField labelName="Price" value={bottle.price as string} />
-          <ReviewField
-            labelName="ABV"
-            value={bottle.alcoholPercent as string}
-          />
-          <ReviewField labelName="Proof" value={bottle.proof as string} />
-          <ReviewField labelName="Age" value={bottle.age as string} />
-        </div>
-        <div>
-          <ReviewField labelName="Year" value={bottle.year as string} />
-          <ReviewField labelName="Batch" value={bottle.batch ?? ""} />
-        </div>
-        <div>
-          <ReviewField
-            labelName="Distiller"
-            value={bottle.distiller as string}
-          />
-          <ReviewField labelName="Bottler" value={bottle.bottler as string} />
-          <ReviewField labelName="Producer" value={bottle.producer as string} />
-          <ReviewField labelName="Country" value={bottle.country as string} />
-          <ReviewField labelName="Region" value={bottle.region as string} />
-        </div>
-      </div>
+    <div className="">
+      <h5 className="mb-4 text-left text-2xl">Bottle</h5>
+      <table className="border-collapse border-2 border-gray-300">
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Type</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.type}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Price</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            ${bottle.price}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">ABV</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.alcoholPercent}%
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Proof</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.proof}pf
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Age</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.age}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Year</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.year}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Batch</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.batch}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">
+            Distiller
+          </th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.distiller}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">
+            Producer
+          </th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.producer}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">
+            Bottler
+          </th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.bottler}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">
+            Country
+          </th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.country}
+          </td>
+        </tr>
+        <tr>
+          <th className="border border-[#ccc] py-2 px-8 text-center">Region</th>
+          <td className="border border-[#ccc] py-2 px-8 text-center">
+            {bottle.region}
+          </td>
+        </tr>
+      </table>
     </div>
   );
 }

@@ -4,6 +4,9 @@ import DeleteIcon from "~/components/Icons/DeleteIcon";
 import { Form } from "@remix-run/react";
 import ReviewImage from "../ReviewImage";
 import NoteTabs from "../NoteTabs/NoteTabs";
+import BottleDetails from "../BottleDetails";
+import SettingDetails from "../SettingDetails";
+import WrittenNotes from "../WrittenNotes";
 
 interface ReviewPageProps {
   bottle?: Bottle;
@@ -25,7 +28,24 @@ export default function ReviewPage({
     // CONTAINER
     <div className="my-2 flex flex-col">
       <div className="flex flex-col">
-        <h1 className="my-2 text-2xl font-bold">
+        <div className="flex flex-col">
+          <h1 className="mb-4 text-left text-2xl">
+            {bottle.name}{" "}
+            {bottle.batch !== "None" && bottle.batch !== "N/A"
+              ? bottle.batch
+              : ""}{" "}
+          </h1>
+          <p className="mb-4 text-left">{review.date}</p>
+          <div className="mb-2">
+            <div className="flex h-[400px] w-[300px]">
+              <img src={imageUrl} alt={`Bottle of ${bottle.name}`} />
+            </div>
+          </div>
+        </div>
+        <BottleDetails bottle={bottle} />
+        <SettingDetails bottle={bottle} review={review} />
+        <WrittenNotes review={review} />
+        {/* <h1 className="my-2 text-2xl font-bold">
           {bottle.name}{" "}
           {bottle.batch !== "None" && bottle.batch !== "N/A"
             ? bottle.batch
@@ -33,13 +53,13 @@ export default function ReviewPage({
         </h1>
         <p className="mb-8">{review.date}</p>
         {/* IMAGE */}
-        <div className="mb-2 sm:mb-12 sm:h-[500px] sm:w-[500px]">
+        {/* <div className="mb-2 sm:mb-12 sm:h-[500px] sm:w-[500px]">
           <ReviewImage imageUrl={imageUrl} bottleName={bottle.name} />
-        </div>
+        </div>  */}
         {/*  BOTTLE  */}
-        <h4 className="mb-6 mt-12 text-left text-2xl sm:mt-36">Bottle</h4>
-        <div className="mb-6 flex rounded-lg border border-gray-200 bg-white shadow-md">
-          <div className="flex w-1/2 flex-col border-r-2 bg-yellow-50">
+        {/* <h4 className="mb-6 mt-12 text-left text-2xl sm:mt-36">Bottle</h4> */}
+        {/* <div className=" flex rounded-lg border border-gray-200 bg-white shadow-md sm:mb-12 sm:h-[500px] sm:w-[500px]"> */}
+        {/* <div className="flex w-1/2 flex-col border-r-2 bg-yellow-50">
             <div className="border py-1 text-center">Type</div>
             <div className="border py-1 text-center">Price</div>
             <div className="border py-1 text-center">ABV</div>
@@ -68,10 +88,10 @@ export default function ReviewPage({
             <div className="border py-1 text-center">{bottle.producer}</div>
             <div className="border py-1 text-center">{bottle.country}</div>
             <div className="border py-1 text-center">{bottle.region}</div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         {/* SETTING */}
-        <h5 className="my-2 text-left text-2xl">Review</h5>
+        {/* <h5 className="my-2 text-left text-2xl">Review</h5>
         <div className="my-2 flex flex-col">
           <div className="text-md flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-md">
             <h6 className="-mt-2 mb-2 text-center text-lg underline">
@@ -132,7 +152,7 @@ export default function ReviewPage({
             </h6>
             {review.thoughts}
           </div>
-        </div>
+        // </div> */}
       </div>
       <div className="mt-4 flex">
         <NoteTabs
