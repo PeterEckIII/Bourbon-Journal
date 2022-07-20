@@ -4,13 +4,7 @@ import type { AgGridReact as AgGridReactType } from "ag-grid-react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import type {
-  GridApi,
-  ColDef,
-  FirstDataRenderedEvent,
-  ValueGetterParams,
-} from "ag-grid-community";
-import type { IReviewTableItem } from "~/routes/reviews/index";
+import type { ColDef, ValueGetterParams } from "ag-grid-community";
 import ExternalLink from "~/components/Icons/ExternalLink";
 import ImageRenderer from "../ImageRenderer/ImageRenderer";
 import { classNames } from "~/utils/cssHelper";
@@ -39,7 +33,7 @@ const ratingRenderer = (params: any) => {
 const reviewLinkRenderer = (params: any) => {
   return (
     <div className="flex items-end justify-center pt-2">
-      <Link className="mb-4 text-blue-600" to={`reviews/${params.value}`}>
+      <Link className="mb-4 text-blue-600" to={`${params.value}`}>
         <ExternalLink className="" />
       </Link>
     </div>

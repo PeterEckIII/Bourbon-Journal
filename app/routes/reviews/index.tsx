@@ -1,30 +1,17 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
-import Table from "~/components/Table/Table";
-import NewTable from "~/components/Table/NewTable/NewTable";
 import { json } from "remix";
 import type { LoaderFunction, LinksFunction } from "@remix-run/server-runtime";
 import { requireUserId } from "~/session.server";
 import { getReviewsForTable } from "~/models/review.server";
-import { useMemo } from "react";
-import LinkFormatter from "~/components/Table/LinkFormatter/LinkFormatter";
-import NameFormatter from "~/components/Table/NameCel/NameCell";
-import TableStyles from "~/components/Table/NewTable/NewTable.css";
-import DataGrid from "~/components/Table/DataGrid/DataGride";
+import DataGrid from "~/components/DataGrid/DataGrid/DataGride";
 import GridStyles from "ag-grid-community/styles/ag-grid.css";
 import AlpineTheme from "ag-grid-community/styles/ag-theme-alpine.css";
-
-type ColumnDefinitionAlign = "left" | "center" | "right";
-type VerticalAlign = "top" | "middle" | "bottom";
 
 export const links: LinksFunction = () => {
   return [
     {
       rel: "stylesheet",
       href: "https://unpkg.com/tabulator-tables@5.2.7/dist/css/tabulator.min.css",
-    },
-    {
-      rel: "stylesheet",
-      href: TableStyles,
     },
     {
       rel: "stylesheet",
@@ -83,99 +70,6 @@ export default function ReviewIndexPage() {
     };
   });
 
-  const data = useMemo(() => reviewList, [reviewList]);
-
-  // const columns = useMemo(
-  //   () => [
-  //     {
-  //       Header: "Name",
-  //       accessor: "name",
-  //       Cell: ImageCell,
-  //       imgAccessor: "imageId",
-  //       dateAccessor: "date",
-  //     },
-  //     {
-  //       Header: "Distillery",
-  //       accessor: "distillery",
-  //     },
-  //     {
-  //       Header: "Producer",
-  //       accessor: "producer",
-  //     },
-  //     {
-  //       Header: "Type",
-  //       accessor: "type",
-  //     },
-  //     {
-  //       Header: "Rating",
-  //       accessor: "rating",
-  //       Cell: RatingPill,
-  //     },
-  //     {
-  //       Header: "Link",
-  //       accessor: "reviewId",
-  //       Cell: LinkCell,
-  //     },
-  //   ],
-  //   []
-  // );
-
-  const columnsTwo = useMemo(
-    () => [
-      {
-        title: "Name",
-        field: "name",
-        responsive: 0,
-        vertAlign: "middle" as VerticalAlign,
-        hozAlign: "left" as ColumnDefinitionAlign,
-        formatter: NameFormatter,
-      },
-      {
-        title: "Date",
-        field: "date",
-        responsive: 1,
-        vertAlign: "top" as VerticalAlign,
-        hozAlign: "center" as ColumnDefinitionAlign,
-      },
-      {
-        title: "Distillery",
-        field: "distillery",
-        responsive: 2,
-        vertAlign: "middle" as VerticalAlign,
-        hozAlign: "left" as ColumnDefinitionAlign,
-      },
-      {
-        title: "Producer",
-        field: "producer",
-        responsive: 5,
-        vertAlign: "middle" as VerticalAlign,
-        hozAlign: "left" as ColumnDefinitionAlign,
-      },
-      {
-        title: "Type",
-        field: "type",
-        responsive: 2,
-        visible: false,
-      },
-      {
-        title: "Rating",
-        field: "rating",
-        responsive: 0,
-        vertAlign: "middle" as VerticalAlign,
-        hozAlign: "left" as ColumnDefinitionAlign,
-      },
-      {
-        title: "Link",
-        field: "reviewId",
-        responsive: 0,
-        vertAlign: "middle" as VerticalAlign,
-        hozAlign: "left" as ColumnDefinitionAlign,
-        formatter: LinkFormatter,
-      },
-    ],
-    []
-  );
-
   return (
     <div className="w-full">
       {reviewListItems.length > 0 ? (
@@ -205,8 +99,6 @@ export default function ReviewIndexPage() {
       )}
       {reviewListItems.length > 0 ? (
         <>
-          {/* <Table data={data} columns={columns} /> */}
-          {/* <NewTable data={data as IReviewTableItem[]} columns={columnsTwo} /> */}
           <DataGrid initialData={reviewList} />
         </>
       ) : null}
