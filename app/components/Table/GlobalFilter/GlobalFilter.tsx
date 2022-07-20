@@ -34,11 +34,11 @@ export default function GlobalFilter({
             setValue(e.target.value);
             handleChange(e.target.value);
           }}
-          placeholder={`${count} records...`}
+          placeholder={`${count} record(s)...`}
         />
       </label>
-      <p className="ml-4 mt-1 block w-full rounded-md text-xs italic text-gray-500">
-        Search by name, type, distillery, or rating
+      <p className="ml-4 mb-2 mt-1 block w-full rounded-md text-xs italic text-gray-500">
+        Search by name, type, distillery, or producer
       </p>
     </div>
   );

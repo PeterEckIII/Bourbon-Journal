@@ -8,11 +8,17 @@ interface ILinkCellProps {
 export default function LinkCell({ value }: ILinkCellProps) {
   const url = typeof value === "string" ? value : String(value);
   return (
-    <div>
-      <Link prefetch="intent" to={`/reviews/${url}`} className="text-blue-600">
-        {" "}
-        <ExternalLink className="inline" />
-      </Link>
+    <div className="flex items-center justify-center">
+      <td className="link-col link hidden text-xs sm:table-cell sm:text-base">
+        <Link className="text-blue-600" to={`reviews/${url}`}>
+          Review
+        </Link>
+      </td>
+      <td className="flex justify-center sm:hidden">
+        <Link className="mb-4 text-blue-600" to={`reviews/${url}`}>
+          <ExternalLink className="" />
+        </Link>
+      </td>
     </div>
   );
 }

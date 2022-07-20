@@ -56,7 +56,7 @@ export const action: ActionFunction = async ({ request }) => {
       const uploadedImage = (await upload({
         data,
         userId,
-        publicId: publicId,
+        publicId,
       })) as ICloudinaryUploadResponse;
       return uploadedImage.secure_url;
     },
@@ -121,7 +121,7 @@ export default function NewAddImageRoute() {
     } else {
       return;
     }
-  }, [setFormState, state, image.state, image.type, image.data.publicId]);
+  }, [setFormState, state, image.state, image.type, image.data]);
 
   useEffect(() => {
     if (image.type === "done") {
