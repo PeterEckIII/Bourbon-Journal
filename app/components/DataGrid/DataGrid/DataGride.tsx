@@ -1,43 +1,20 @@
 import { useState, useRef, useMemo, useCallback, useEffect } from "react";
-import { Link } from "remix";
+import { useFetcher } from "remix";
 import type { AgGridReact as AgGridReactType } from "ag-grid-react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import type { ColDef, ValueGetterParams } from "ag-grid-community";
-import ExternalLink from "~/components/Icons/ExternalLink";
+import type {
+  ColDef,
+  GridReadyEvent,
+  ValueGetterParams,
+} from "ag-grid-community";
 import ImageRenderer from "../ImageRenderer/ImageRenderer";
-import { classNames } from "~/utils/cssHelper";
+import RatingRenderer from "../RatingRenderer/RatingRenderer";
+import LinkRenderer from "../LinkRenderer/LinkRenderer";
 
 type NumberParserParams = {
   newValue: string;
-};
-
-const ratingRenderer = (params: any) => {
-  return (
-    <span
-      className={classNames(
-        "leading-wide rounded-full px-3 py-1 text-xs font-bold uppercase shadow-sm",
-        params.value >= 4.5 ? "bg-green-100 text-green-700" : "null",
-        params.value < 4.5 && params.value >= 3
-          ? "bg-yellow-100 text-yellow-700"
-          : "null",
-        params.value < 3 ? "bg-red-100 text-red-700" : "null"
-      )}
-    >
-      {params.value}
-    </span>
-  );
-};
-
-const reviewLinkRenderer = (params: any) => {
-  return (
-    <div className="flex items-end justify-center pt-2">
-      <Link className="mb-4 text-blue-600" to={`${params.value}`}>
-        <ExternalLink className="" />
-      </Link>
-    </div>
-  );
 };
 
 const numberParser = (params: NumberParserParams) => {
@@ -51,16 +28,18 @@ const numberParser = (params: NumberParserParams) => {
   return valueAsNumber;
 };
 
-const nameGetter = (params: ValueGetterParams) => {
-  const name = params.data.name ?? "";
-  const imageId = params.data.imageId ?? "";
+function nameGetter(params: ValueGetterParams) {
+  if (!params.data) return `loading...`;
   return {
-    name,
-    imageId,
+    name: params.data.name,
+    imageId: params.data.imageId,
   };
-};
+}
 
 export default function DataGrid({ initialData }: any) {
+  const [getRowParams, setGetRowParams] = useState<any | "undefined">();
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const gridFetcher = useFetcher();
   const grid = useRef<AgGridReactType>(null);
   const containerStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
@@ -70,6 +49,7 @@ export default function DataGrid({ initialData }: any) {
     {
       field: "name",
       minWidth: 230,
+      maxWidth: 500,
       lockPosition: "left",
       valueGetter: nameGetter,
       cellRenderer: ImageRenderer,
@@ -145,8 +125,7 @@ export default function DataGrid({ initialData }: any) {
     {
       field: "rating",
       valueParser: numberParser,
-      // cellClassRules: ratingCellClassRules,
-      cellRenderer: ratingRenderer,
+      cellRenderer: RatingRenderer,
       minWidth: 180,
       maxWidth: 100,
       cellStyle: {
@@ -165,7 +144,7 @@ export default function DataGrid({ initialData }: any) {
       field: "reviewId",
       minWidth: 80,
       maxWidth: 80,
-      cellRenderer: reviewLinkRenderer,
+      cellRenderer: LinkRenderer,
       cellStyle: {
         display: "flex",
         justifyContent: "center",
@@ -228,6 +207,10 @@ export default function DataGrid({ initialData }: any) {
     grid!.current!.api.sizeColumnsToFit();
   }, []);
 
+  const onGridReady = useCallback((params: GridReadyEvent) => {
+    params.api.refreshCells();
+  }, []);
+
   useEffect(() => {
     setRecords(initialData.length);
   }, [initialData]);
@@ -272,9 +255,11 @@ export default function DataGrid({ initialData }: any) {
           defaultColDef={defaultColDef}
           onFirstDataRendered={onFirstDataRendered}
           onGridSizeChanged={onGridSizeChanged}
+          onGridReady={onGridReady}
           animateRows={true}
           rowSelection="multiple"
           rowHeight={100}
+          rowModelType="clientSide"
         />
       </div>
     </div>

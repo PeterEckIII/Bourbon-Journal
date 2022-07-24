@@ -49,7 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
   customFormData.glassware = glassware;
   customFormData.restTime = restTime;
   customFormData.nose = nose;
-  customFormData.thoughts = thoughts;
+  customFormData.palate = palate;
   customFormData.finish = finish;
   customFormData.thoughts = thoughts;
 

@@ -1,4 +1,4 @@
-import type { User, Review } from "@prisma/client";
+import type { User, Review, Bottle, Prisma } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 
@@ -33,8 +33,15 @@ export const getReviewsForTable = async ({
 }: {
   userId: User["id"];
 }) => {
-  const reviews = prisma.review.findMany({
-    include: {
+  const reviews = await prisma.review.findMany({
+    where: {
+      userId,
+    },
+    select: {
+      date: true,
+      id: true,
+      imageId: true,
+      overallRating: true,
       bottle: {
         select: {
           name: true,
@@ -45,6 +52,42 @@ export const getReviewsForTable = async ({
       },
     },
   });
+  return reviews;
+};
+
+type FetchProps = {
+  userId: User["id"];
+  to: number;
+  from: number;
+};
+
+export const fetchReviewsForTable = async ({
+  userId,
+  to = 0,
+  from = 0,
+}: FetchProps) => {
+  const reviews = prisma.review.findMany({
+    where: {
+      userId,
+    },
+    skip: from,
+    take: to - from,
+    select: {
+      id: true,
+      date: true,
+      imageId: true,
+      overallRating: true,
+      bottle: {
+        select: {
+          name: true,
+          type: true,
+          distiller: true,
+          producer: true,
+        },
+      },
+    },
+  });
+
   return reviews;
 };
 
