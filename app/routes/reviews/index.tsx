@@ -29,17 +29,6 @@ interface LoaderData {
   userId: string;
 }
 
-export interface IReviewTableItem {
-  name: string;
-  type: string;
-  distillery: string;
-  producer: string;
-  date: string;
-  rating: number;
-  imageId: string;
-  reviewId: string;
-}
-
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await requireUserId(request);
   const reviewListItems = await getReviewsForTable({ userId });
@@ -65,7 +54,7 @@ export default function ReviewIndexPage() {
       producer: review.bottle.producer,
       date: review.date,
       rating: review.overallRating,
-      imageId: `https://res.cloudinary.com/jpeckiii/image/upload/h_50,w_50/cl2c0togd0005ebsf0fbpdakc/f9fc1081-1375-4441-a2a2-8147cddb4215`,
+      imageId: `https://res.cloudinary.com/jpeckiii/image/upload/h_50,w_50/${userId}/${review.imageId}`,
       reviewId: `${review.id}`,
     };
   });

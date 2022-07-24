@@ -1,5 +1,17 @@
 import { Link } from "@remix-run/react";
+import type { LinksFunction } from "remix";
 import { useOptionalUser } from "~/utils";
+// import banner from "~/images/EHT_Banner.png";
+
+// export const links: LinksFunction = () => {
+//   return [
+//     {
+//       rel: "preload",
+//       href: "/images/EHT_Banner.png",
+//       as: "image",
+//     },
+//   ];
+// };
 
 export default function Index() {
   const user = useOptionalUser();

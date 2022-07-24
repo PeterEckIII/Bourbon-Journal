@@ -31,7 +31,7 @@ export default function EarthNotes({
             emoji="☕"
             name="coffee"
             value={state.coffee}
-            defaultValue={formData.coffee}
+            defaultValue={formData?.coffee}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -41,7 +41,7 @@ export default function EarthNotes({
             emoji="🍁"
             name="tobacco"
             value={state.tobacco}
-            defaultValue={formData.tobacco}
+            defaultValue={formData?.tobacco}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -50,7 +50,7 @@ export default function EarthNotes({
             name="leather"
             labelName="Leather"
             value={state.leather}
-            defaultValue={formData.leather}
+            defaultValue={formData?.leather}
             changeHandler={(e) => changeHandler(e)}
             noteSource={leather}
           />
@@ -61,7 +61,7 @@ export default function EarthNotes({
             emoji="🪵"
             name="oak"
             value={state.oak}
-            defaultValue={formData.oak}
+            defaultValue={formData?.oak}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -71,7 +71,7 @@ export default function EarthNotes({
             emoji="🍞"
             name="toasted"
             value={state.toasted}
-            defaultValue={formData.toasted}
+            defaultValue={formData?.toasted}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -81,7 +81,7 @@ export default function EarthNotes({
             emoji="💨"
             name="smokey"
             value={state.smokey}
-            defaultValue={formData.smokey}
+            defaultValue={formData?.smokey}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -91,7 +91,7 @@ export default function EarthNotes({
             emoji="🥜"
             name="peanut"
             value={state.peanut}
-            defaultValue={formData.peanut}
+            defaultValue={formData?.peanut}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -101,7 +101,7 @@ export default function EarthNotes({
             noteSource={almond}
             name="almond"
             value={state.almond}
-            defaultValue={formData.almond}
+            defaultValue={formData?.almond}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -111,7 +111,7 @@ export default function EarthNotes({
             noteSource={pecan}
             name="pecan"
             value={state.pecan}
-            defaultValue={formData.pecan}
+            defaultValue={formData?.pecan}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -121,7 +121,7 @@ export default function EarthNotes({
             noteSource={walnut}
             name="walnut"
             value={state.walnut}
-            defaultValue={formData.walnut}
+            defaultValue={formData?.walnut}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -131,7 +131,7 @@ export default function EarthNotes({
             emoji="🛢️"
             name="oily"
             value={state.oily}
-            defaultValue={formData.oily}
+            defaultValue={formData?.oily}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>
@@ -141,7 +141,7 @@ export default function EarthNotes({
             emoji="🌹"
             name="floral"
             value={state.floral}
-            defaultValue={formData.floral}
+            defaultValue={formData?.floral}
             changeHandler={(e) => changeHandler(e)}
           />
         </div>

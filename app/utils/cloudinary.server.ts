@@ -64,7 +64,7 @@ async function upload({ data, userId, publicId }: IUploadProps) {
   return uploadPromise;
 }
 
-async function transformImage(imageId: string) {
+async function transformImage(imageId: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
       const image = await cloudinary.url(imageId).toString();

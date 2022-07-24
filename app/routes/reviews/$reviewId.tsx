@@ -24,20 +24,16 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   const userId = await requireUserId(request);
 
   const review = await getReview({ userId, id: params.reviewId as string });
-
   if (review === undefined || review === null) {
     throw new Response("Not Found", { status: 404 });
   }
   if (review.bottleId === undefined || review.bottleId === null) {
     throw new Error(`Error: Bottle ID is of type ${typeof review.bottleId}`);
   }
-
   const bottle = await getBottle(review.bottleId);
-
   if (bottle === undefined || bottle === null) {
     throw new Error(`Error: Bottle is null`);
   }
-
   if (review.imageId === null) {
     throw new Error(`Error with image ID!`);
   }
