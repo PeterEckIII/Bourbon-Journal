@@ -6,6 +6,7 @@ import { getReviewsForTable } from "~/models/review.server";
 import DataGrid from "~/components/DataGrid/DataGrid/DataGride";
 import GridStyles from "ag-grid-community/styles/ag-grid.css";
 import AlpineTheme from "ag-grid-community/styles/ag-theme-alpine.css";
+import StatusBarStyles from "~/styles/statusBar.css";
 
 export const links: LinksFunction = () => {
   return [
@@ -20,6 +21,10 @@ export const links: LinksFunction = () => {
     {
       rel: "stylesheet",
       href: AlpineTheme,
+    },
+    {
+      rel: "stylesheet",
+      href: StatusBarStyles,
     },
   ];
 };
@@ -52,8 +57,13 @@ export default function ReviewIndexPage() {
       type: review.bottle.type,
       distillery: review.bottle.distiller,
       producer: review.bottle.producer,
+      proof: review.bottle.proof,
+      age: review.bottle.age,
+      price: review.bottle.price,
       date: review.date,
       rating: review.overallRating,
+      value: review.value,
+      alcoholPercent: review.bottle.alcoholPercent,
       imageId: `https://res.cloudinary.com/jpeckiii/image/upload/h_50,w_50/${userId}/${review.imageId}`,
       reviewId: `${review.id}`,
     };

@@ -42,52 +42,21 @@ export const getReviewsForTable = async ({
       id: true,
       imageId: true,
       overallRating: true,
+      value: true,
       bottle: {
         select: {
           name: true,
           type: true,
           distiller: true,
           producer: true,
+          proof: true,
+          alcoholPercent: true,
+          age: true,
+          price: true,
         },
       },
     },
   });
-  return reviews;
-};
-
-type FetchProps = {
-  userId: User["id"];
-  to: number;
-  from: number;
-};
-
-export const fetchReviewsForTable = async ({
-  userId,
-  to = 0,
-  from = 0,
-}: FetchProps) => {
-  const reviews = prisma.review.findMany({
-    where: {
-      userId,
-    },
-    skip: from,
-    take: to - from,
-    select: {
-      id: true,
-      date: true,
-      imageId: true,
-      overallRating: true,
-      bottle: {
-        select: {
-          name: true,
-          type: true,
-          distiller: true,
-          producer: true,
-        },
-      },
-    },
-  });
-
   return reviews;
 };
 
