@@ -7,7 +7,7 @@ export default function ImageRenderer(props: any) {
         <Spinner />
       ) : (
         <div className="flex">
-          <div className="hidden h-[50px] w-[50px] sm:block">
+          <div className="hidden h-[50px] w-[50px] md:block">
             <img
               src={props.value.imageId}
               alt={`Bottle of ${props.value.name}`}
@@ -16,7 +16,7 @@ export default function ImageRenderer(props: any) {
             />
           </div>
           <div className="break-words md:ml-4">
-            <p className="break-words">{props.value.name}</p>
+            <p className="break-words font-medium">{props.value.name}</p>
           </div>
         </div>
       )}
