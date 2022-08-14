@@ -1,8 +1,10 @@
 import {
   Link,
+  useActionData,
   useFetcher,
   useLoaderData,
   useOutletContext,
+  useTransition,
 } from "@remix-run/react";
 import {
   json,
@@ -83,7 +85,9 @@ export const action: ActionFunction = async ({ request }) => {
   // get redis form data
   const formDataObject = await getDataFromRedis(id);
   if (!formDataObject) {
-    throw Error(`Form data not found`);
+    return json<ActionData>({
+      errorMessage: "You must enable JavaScript for this form to work",
+    });
   }
 
   formDataObject.imageId = publicId;
@@ -107,6 +111,13 @@ export default function NewAddImageRoute() {
   const [confirmed, setConfirmed] = useState<boolean>();
   const image = useFetcher();
   const isUploading = image.state === "submitting";
+  const actionData = useActionData<ActionData>();
+  const transition = useTransition();
+  let formState: "idle" | "error" | "submitting" = transition.submission
+    ? "submitting"
+    : actionData?.errorMessage
+    ? "error"
+    : "idle";
 
   if (setFormState === undefined) {
     throw new Error(`Error, please return to the bottle info page`);
@@ -202,7 +213,7 @@ export default function NewAddImageRoute() {
             })
           }
         >
-          Next
+          {formState === "submitting" ? "Loading" : "Next"}
         </Link>
       </div>
     </div>

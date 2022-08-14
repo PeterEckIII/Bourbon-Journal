@@ -1,5 +1,10 @@
-import { useLoaderData, useOutletContext } from "@remix-run/react";
-import { redirect } from "@remix-run/server-runtime";
+import {
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+  useTransition,
+} from "@remix-run/react";
+import { redirect, json } from "@remix-run/server-runtime";
 import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
 import SettingForm from "~/components/Form/SettingForm/SettingForm";
 
@@ -10,6 +15,10 @@ import {
   saveToRedis,
 } from "~/utils/redis.server";
 import type { CustomFormData } from "~/utils/helpers.server";
+
+interface ActionData {
+  error?: string;
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -35,13 +44,17 @@ export const action: ActionFunction = async ({ request }) => {
     typeof finish !== "string" ||
     typeof thoughts !== "string"
   ) {
-    throw new Error(`Invalid inputs on Settings form!`);
+    return json<ActionData>({
+      error: "Input was not a string",
+    });
   }
 
   const customFormData = await getDataFromRedis(redisId);
 
   if (!customFormData) {
-    throw Error(`Form data note found!`);
+    return json<ActionData>({
+      error: "You must enable JavaScript for this form to work",
+    });
   }
 
   customFormData.date = date;
@@ -66,6 +79,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function NewSettingRoute() {
   const formData = useLoaderData<CustomFormData>();
   const { state, stateSetter } = useOutletContext<ContextType>();
+  const actionData = useActionData<ActionData>();
+  const transition = useTransition();
+  let formState: "idle" | "error" | "submitting" = transition.submission
+    ? "submitting"
+    : actionData?.error
+    ? "error"
+    : "idle";
 
   if (state === undefined || !stateSetter) {
     throw new Error(`Error with the Outlet Context`);
@@ -77,6 +97,7 @@ export default function NewSettingRoute() {
         formData={formData}
         state={state}
         changeHandler={stateSetter}
+        formState={formState}
       />
     </>
   );

@@ -1,6 +1,15 @@
 import { v4 as uuid } from "uuid";
-import { useLoaderData, useOutletContext } from "@remix-run/react";
-import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import {
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+  useTransition,
+} from "@remix-run/react";
+import type {
+  ActionFunction,
+  LoaderFunction,
+  LinksFunction,
+} from "@remix-run/server-runtime";
 import { redirect, json } from "@remix-run/server-runtime";
 import { createReview } from "~/models/review.server";
 import { createBottle } from "~/models/bottle.server";
@@ -13,11 +22,26 @@ import {
 } from "~/utils/redis.server";
 import type { CustomFormData } from "~/utils/helpers.server";
 import ConfirmForm from "~/components/Form/ConfirmForm/ConfirmForm";
+import CollapsedStyles from "~/styles/collapsed.css";
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: CollapsedStyles,
+    },
+  ];
+};
+interface ActionData {
+  error?: string;
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await getUser(request);
   if (user === null || typeof user.id !== "string") {
-    throw Error(`User must be logged in`);
+    return json<ActionData>({
+      error: "You must be signed in to submit a review",
+    });
   }
 
   const bottleId = uuid();
@@ -27,13 +51,17 @@ export const action: ActionFunction = async ({ request }) => {
   const redisId = form.get("id")?.toString();
 
   if (typeof redisId !== "string" || typeof imageId !== "string") {
-    throw Error(`Form data is invalid`);
+    return json<ActionData>({
+      error: "Form data is invalid",
+    });
   }
 
   const customFormData = await getDataFromRedis(redisId);
 
   if (!customFormData) {
-    throw Error(`Redis form data not found`);
+    return json<ActionData>({
+      error: "You must enable JavasScript for this form to work",
+    });
   }
 
   const newBottle = await createBottle({
@@ -150,11 +178,22 @@ interface LoaderData {
 export default function NewConfirmationRoute() {
   const { formData } = useLoaderData<LoaderData>();
   const { state } = useOutletContext<ContextType>();
+  const actionData = useActionData<ActionData>();
+  const transition = useTransition();
+  let formState: "idle" | "error" | "submitting" = transition.submission
+    ? "submitting"
+    : actionData?.error
+    ? "error"
+    : "idle";
 
   return (
     <div>
       <h1>Confirm your Review</h1>
-      <ConfirmForm formData={formData} imageId={state.imageId} />
+      <ConfirmForm
+        formData={formData}
+        imageId={state.imageId}
+        formState={formState}
+      />
     </div>
   );
 }

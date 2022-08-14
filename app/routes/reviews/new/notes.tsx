@@ -1,5 +1,14 @@
-import { useLoaderData, useOutletContext } from "@remix-run/react";
-import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import {
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+  useTransition,
+} from "@remix-run/react";
+import {
+  ActionFunction,
+  json,
+  LoaderFunction,
+} from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
 import type { ContextType } from "~/routes/reviews/new";
 import NotesForm from "~/components/Form/NotesForm/NotesForm";
@@ -9,6 +18,10 @@ import {
   saveToRedis,
 } from "~/utils/redis.server";
 import type { CustomFormData } from "~/utils/helpers.server";
+
+interface ActionData {
+  error?: string;
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -112,13 +125,17 @@ export const action: ActionFunction = async ({ request }) => {
     typeof overallRating !== "number" ||
     typeof value !== "number"
   ) {
-    throw Error(`Form data is invalid`);
+    return json<ActionData>({
+      error: "Please only input numbers",
+    });
   }
 
   const customFormData = await getDataFromRedis(redisId);
 
   if (!customFormData) {
-    throw Error(`Data not found`);
+    return json<ActionData>({
+      error: "You must enable JavaScript for this form to work",
+    });
   }
 
   customFormData.pepper = pepper;
@@ -179,6 +196,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function NewNotesRoute() {
   const formData = useLoaderData<CustomFormData>();
   const { state, stateSetter } = useOutletContext<ContextType>();
+  const actionData = useActionData<ActionData>();
+  const transition = useTransition();
+  let formState: "idle" | "error" | "submitting" = transition.submission
+    ? "submitting"
+    : actionData?.error
+    ? "error"
+    : "idle";
 
   if (state === undefined || !stateSetter) {
     throw new Error(`Error with the Outlet Context`);
@@ -186,7 +210,7 @@ export default function NewNotesRoute() {
 
   return (
     <div className="flex justify-center">
-      <NotesForm formData={formData} />
+      <NotesForm formData={formData} formState={formState} />
     </div>
   );
 }
