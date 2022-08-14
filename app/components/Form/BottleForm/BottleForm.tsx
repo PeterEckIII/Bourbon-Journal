@@ -11,12 +11,14 @@ interface IBottleFormProps {
   state: FormState;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formData: CustomFormData | null;
+  formState: string;
 }
 
 export default function BottleForm({
   state,
   changeHandler,
   formData,
+  formState,
 }: IBottleFormProps) {
   return (
     <Form method="post" className="flex w-full flex-col">
@@ -203,7 +205,9 @@ export default function BottleForm({
           />
         </div>
       </div>
-      <PrimaryButton callToAction="Next" />
+      <PrimaryButton
+        callToAction={formState === "submitting" ? "Loading..." : "Next"}
+      />
     </Form>
   );
 }

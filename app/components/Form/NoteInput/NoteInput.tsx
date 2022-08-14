@@ -40,7 +40,7 @@ export default function NoteInput({
           name={name}
           value={value}
           onChange={changeHandler}
-          aria-label={`${name}-input`}
+          aria-label={`${name}`}
           onBlur={() => handleBlur(name, value)}
           className="block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         />

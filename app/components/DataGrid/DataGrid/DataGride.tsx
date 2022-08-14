@@ -53,7 +53,7 @@ export default function DataGrid({ initialData }: any) {
     {
       field: "name",
       minWidth: 300,
-      maxWidth: 300,
+      maxWidth: 350,
       lockPosition: "left",
       valueGetter: nameGetter,
       cellRenderer: ImageRenderer,
@@ -104,11 +104,11 @@ export default function DataGrid({ initialData }: any) {
     },
     {
       field: "type",
-      minWidth: 100,
-      maxWidth: 100,
+      minWidth: 150,
+      maxWidth: 150,
       cellStyle: {
         display: "flex",
-        justifyContent: "center",
+        // justifyContent: "center",
         alignItems: "center",
         fontWeight: "500",
       },
@@ -228,6 +228,7 @@ export default function DataGrid({ initialData }: any) {
     {
       field: "distillery",
       minWidth: 100,
+      maxWidth: 110,
       cellStyle: {
         display: "flex",
         alignItems: "center",
@@ -251,6 +252,7 @@ export default function DataGrid({ initialData }: any) {
     {
       field: "producer",
       minWidth: 100,
+      maxWidth: 110,
       cellStyle: {
         display: "flex",
         alignItems: "center",
@@ -363,9 +365,8 @@ export default function DataGrid({ initialData }: any) {
       ?.offsetWidth as number;
     let columnsToShow = [];
     let columnsToHide = [];
-    let defaultColumnWidth = 300 + 105 + 80;
+    let defaultColumnWidth = 350 + 105 + 80;
 
-    let totalColsWidth = 0;
     let allColumns = grid.current?.columnApi.getColumns();
     if (allColumns && allColumns.length > 0) {
       for (let i = 0; i < allColumns.length; i++) {

@@ -1,11 +1,20 @@
-import { redirect } from "@remix-run/server-runtime";
+import { json, redirect } from "@remix-run/server-runtime";
 import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
-import { useLoaderData, useOutletContext } from "@remix-run/react";
+import {
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+  useTransition,
+} from "@remix-run/react";
 import type { ContextType } from "~/routes/reviews/new";
 import BottleForm from "~/components/Form/BottleForm/BottleForm";
 import { getDataFromRedis, saveToRedis } from "~/utils/redis.server";
 import { generateCode } from "~/utils/helpers.server";
 import type { CustomFormData } from "~/utils/helpers.server";
+
+interface ActionData {
+  error?: string;
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -45,7 +54,9 @@ export const action: ActionFunction = async ({ request }) => {
     typeof color !== "string" ||
     typeof finishing !== "string"
   ) {
-    throw Error(`Invalid input in bottle form!`);
+    return json<ActionData>({
+      error: "Type of input was not a string",
+    });
   }
 
   const formId = formData.get("id");
@@ -57,7 +68,9 @@ export const action: ActionFunction = async ({ request }) => {
 
     const formDataObject = await getDataFromRedis(id);
     if (!formDataObject) {
-      throw Error(`Form data not found`);
+      return json<ActionData>({
+        error: "You must enable JavaScript for this form to work",
+      });
     }
 
     formDataObject.name = name;
@@ -126,6 +139,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function NewBottleInfoRoute() {
   const data = useLoaderData<CustomFormData | null>();
   const { state, stateSetter } = useOutletContext<ContextType>();
+  const actionData = useActionData<ActionData>();
+  const transition = useTransition();
+  let formState: "idle" | "error" | "submitting" = transition.submission
+    ? "submitting"
+    : actionData?.error
+    ? "error"
+    : "idle";
 
   if (state === undefined || !stateSetter) {
     throw new Error(`Error with the Outlet Context`);
@@ -133,7 +153,12 @@ export default function NewBottleInfoRoute() {
 
   return (
     <div>
-      <BottleForm formData={data} state={state} changeHandler={stateSetter} />
+      <BottleForm
+        formData={data}
+        state={state}
+        changeHandler={stateSetter}
+        formState={formState}
+      />
     </div>
   );
 }

@@ -12,12 +12,14 @@ interface ISettingFormProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   formData: CustomFormData;
+  formState: string;
 }
 
 export default function SettingForm({
   state,
   changeHandler,
   formData,
+  formState,
 }: ISettingFormProps) {
   return (
     <Form method="post" className="flex w-full flex-col">
@@ -101,7 +103,9 @@ export default function SettingForm({
           emoji="💭"
         />
       </div>
-      <PrimaryButton callToAction="Next" />
+      <PrimaryButton
+        callToAction={formState === "submitting" ? "Loading..." : "Next"}
+      />
     </Form>
   );
 }

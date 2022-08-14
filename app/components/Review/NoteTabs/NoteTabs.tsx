@@ -302,8 +302,7 @@ export default function NoteTabs({
   });
 
   return (
-    <div className="w-full max-w-md rounded-md border-2 px-2 py-4 sm:px-0">
-      <h3 className="p-2">Notes</h3>
+    <div className="w-full max-w-md rounded-md px-2 py-4 sm:px-0">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
           {Object.keys(categories).map((category) => (

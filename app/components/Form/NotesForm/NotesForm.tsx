@@ -11,9 +11,10 @@ import type { CustomFormData } from "~/utils/helpers.server";
 
 interface INoteFormProps {
   formData: CustomFormData;
+  formState: string;
 }
 
-export default function NotesForm({ formData }: INoteFormProps) {
+export default function NotesForm({ formData, formState }: INoteFormProps) {
   const { state, stateSetter } = useOutletContext<ContextType>();
 
   if (state === undefined || !stateSetter) {
@@ -49,7 +50,9 @@ export default function NotesForm({ formData }: INoteFormProps) {
         formData={formData}
       />
       <Rating state={state} changeHandler={stateSetter} formData={formData} />
-      <PrimaryButton callToAction="Submit" />
+      <PrimaryButton
+        callToAction={formState === "submitting" ? "Loading..." : "Review"}
+      />
     </Form>
   );
 }
