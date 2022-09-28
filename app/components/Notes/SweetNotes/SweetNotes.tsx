@@ -1,5 +1,5 @@
 import type { FormState } from "~/routes/reviews/new";
-import NoteInput from "~/components/Form/NoteInput/NoteInput";
+import NoteInput from "~/components/UI/Inputs/NoteInput/NoteInput";
 import type { CustomFormData } from "~/utils/helpers.server";
 
 interface ISweetNoteProps {

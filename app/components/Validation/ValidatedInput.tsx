@@ -1,8 +1,7 @@
-import React, { useCallback } from "react";
-import { useBeforeUnload } from "@remix-run/react";
+import { useField } from "remix-validated-form";
 
-interface ITextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  error?: string;
+interface IValidatedInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   labelName: string;
   name: string;
   type: string;
@@ -11,19 +10,15 @@ interface ITextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function TextInput({
+export default function ValidatedInput({
   labelName,
   name,
   type,
   value,
   emoji,
   changeHandler,
-}: ITextInputProps) {
-  useBeforeUnload(
-    useCallback(() => {
-      localStorage.setItem(name, value);
-    }, [name, value])
-  );
+}: IValidatedInputProps) {
+  const { error, getInputProps } = useField(name);
 
   const handleBlur = (key: string, value: string) => {
     if (typeof window !== "undefined") {
@@ -44,10 +39,12 @@ export default function TextInput({
           name={name}
           value={value}
           onChange={changeHandler}
-          aria-label={`${name}-input`}
+          aria-label={`${labelName}`}
           onBlur={() => handleBlur(name, value)}
           className="block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          {...getInputProps({ id: name })}
         />
+        {error && <span className="text-red-600">{error}</span>}
       </div>
     </div>
   );

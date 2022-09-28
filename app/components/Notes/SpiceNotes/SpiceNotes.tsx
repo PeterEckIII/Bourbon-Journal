@@ -3,8 +3,8 @@ import pepper from "~/images/pepper.webp";
 import anise from "~/images/anise.jpeg";
 import mint from "~/images/mint.png";
 import type { FormState } from "~/routes/reviews/new";
-import NoteInput from "~/components/Form/NoteInput/NoteInput";
-import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
+import NoteInput from "~/components/UI/Inputs/NoteInput/NoteInput";
+import NoteInputCustom from "~/components/UI/Inputs/NoteInputCustom/NoteInputCustom";
 import React from "react";
 import type { CustomFormData } from "~/utils/helpers.server";
 

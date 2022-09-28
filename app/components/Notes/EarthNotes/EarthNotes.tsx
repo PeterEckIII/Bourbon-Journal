@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { FormState } from "~/routes/reviews/new";
 
-import NoteInput from "~/components/Form/NoteInput/NoteInput";
-import NoteInputCustom from "~/components/Form/NoteInputCustom/NoteInputCustom";
+import NoteInput from "~/components/UI/Inputs/NoteInput/NoteInput";
+import NoteInputCustom from "~/components/UI/Inputs/NoteInputCustom/NoteInputCustom";
 
 import leather from "~/images/leather.webp";
 import almond from "~/images/almond.png";

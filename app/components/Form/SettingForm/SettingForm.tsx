@@ -3,8 +3,8 @@ import React from "react";
 import type { FormState } from "~/routes/reviews/new";
 import type { CustomFormData } from "~/utils/helpers.server";
 import PrimaryButton from "../PrimaryButton";
-import TextareaInput from "../TextareaInput/TextareaInput";
-import TextInput from "../TextInput/TextInput";
+import TextareaInput from '~/components/UI/Inputs/TextareaInput/TextareaInput';
+import TextInput from "~/components/UI/Inputs/TextInput/TextInput";
 
 interface ISettingFormProps {
   state: FormState;
