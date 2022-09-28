@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
+import { useField } from "remix-validated-form";
 
 interface IPrependedInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -22,6 +23,8 @@ export default function PrependedInput({
   emoji,
   changeHandler,
 }: IPrependedInputProps) {
+  const { error, getInputProps } = useField(name);
+
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -53,16 +56,20 @@ export default function PrependedInput({
           {prependedCharacter}
         </span>
         <input
-          id={name}
-          type={type}
           name={name}
-          value={value}
-          onChange={changeHandler}
-          aria-label={`${name}-input`}
-          onBlur={() => handleBlur(name, value)}
-          className="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          aria-label={`${labelName}`}
+          {...getInputProps({
+            id: name,
+            type: type,
+            value: value,
+            onChange: changeHandler,
+            onBlur: () => handleBlur(name, value),
+            className:
+              "block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500",
+          })}
         />
       </div>
+      {error && <span className="text-red-600">{error}</span>}
     </div>
   );
 }

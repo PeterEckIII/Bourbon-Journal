@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
+import { useField } from "remix-validated-form";
 
 interface IPostpendedInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -22,6 +23,8 @@ export default function PostpendedInput({
   emoji,
   changeHandler,
 }: IPostpendedInputProps) {
+  const { error, getInputProps } = useField(name);
+
   useBeforeUnload(
     useCallback(() => {
       if (typeof value === "number") {
@@ -50,19 +53,23 @@ export default function PostpendedInput({
       </label>
       <div className="flex">
         <input
-          id={name}
           name={name}
-          value={value}
-          type={type}
-          aria-label={`${name}-input`}
-          onChange={changeHandler}
-          onBlur={() => handleBlur(name, value)}
-          className="block w-full min-w-0 flex-1 rounded-none rounded-l-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          aria-label={`${labelName}`}
+          {...getInputProps({
+            id: name,
+            value: value,
+            type: type,
+            onChange: changeHandler,
+            onBlur: () => handleBlur(name, value),
+            className:
+              "block w-full min-w-0 flex-1 rounded-none rounded-l-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500",
+          })}
         />
         <span className="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900">
           {postpendedCharacter}
         </span>
       </div>
+      {error && <span className="text-red-600">{error}</span>}
     </div>
   );
 }

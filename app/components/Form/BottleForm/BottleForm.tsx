@@ -1,11 +1,41 @@
 import type { FormState } from "~/routes/reviews/new";
-import TextInput from "~/components/Form/TextInput/TextInput";
+import TextInput from "~/components/UI/Inputs/TextInput/TextInput";
 import PrimaryButton from "~/components/Form/PrimaryButton";
-import PrependedInput from "~/components/Form/PrependedInput/PrependedInput";
-import PostpendedInput from "~/components/Form/PostpendedInput/PostpendedInput";
+import PrependedInput from "~/components/UI/Inputs/PrependedInput/PrependedInput";
+import PostpendedInput from "~/components/UI/Inputs/PostpendedInput/PostpendedInput";
 import React from "react";
 import { Form } from "@remix-run/react";
+import { ValidatedForm, validationError } from "remix-validated-form";
 import type { CustomFormData } from "~/utils/helpers.server";
+import { withZod } from "@remix-validated-form/with-zod";
+import { z } from "zod";
+
+export const validator = withZod(
+  z.object({
+    name: z.string().min(1, { message: "Bottle name is required" }),
+    type: z.string().min(1, { message: "Type of liquor is required" }),
+    distiller: z.string().min(1, { message: "Distiller is required" }),
+    producer: z.string().min(1, { message: "Producer is required" }),
+    bottler: z.string().min(1, { message: "Bottler is required" }),
+    country: z.string().min(1, { message: "Country is required" }),
+    region: z.string().min(1, { message: "Region is required" }),
+    price: z.string().min(1, { message: "Price is required" }),
+    age: z.string().min(1, { message: "Age is required" }),
+    color: z.string().min(1, { message: "Color is required" }),
+    year: z.string().min(1, { message: "Year is required" }),
+    batch: z
+      .string()
+      .min(1, { message: "Batch is required (enter N/A if none)" }),
+    size: z.string().min(1, { message: "Size is required" }),
+    alcoholPercent: z
+      .string()
+      .min(1, { message: "Alcohol percentage is required" }),
+    proof: z.string().min(1, { message: "Proof is required" }),
+    finishing: z
+      .string()
+      .min(1, { message: "Finishing is required (enter N/A if none)" }),
+  })
+);
 
 interface IBottleFormProps {
   state: FormState;
@@ -21,7 +51,11 @@ export default function BottleForm({
   formState,
 }: IBottleFormProps) {
   return (
-    <Form method="post" className="flex w-full flex-col">
+    <ValidatedForm
+      validator={validator}
+      method="post"
+      className="flex w-full flex-col"
+    >
       <h2>Bottle Information</h2>
       <input type="hidden" name="id" value={formData?.redisId} />
       <div className="-mx-3 my-3 mb-6 flex flex-wrap rounded-xl border border-gray-200 bg-white bg-gradient-to-r p-2 sm:p-6">
@@ -208,6 +242,6 @@ export default function BottleForm({
       <PrimaryButton
         callToAction={formState === "submitting" ? "Loading..." : "Next"}
       />
-    </Form>
+    </ValidatedForm>
   );
 }
