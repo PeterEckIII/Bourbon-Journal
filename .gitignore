@@ -12,3 +12,5 @@ node_modules
 /app/styles/tailwind.css
 /app/utils/cloudinaryConfig.ts
 /data
+
+cypress.env.json

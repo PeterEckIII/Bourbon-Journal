@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useBeforeUnload } from "@remix-run/react";
-import { useField } from "remix-validated-form";
 
 interface ITextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
@@ -20,8 +19,6 @@ export default function TextInput({
   emoji,
   changeHandler,
 }: ITextInputProps) {
-  const { error, getInputProps } = useField(name);
-
   useBeforeUnload(
     useCallback(() => {
       localStorage.setItem(name, value);
@@ -44,18 +41,17 @@ export default function TextInput({
         <input
           aria-label={labelName}
           name={name}
-          {...getInputProps({
-            id: name,
-            type: type,
-            value: value,
-            onChange: changeHandler,
-            onBlur: () => handleBlur(name, value),
-            className:
-              "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500",
-          })}
+          id={name}
+          type={type}
+          value={value}
+          onChange={changeHandler}
+          onBlur={() => handleBlur(name, value)}
+          className={
+            "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          }
         />
       </div>
-      {error && <span className="text-red-600">{error}</span>}
+      {/* {error && <span className="text-red-600">{error}</span>} */}
     </div>
   );
 }

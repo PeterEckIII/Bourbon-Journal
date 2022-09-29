@@ -28,6 +28,18 @@ declare global {
        *    cy.cleanupUser({ email: 'whatever@example.com' })
        */
       cleanupUser: typeof cleanupUser;
+
+      /**
+       * Extends the standard visit command to wait for the page to load
+       *
+       * @returns {typeof visitAndCheck}
+       * @memberof Chainable
+       * @example
+       *    cy.visitAndCheck('/')
+       *  @example
+       *    cy.visitAndCheck('/', 500)
+       */
+      visitAndCheck: typeof visitAndCheck;
     }
   }
 }
@@ -46,6 +58,7 @@ function login({
       .trim();
     cy.setCookie("__session", cookieValue);
   });
+  cy.visitAndCheck("/reviews");
   return cy.get("@user");
 }
 
@@ -70,8 +83,14 @@ function deleteUserByEmail(email: string) {
   cy.clearCookie("__session");
 }
 
+function visitAndCheck(url: string, waitTime: number = 1000) {
+  cy.visit(url);
+  cy.location("pathname").should("contain", url).wait(waitTime);
+}
+
 Cypress.Commands.add("login", login);
 Cypress.Commands.add("cleanupUser", cleanupUser);
+Cypress.Commands.add("visitAndCheck", visitAndCheck);
 
 /*
 eslint

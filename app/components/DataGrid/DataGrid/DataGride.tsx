@@ -19,6 +19,7 @@ import NameTooltip from "../NameTooltip/NameTooltip";
 import PriceRenderer from "../PriceRenderer/PriceRenderer";
 import ABVRenderer from "~/components/DataGrid/ABVRenderer/ABVRenderer";
 import ProofRenderer from "../ProofRenderer/ProofRenderer";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 type NumberParserParams = {
   newValue: string;
@@ -408,13 +409,23 @@ export default function DataGrid({ initialData }: any) {
     };
   }, []);
 
+  const loadingOverlayComponent = useMemo<any>(() => {
+    return LoadingOverlay;
+  }, []);
+
+  const loadingOverlayComponentParams = useMemo<any>(() => {
+    return {
+      message: "Loading...",
+    };
+  }, []);
+
   useEffect(() => {
     setRecords(initialData.length);
   }, [initialData]);
 
   return (
     <div style={containerStyle}>
-      <div id="grid-wrapper" style={{ height: "100%", width: "100%" }}>
+      <section id="grid-wrapper" style={{ height: "100%", width: "100%" }}>
         <div className="flex">
           <div className="my-4 w-3/4 p-4">
             <input
@@ -442,6 +453,8 @@ export default function DataGrid({ initialData }: any) {
             rowSelection="multiple"
             rowHeight={100}
             rowModelType="clientSide"
+            loadingOverlayComponent={loadingOverlayComponent}
+            loadingOverlayComponentParams={loadingOverlayComponentParams}
             noRowsOverlayComponent={noRowsOverlayComponent}
             noRowsOverlayComponentParams={noRowsOverlayComponentParams}
             suppressMenuHide={true}
@@ -450,7 +463,7 @@ export default function DataGrid({ initialData }: any) {
             tooltipHideDelay={5000}
           />
         </div>
-      </div>
+      </section>
     </div>
   );
 }

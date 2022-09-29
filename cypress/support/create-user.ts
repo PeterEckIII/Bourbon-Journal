@@ -4,10 +4,22 @@
 // and it will log out the cookie value you can use to interact with the server
 // as that new user.
 
+import { installGlobals } from "@remix-run/node";
 import { parse } from "cookie";
-import { installGlobals } from "@remix-run/node/globals";
-import { createUserSession } from "~/session.server";
+
 import { createUser } from "~/models/user.server";
+import { createUserSession } from "~/session.server";
+import { createBottle } from "~/models/bottle.server";
+import { createReview } from "~/models/review.server";
+
+import {
+  review1,
+  review2,
+  review3,
+  bottle1,
+  bottle2,
+  bottle3,
+} from "./bottlesAndReviews";
 
 installGlobals();
 
@@ -22,7 +34,7 @@ async function createAndLogin(email: string) {
   const user = await createUser(email, "myreallystrongpassword");
 
   const response = await createUserSession({
-    request: new Request(""),
+    request: new Request("test://test"),
     userId: user.id,
     remember: false,
     redirectTo: "/",
@@ -42,6 +54,24 @@ async function createAndLogin(email: string) {
 </cookie>
   `.trim()
   );
+  const first = await createBottle(bottle1);
+  const second = await createBottle(bottle2);
+  const third = await createBottle(bottle3);
+  await createReview({
+    ...review1,
+    userId: user.id,
+    bottleId: first.id,
+  });
+  await createReview({
+    ...review2,
+    userId: user.id,
+    bottleId: second.id,
+  });
+  await createReview({
+    ...review3,
+    userId: user.id,
+    bottleId: third.id,
+  });
 }
 
 createAndLogin(process.argv[2]);

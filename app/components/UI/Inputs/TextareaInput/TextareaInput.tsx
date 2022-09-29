@@ -1,6 +1,5 @@
 import { useBeforeUnload } from "@remix-run/react";
 import React from "react";
-import { useField } from "remix-validated-form";
 
 interface ITextareaInputProps
   extends React.InputHTMLAttributes<HTMLTextAreaElement> {
@@ -19,8 +18,6 @@ export default function TextareaInput({
   emoji,
   changeHandler,
 }: ITextareaInputProps) {
-  const { error, getInputProps } = useField(name);
-
   useBeforeUnload(
     React.useCallback(() => {
       if (typeof window !== "undefined") {
@@ -45,18 +42,17 @@ export default function TextareaInput({
         <textarea
           name={name}
           aria-label={`${labelName}`}
-          {...getInputProps({
-            id: name,
-            rows: 6,
-            value: value,
-            onChange: changeHandler,
-            onBlur: () => handleBlur(name, value),
-            className:
-              "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500",
-          })}
+          id={name}
+          rows={6}
+          value={value}
+          onChange={changeHandler}
+          onBlur={() => handleBlur(name, value)}
+          className={
+            "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          }
         />
       </div>
-      {error && <span className="text-red-600">{error}</span>}
+      {/* {error && <span className="text-red-600">{error}</span>} */}
     </div>
   );
 }

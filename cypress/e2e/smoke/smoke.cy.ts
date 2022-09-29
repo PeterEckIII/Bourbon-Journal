@@ -1,28 +1,32 @@
-// import faker from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 
-// describe("smoke tests", () => {
+// describe("Smoke tests", () => {
 //   afterEach(() => {
 //     cy.cleanupUser();
 //   });
 
-//   it("should allow you to register and login", () => {
+//   it("Should allow you to register and login", () => {
 //     const loginForm = {
-//       email: `${faker.internet.userName()}@example.com`,
+//       email: `${faker.internet.userName}@example.com`,
 //       password: faker.internet.password(),
 //     };
+
 //     cy.then(() => ({ email: loginForm.email })).as("user");
 
-//     cy.visit(`${Cypress.config("baseUrl")}`);
+//     cy.visitAndCheck(`/`);
 //     cy.findByRole("link", { name: /sign up/i }).click();
-
 //     cy.findByRole("textbox", { name: /email/i }).type(loginForm.email);
 //     cy.findByLabelText(/password/i).type(loginForm.password);
 //     cy.findByRole("button", { name: /create account/i }).click();
-
 //     cy.findByRole("link", { name: /reviews/i }).click();
 //     cy.findByRole("button", { name: /logout/i }).click();
 //     cy.findByRole("link", { name: /log in/i });
 //   });
+
+//   it("Should allow you to create a review", () => {});
+// });
+
+// describe("smoke tests", () => {
 
 // it("should allow you to make a review", async () => {
 //   const testBottle = {
@@ -47,7 +51,7 @@
 //     color: faker.commerce.color(),
 //     finishing: faker.word.noun(),
 //   };
-//   await createBottle(testBottle);
+//   // await createBottle(testBottle);
 
 //   const testReview = {
 //     id: faker.datatype.uuid(),
@@ -109,7 +113,7 @@
 //     overallRating: faker.datatype.number({ min: 0, max: 5 }),
 //     value: faker.datatype.number({ min: 0, max: 5 }),
 //   };
-//   await createReview(testReview);
+//   // await createReview(testReview);
 //   cy.login();
 //   cy.visit(`${Cypress.config("baseUrl")}/reviews/${testReview.id}`);
 //   cy.findByRole("button", { name: /edit/i }).should("be.visible");
