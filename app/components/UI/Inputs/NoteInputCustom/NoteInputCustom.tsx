@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useBeforeUnload } from "@remix-run/react";
-import { useField } from "remix-validated-form";
 
 interface INoteInputCustomProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -18,8 +17,6 @@ export default function NoteInputCustom({
   noteSource,
   changeHandler,
 }: INoteInputCustomProps) {
-  const { error, getInputProps } = useField(name);
-
   useBeforeUnload(
     React.useCallback(() => {
       localStorage.setItem(name, String(value));
@@ -48,18 +45,17 @@ export default function NoteInputCustom({
         <input
           name={name}
           aria-label={`${labelName}`}
-          {...getInputProps({
-            id: name,
-            type: "number",
-            value: value,
-            onChange: changeHandler,
-            onBlur: () => handleBlur(name, value),
-            className:
-              "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500",
-          })}
+          id={name}
+          type={"number"}
+          value={value}
+          onChange={changeHandler}
+          onBlur={() => handleBlur(name, value)}
+          className={
+            "block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          }
         />
       </div>
-      {error && <span className="text-red-600">{error}</span>}
+      {/* {error && <span className="text-red-600">{error}</span>} */}
     </div>
   );
 }

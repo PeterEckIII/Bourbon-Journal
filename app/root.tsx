@@ -39,20 +39,18 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function App() {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning={true}>
       <head>
         <Meta />
         <Links />
       </head>
       <body className="h-full">
-        <Outlet />
-        <LiveReload />
-        <ScrollRestoration />
-        <script
-          type="text/javascript"
-          src="https://unpkg.com/tabulator-tables@5.2.7/dist/js/tabulator.min.js"
-        />
-        <Scripts />
+        <div id="root">
+          <Outlet />
+          <LiveReload />
+          <ScrollRestoration />
+          <Scripts />
+        </div>
       </body>
     </html>
   );

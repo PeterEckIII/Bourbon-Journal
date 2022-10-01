@@ -1,6 +1,8 @@
 import faker from "@faker-js/faker";
 import "cypress-file-upload";
 import "cypress-localstorage-commands";
+import "@testing-library/cypress";
+import "cypress-react-selector";
 
 declare global {
   namespace Cypress {
@@ -40,6 +42,30 @@ declare global {
        *    cy.visitAndCheck('/', 500)
        */
       visitAndCheck: typeof visitAndCheck;
+
+      /**
+       * Extends the standard visit command to wait for the page to load
+       *
+       * @returns {typeof loginExisting}
+       * @memberof Chainable
+       * @example
+       *    cy.loginExisting('test@example.com')
+       *  @example
+       *    cy.loginExisting('test@example.com')
+       */
+      loginExisting: typeof loginExisting;
+
+      /**
+       * Extends the standard visit command to wait for the page to load
+       *
+       * @returns {typeof serverSideVisit}
+       * @memberof Chainable
+       * @example
+       *    cy.serverSideVisit('/reviews')
+       *  @example
+       *    cy.serverSideVisit('/reviews')
+       */
+      serverSideVisit: typeof serverSideVisit;
     }
   }
 }
@@ -59,6 +85,20 @@ function login({
     cy.setCookie("__session", cookieValue);
   });
   cy.visitAndCheck("/reviews");
+  return cy.get("@user");
+}
+
+function loginExisting({ email }: { email: string }) {
+  cy.then(() => ({ email })).as("user");
+  cy.exec(
+    `npx ts-node --require tsconfig-paths/register ./cypress/support/loginExistingUser.ts "${email}"`
+  ).then(({ stdout }) => {
+    const cookieValue = stdout
+      .replace(/.*<cookie>(?<cookieValue>.*)<\/cookie>.*/s, "$<cookieValue>")
+      .trim();
+    cy.setCookie("__session", cookieValue);
+  });
+  cy.serverSideVisit("/reviews");
   return cy.get("@user");
 }
 
@@ -88,9 +128,27 @@ function visitAndCheck(url: string, waitTime: number = 1000) {
   cy.location("pathname").should("contain", url).wait(waitTime);
 }
 
+function serverSideVisit(url: string) {
+  cy.reload();
+  cy.request(url)
+    .its("body")
+    .then((html) => {
+      html = html.replace(
+        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+        ""
+      );
+      cy.document().invoke({ log: false }, "write", html);
+    });
+  cy.get("script").should("not.exist");
+}
+
+// Adding commands
+
 Cypress.Commands.add("login", login);
 Cypress.Commands.add("cleanupUser", cleanupUser);
 Cypress.Commands.add("visitAndCheck", visitAndCheck);
+Cypress.Commands.add("loginExisting", loginExisting);
+Cypress.Commands.add("serverSideVisit", serverSideVisit);
 
 /*
 eslint

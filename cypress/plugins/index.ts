@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = (
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions
@@ -11,6 +13,16 @@ module.exports = (
     screenshotOnRunFailure: !process.env.CI,
   };
   Object.assign(config, configOverrides);
+
+  on("before:browser:launch", (browser, launchOptions) => {
+    console.log(`Launching browser ${JSON.stringify(browser)}`);
+    if (browser.family === "chromium") {
+      const extensionFolder = path.resolve(__dirname, "..", "..", "4.25.0_0");
+      console.log(`Adding React DevTools extension from ${extensionFolder}`);
+      launchOptions.args.push(`--load-extension=${extensionFolder}`);
+      return launchOptions;
+    }
+  });
 
   // To use this:
   // cy.task('log', whateverYouWantInTheTerminal)

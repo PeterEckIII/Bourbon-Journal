@@ -2,6 +2,377 @@
 //   beforeEach(() => {
 //     cy.login();
 //   });
+
+//   afterEach(() => {
+//     cy.cleanupUser();
+//   });
+
+//   it("Should show the form component", () => {
+//     cy.viewport(1500, 1000);
+//     cy.visitAndCheck("/reviews");
+//     cy.findByRole("link", { name: "New Review" }).click();
+//     cy.url().should("contain", "new/bottleInfo");
+//     cy.waitForReact();
+//   });
+
+// it("Allows a user to create a new review", () => {
+//   const emptyState = {
+//     name: "",
+//     type: "",
+//     distiller: "",
+//     bottler: "",
+//     producer: "",
+//     country: "",
+//     region: "",
+//     price: "",
+//     age: "",
+//     year: "",
+//     batch: "",
+//     alcoholPercent: "",
+//     proof: "",
+//     size: "",
+//     color: "",
+//     finishing: "",
+//     imageId: "",
+//     date: "",
+//     setting: "",
+//     glassware: "",
+//     restTime: "",
+//     nose: "",
+//     palate: "",
+//     finish: "",
+//     thoughts: "",
+//     cherry: 0,
+//     strawberry: 0,
+//     raspberry: 0,
+//     blackberry: 0,
+//     blueberry: 0,
+//     apple: 0,
+//     banana: 0,
+//     grape: 0,
+//     stone: 0,
+//     citrus: 0,
+//     tropical: 0,
+//     pepper: 0,
+//     bakingSpice: 0,
+//     cinnamon: 0,
+//     herbal: 0,
+//     mint: 0,
+//     coffee: 0,
+//     tobacco: 0,
+//     leather: 0,
+//     oak: 0,
+//     toasted: 0,
+//     smokey: 0,
+//     peanut: 0,
+//     almond: 0,
+//     pecan: 0,
+//     walnut: 0,
+//     oily: 0,
+//     floral: 0,
+//     corn: 0,
+//     rye: 0,
+//     wheat: 0,
+//     malt: 0,
+//     dough: 0,
+//     vanilla: 0,
+//     caramel: 0,
+//     molasses: 0,
+//     butterscotch: 0,
+//     honey: 0,
+//     chocolate: 0,
+//     toffee: 0,
+//     sugar: 0,
+//     overallRating: 0,
+//     value: 0,
+//   };
+
+//   cy.visitAndCheck("/reviews/new/bottleInfo");
+
+//   cy.findByLabelText("Name").type("Eagle Rare").blur();
+//   cy.findByLabelText("Distiller").type("Buffalo Trace").blur();
+//   cy.findByLabelText("Bottler").type("Buffalo Trace").blur();
+//   cy.findByLabelText("Producer").type("Sazerac").blur();
+//   cy.findByLabelText("Type").type("Bourbon").blur();
+//   cy.findByLabelText("Country of Origin").type("USA").blur();
+//   cy.findByLabelText("Region").type("Kentucky").blur();
+//   cy.findByLabelText("Price").type("34.99").blur();
+//   cy.findByLabelText("Age").type("10yrs").blur();
+//   cy.findByLabelText("Color").type("Amber").blur();
+//   cy.findByLabelText("Year").type("2022").blur();
+//   cy.findByLabelText("Batch / Barrel").type("N/A").blur();
+//   cy.findByLabelText("Size").type("750mL").blur();
+//   cy.findByLabelText("Alcohol Percent").type("45").blur();
+//   cy.findByLabelText("Proof").type("90").blur();
+//   cy.findByLabelText("Finishing").type("None").blur();
+
+//   cy.findByRole("button", { name: /next/i }).click();
+//   cy.log("First page done");
+
+//   cy.location("pathname").should("include", "/reviews/new/addImage");
+//   cy.waitForReact();
+//   cy.wait("@imageRouteLoaded");
+//   const imageForm = cy.react("ImageForm", { props: { confirmed: false } });
+//   expect(imageForm).to.be.visible();
+
+//   // const bottleInfoState = {
+//   //   name: "Eagle Rare",
+//   //   type: "Bourbon",
+//   //   distiller: "B",
+//   //   bottler: "Buffalo Trace",
+//   //   producer: "Sazerac",
+//   //   country: "USA",
+//   //   region: "Kentucky",
+//   //   price: "34.99",
+//   //   age: "10yrs",
+//   //   year: "2022",
+//   //   batch: "N/A",
+//   //   alcoholPercent: "45",
+//   //   proof: "90",
+//   //   size: "750mL",
+//   //   color: "Amber",
+//   //   finishing: "None",
+//   //   imageId: "",
+//   //   date: "",
+//   //   setting: "",
+//   //   glassware: "",
+//   //   restTime: "",
+//   //   nose: "",
+//   //   palate: "",
+//   //   finish: "",
+//   //   thoughts: "",
+//   //   cherry: 0,
+//   //   strawberry: 0,
+//   //   raspberry: 0,
+//   //   blackberry: 0,
+//   //   blueberry: 0,
+//   //   apple: 0,
+//   //   banana: 0,
+//   //   grape: 0,
+//   //   stone: 0,
+//   //   citrus: 0,
+//   //   tropical: 0,
+//   //   pepper: 0,
+//   //   bakingSpice: 0,
+//   //   cinnamon: 0,
+//   //   herbal: 0,
+//   //   mint: 0,
+//   //   coffee: 0,
+//   //   tobacco: 0,
+//   //   leather: 0,
+//   //   oak: 0,
+//   //   toasted: 0,
+//   //   smokey: 0,
+//   //   peanut: 0,
+//   //   almond: 0,
+//   //   pecan: 0,
+//   //   walnut: 0,
+//   //   oily: 0,
+//   //   floral: 0,
+//   //   corn: 0,
+//   //   rye: 0,
+//   //   wheat: 0,
+//   //   malt: 0,
+//   //   dough: 0,
+//   //   vanilla: 0,
+//   //   caramel: 0,
+//   //   molasses: 0,
+//   //   butterscotch: 0,
+//   //   honey: 0,
+//   //   chocolate: 0,
+//   //   toffee: 0,
+//   //   sugar: 0,
+//   //   overallRating: 0,
+//   //   value: 0,
+//   // };
+
+//   // ADD IMAGE
+//   // cy.findByLabelText(/upload an image/i, { timeout: 8000 }).attachFile(
+//   //   "lostMonarch.png"
+//   // );
+//   // cy.findByRole("button", { name: /upload image/i }).click();
+//   // cy.findByText("Successfully uploaded!", { timeout: 8000 }).should(
+//   //   "be.visible"
+//   // );
+//   // cy.findByRole("link", { name: /next/i }).click();
+
+//   // cy.location("pathname", { timeout: 8000 }).should(
+//   //   "include",
+//   //   "/reviews/new/setting"
+//   // );
+
+//   // // SETTING
+//   // cy.findByLabelText(/date/i).type("01/01/2022").blur();
+//   // cy.findByLabelText(/rest time/i)
+//   //   .type("10min")
+//   //   .blur();
+//   // cy.findByLabelText(/glassware/i)
+//   //   .type("Copita")
+//   //   .blur();
+//   // cy.findByLabelText(/setting/i)
+//   //   .type("Having a dram after a long day at work")
+//   //   .blur();
+//   // cy.findByLabelText(/nose/i)
+//   //   .type(
+//   //     "Nutty as all hell, toffee, caramel, cinnamon, burnt sugar, sweet oak, old rickhouse, black pepper, clove, confectioner sugar, grape, plum, almost smells finished."
+//   //   )
+//   //   .blur();
+//   // cy.findByLabelText(/palate/i)
+//   //   .type(
+//   //     "Black peppercorns, cinnamon, caramel, salty tortilla chips, fudge, pecans, confectioners sugar, light clove."
+//   //   )
+//   //   .blur();
+//   // cy.findByLabelText(/finish/i)
+//   //   .type(
+//   //     "Strong, sweet oak, black peppercorn, big caramel notes round the palate. Mint, chocolate, there's a really light fruit note that I can't quite place, but it's well balanced with the darker flavors of the finish."
+//   //   )
+//   //   .blur();
+//   // cy.findByLabelText(/thoughts/i)
+//   //   .type(
+//   //     "Really good stuff. Dark flavors dominate with the caramel, dark chocolate, and peppercorns. There's small waves of a light fruit note I still can't quite place, maybe green grapes? It's really well balanced with the caramel, oak, and chocolate, plus the baking spices and mint make the finish last for a long, long time."
+//   //   )
+//   //   .blur();
+
+//   // cy.findByRole("button", { name: /next/i }).click();
+
+//   // cy.location("pathname", { timeout: 8000 }).should(
+//   //   "include",
+//   //   "/reviews/new/notes"
+//   // );
+
+//   // // TASTING NOTES
+//   // cy.findByLabelText(/coffee/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/tobacco leaf/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/leather/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/oak/i).type("3").blur();
+//   // cy.findByLabelText(/toasted/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/smokey/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/peanut/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/almond/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/pecan/i).type("3").blur();
+//   // cy.findByLabelText(/walnut/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/oily/i).type("3").blur();
+//   // cy.findByLabelText(/floral/i)
+//   //   .type("3")
+//   //   .blur();
+
+//   // cy.findByLabelText(/cherry/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/strawberry/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/raspberry/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/blackberry/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/blueberry/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/apple/i).type("3").blur();
+//   // cy.findByLabelText(/banana/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/grape/i).type("3").blur();
+//   // cy.findByLabelText(/stone fruit/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/citrus/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/tropical/i)
+//   //   .type("3")
+//   //   .blur();
+
+//   // cy.findByLabelText(/corn/i).type("3").blur();
+//   // cy.findByLabelText(/rye/i).type("3").blur();
+//   // cy.findByLabelText(/wheat/i).type("3").blur();
+//   // cy.findByLabelText(/malt/i).type("3").blur();
+//   // cy.findByLabelText(/dough \/ bread/i)
+//   //   .type("3")
+//   //   .blur();
+
+//   // cy.findByLabelText(/black pepper/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/cinnamon/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/baking spice/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/herbal/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/mint/i).type("3").blur();
+
+//   // cy.findByLabelText(/vanilla/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/caramel/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/molasses/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/butterscotch/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/honey/i).type("3").blur();
+//   // cy.findByLabelText(/chocolate/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/toffee/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/powdered sugar/i)
+//   //   .type("3")
+//   //   .blur();
+
+//   // cy.findByLabelText(/value for money/i)
+//   //   .type("3")
+//   //   .blur();
+//   // cy.findByLabelText(/overall rating/i)
+//   //   .type("3")
+//   //   .blur();
+
+//   // cy.findByRole("button", { name: /review/i }).click();
+
+//   // cy.location("pathname", { timeout: 8000 }).should(
+//   //   "include",
+//   //   "/reviews/new/confirm"
+//   // );
+
+//   // cy.findByRole("button", { name: /submit review/i }).click();
+//   // cy.location("pathname", { timeout: 8000 }).should(
+//   //   "match",
+//   //   /\/reviews\/(\d|\w)+/i
+//   // );
+// });
+// });
+
+// describe("New Review", () => {
+//   beforeEach(() => {
+//     cy.login();
+//   });
 //   afterEach(() => {
 //     cy.cleanupUser();
 //   });

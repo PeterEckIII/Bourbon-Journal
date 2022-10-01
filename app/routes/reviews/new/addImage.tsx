@@ -1,10 +1,8 @@
 import {
-  Link,
   useActionData,
   useFetcher,
   useLoaderData,
   useOutletContext,
-  useTransition,
 } from "@remix-run/react";
 import {
   json,
@@ -21,9 +19,8 @@ import type {
 import { v4 as uuid } from "uuid";
 import { getUserId } from "~/session.server";
 import type { ContextType } from "../new";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { ChangeEvent } from "react";
-import CheckIcon from "~/components/Icons/CheckIcon";
 import { upload } from "~/utils/cloudinary.server";
 import type { ICloudinaryUploadResponse } from "~/utils/cloudinary.server";
 import invariant from "tiny-invariant";
@@ -32,8 +29,8 @@ import {
   requireFormData,
   saveToRedis,
 } from "~/utils/redis.server";
-import Spinner from "~/components/Icons/Spinner";
 import type { CustomFormData } from "~/utils/helpers.server";
+import ImageForm from "~/components/Form/ImageForm/ImageForm";
 
 type ActionData = {
   errorMessage?: string;
@@ -60,6 +57,7 @@ export const action: ActionFunction = async ({ request }) => {
         userId,
         publicId,
       })) as ICloudinaryUploadResponse;
+      console.log(`Uploaded Image: ${JSON.stringify(uploadedImage)}`);
       return uploadedImage.secure_url;
     },
     createMemoryUploadHandler()
@@ -112,33 +110,27 @@ export default function NewAddImageRoute() {
   const image = useFetcher();
   const isUploading = image.state === "submitting";
   const actionData = useActionData<ActionData>();
-  const transition = useTransition();
-  let formState: "idle" | "error" | "submitting" = transition.submission
-    ? "submitting"
-    : actionData?.errorMessage
-    ? "error"
-    : "idle";
 
   if (setFormState === undefined) {
     throw new Error(`Error, please return to the bottle info page`);
   }
 
-  useEffect(() => {
-    if (image.state === "idle" && image.type === "done") {
-      setFormState({
-        ...state,
-        imageId: image.data.publicId,
-      });
-    } else {
-      return;
-    }
-  }, [setFormState, state, image.state, image.type, image.data]);
+  // useEffect(() => {
+  //   if (image.state === "idle" && image.type === "done") {
+  //     setFormState({
+  //       ...state,
+  //       imageId: image.data.publicId,
+  //     });
+  //   } else {
+  //     return;
+  //   }
+  // }, [setFormState, state, image.state, image.type, image.data]);
 
-  useEffect(() => {
-    if (image.type === "done") {
-      setConfirmed(true);
-    }
-  }, [image.type]);
+  // useEffect(() => {
+  //   if (image.type === "done") {
+  //     setConfirmed(true);
+  //   }
+  // }, [image.type]);
 
   const handlePreviewChange = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmed(false);
@@ -156,7 +148,18 @@ export default function NewAddImageRoute() {
 
   return (
     <div className="m-2 p-2">
-      <image.Form
+      <ImageForm
+        actionData={actionData as ActionData}
+        formData={formData}
+        previewUrl={previewUrl ?? ""}
+        confirmed={confirmed || false}
+        setConfirmed={setConfirmed}
+        isUploading={isUploading}
+        state={state}
+        setFormState={setFormState}
+        handlePreviewChange={handlePreviewChange}
+      />
+      {/* <image.Form
         encType="multipart/form-data"
         method="post"
         className="max-w-[500px]"
@@ -215,7 +218,7 @@ export default function NewAddImageRoute() {
         >
           {formState === "submitting" ? "Loading" : "Next"}
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

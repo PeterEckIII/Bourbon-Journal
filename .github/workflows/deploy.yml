@@ -73,6 +73,14 @@ jobs:
   cypress:
     name: 🧪 Cypress
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     strategy:
       fail-fast: false
       matrix:
@@ -101,9 +109,14 @@ jobs:
       - name: ⚙️ Build
         run: npm run build
 
+      - name: 🔴 Redis
+        uses: supercharge/redis-github-action@1.4.0
+
       - name: 🌳 Cypress run
         uses: cypress-io/github-action@v3
         with:
+          browser: chrome
+          headless: false
           record: true
           parallel: true
           start: npm run start:mocks
