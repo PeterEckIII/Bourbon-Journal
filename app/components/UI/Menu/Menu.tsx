@@ -11,6 +11,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
       <nav>
         <section className="flex lg:hidden">
           <div
+            id="hamburger-menu"
             className="cursor-pointer space-y-2"
             onClick={() => setOpened(!opened)}
           >
@@ -43,7 +44,10 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
               </svg>
             </div>
             <ul className="flex min-h-[250px] flex-col items-center justify-between">
-              <li className="my-8 border-b border-gray-400 uppercase">
+              <li
+                id="my-review-link_mobile"
+                className="my-8 border-b border-gray-400 uppercase"
+              >
                 <Link
                   className="text-blue-100 hover:text-blue-500 active:text-blue-600"
                   to="/reviews"
@@ -54,7 +58,10 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
                   My Reviews
                 </Link>
               </li>
-              <li className="my-8 border-b border-gray-400 uppercase">
+              <li
+                id="new-review-link_mobile"
+                className="my-8 border-b border-gray-400 uppercase"
+              >
                 <Link
                   className="text-blue-100 hover:text-blue-500 active:text-blue-600"
                   to="/reviews/new/bottleInfo"
@@ -65,7 +72,10 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
                   New Review
                 </Link>
               </li>
-              <li className="my-8 border-b border-gray-400 uppercase">
+              <li
+                id="logout-link_mobile"
+                className="my-8 border-b border-gray-400 uppercase"
+              >
                 <Form action="/logout" method="post">
                   <button
                     type="submit"
@@ -82,7 +92,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
           </div>
         </section>
         <ul className="hidden space-x-8 lg:flex">
-          <li>
+          <li id="my-review-link_desktop">
             <Link
               className="text-blue-100 hover:text-blue-500 active:text-blue-600"
               to="/reviews"
@@ -90,7 +100,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
               My Reviews
             </Link>
           </li>
-          <li>
+          <li id="new-review-link_desktop">
             <Link
               to="/reviews/new/bottleInfo"
               className="text-blue-100 hover:text-blue-500 active:text-blue-600"
@@ -101,6 +111,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
           <li>
             <Form action="/logout" method="post">
               <button
+                id="logout-link_desktop"
                 type="submit"
                 className="text-blue-100 hover:text-blue-500 active:text-blue-600"
               >

@@ -1,4 +1,4 @@
-import type { User, Review, Bottle, Prisma } from "@prisma/client";
+import type { User, Review } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 
