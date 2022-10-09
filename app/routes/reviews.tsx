@@ -44,7 +44,7 @@ export default function ReviewsPage() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to="." className="flex items-center text-white">
+          <Link to="/" className="flex items-center text-white">
             <div className="flex">
               <Glencairn />
               <div className="text-center font-['Satisfy'] text-2xl leading-7">

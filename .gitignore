@@ -14,3 +14,5 @@ node_modules
 /data
 
 cypress.env.json
+
+/4.25.0_0

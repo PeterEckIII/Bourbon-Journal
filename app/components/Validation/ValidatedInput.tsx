@@ -1,5 +1,3 @@
-import { useField } from "remix-validated-form";
-
 interface IValidatedInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   labelName: string;
@@ -18,8 +16,6 @@ export default function ValidatedInput({
   emoji,
   changeHandler,
 }: IValidatedInputProps) {
-  const { error, getInputProps } = useField(name);
-
   const handleBlur = (key: string, value: string) => {
     if (typeof window !== "undefined") {
       return window.localStorage.setItem(key, value);
@@ -42,9 +38,8 @@ export default function ValidatedInput({
           aria-label={`${labelName}`}
           onBlur={() => handleBlur(name, value)}
           className="block w-full min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-          {...getInputProps({ id: name })}
         />
-        {error && <span className="text-red-600">{error}</span>}
+        {/* {error && <span className="text-red-600">{error}</span>} */}
       </div>
     </div>
   );

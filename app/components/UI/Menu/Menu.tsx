@@ -9,7 +9,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
   return (
     <div>
       <nav>
-        <section className="flex lg:hidden">
+        <section className="flex lg:hidden" aria-hidden={!opened}>
           <div
             id="hamburger-menu"
             className="cursor-pointer space-y-2"
@@ -91,7 +91,7 @@ export default function Menu({ opened, setOpened }: IMenuProps) {
             </ul>
           </div>
         </section>
-        <ul className="hidden space-x-8 lg:flex">
+        <ul className="hidden space-x-8 lg:flex" aria-hidden={opened}>
           <li id="my-review-link_desktop">
             <Link
               className="text-blue-100 hover:text-blue-500 active:text-blue-600"
