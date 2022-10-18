@@ -2,8 +2,8 @@ import { Form } from "@remix-run/react";
 import React from "react";
 import type { FormState } from "~/routes/reviews/new";
 import type { CustomFormData } from "~/utils/helpers.server";
-import PrimaryButton from "../PrimaryButton";
-import TextareaInput from '~/components/UI/Inputs/TextareaInput/TextareaInput';
+import Button from "../Button";
+import TextareaInput from "~/components/UI/Inputs/TextareaInput/TextareaInput";
 import TextInput from "~/components/UI/Inputs/TextInput/TextInput";
 
 interface ISettingFormProps {
@@ -103,7 +103,10 @@ export default function SettingForm({
           emoji="💭"
         />
       </div>
-      <PrimaryButton
+      <Button type="button" callToAction="Cancel" />
+      <Button
+        type="submit"
+        primary
         callToAction={formState === "submitting" ? "Loading..." : "Next"}
       />
     </Form>

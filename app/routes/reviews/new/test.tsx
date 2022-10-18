@@ -1,7 +1,12 @@
-import { json, useActionData, useOutletContext, useTransition } from "remix";
-import type { ActionFunction } from 'remix';
+import {
+  useActionData,
+  useOutletContext,
+  useTransition,
+} from "@remix-run/react";
+import { json } from "@remix-run/server-runtime";
+import type { ActionFunction } from "@remix-run/server-runtime";
 import SingleForm from "~/components/Form/SingleForm";
-import { ContextType } from "../new";
+import type { ContextType } from "../new";
 
 interface ActionData {
   error?: string;
@@ -9,7 +14,7 @@ interface ActionData {
 
 // export const action: ActionFunction = async ({ request }) => {
 //   return json<ActionData>({
-    
+
 //   })
 // }
 
@@ -27,7 +32,5 @@ export default function Test() {
     throw new Error(`Error with the Outlet Context`);
   }
 
-  return (
-    <SingleForm  />
-  )
+  return <SingleForm />;
 }

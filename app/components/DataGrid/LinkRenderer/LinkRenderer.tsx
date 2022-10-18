@@ -1,4 +1,4 @@
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 import ExternalLink from "~/components/Icons/ExternalLink";
 
 export default function LinkRenderer(params: any) {

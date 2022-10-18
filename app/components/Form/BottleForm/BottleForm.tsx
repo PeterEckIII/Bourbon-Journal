@@ -1,6 +1,6 @@
 import type { FormState } from "~/routes/reviews/new";
 import TextInput from "~/components/UI/Inputs/TextInput/TextInput";
-import PrimaryButton from "~/components/Form/PrimaryButton";
+import Button from "../Button";
 import PrependedInput from "~/components/UI/Inputs/PrependedInput/PrependedInput";
 import PostpendedInput from "~/components/UI/Inputs/PostpendedInput/PostpendedInput";
 import React from "react";
@@ -205,8 +205,11 @@ export default function BottleForm({
           />
         </div>
       </div>
-      <PrimaryButton
+      <Button type="button" callToAction="Cancel" />
+      <Button
         callToAction={formState === "submitting" ? "Loading..." : "Next"}
+        primary
+        type="submit"
       />
     </Form>
   );

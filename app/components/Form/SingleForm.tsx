@@ -1,6 +1,6 @@
 import type { ContextType, FormState } from "~/routes/reviews/new";
 import TextInput from "~/components/UI/Inputs/TextInput/TextInput";
-import PrimaryButton from "~/components/Form/PrimaryButton";
+import PrimaryButton from "~/components/Form/Button";
 import PrependedInput from "~/components/UI/Inputs/PrependedInput/PrependedInput";
 import PostpendedInput from "~/components/UI/Inputs/PostpendedInput/PostpendedInput";
 import React from "react";
@@ -41,107 +41,273 @@ export const validator = withZod(
 export default function SingleForm() {
   const { state, stateSetter } = useOutletContext<ContextType>();
   return (
-    <div className="bg-gray-200 antialiased py-6 sm:px-6 lg:px-8 rounded-md mx-10">
+    <div className="mx-10 rounded-md bg-gray-200 py-6 antialiased sm:px-6 lg:px-8">
       {/* BOTTLE FORM */}
       <div className="bg-gray-100 shadow-md">
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1 p-4">
+          <div className="p-4 md:col-span-1">
             <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Bottle</h3>
-              <p className="mt-1 text-sm text-gray-600">This section is for information about the bottle you're reviewing.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Bottle
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                This section is for information about the bottle you're
+                reviewing.
+              </p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
-              <div className="shadow overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
+              <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
-
                     <div className="col-span-6 md:col-span-5">
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                      <input type="text" name="name" id="name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="distiller" className="block text-sm font-medium text-gray-700">Distillery</label>
-                      <input type="text" name="distiller" id="distiller" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="distiller"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Distillery
+                      </label>
+                      <input
+                        type="text"
+                        name="distiller"
+                        id="distiller"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="producer" className="block text-sm font-medium text-gray-700">Producer</label>
-                      <input type="text" name="producer" id="producer" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="producer"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Producer
+                      </label>
+                      <input
+                        type="text"
+                        name="producer"
+                        id="producer"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="bottler" className="block text-sm font-medium text-gray-700">Bottler</label>
-                      <input type="text" name="bottler" id="bottler" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="bottler"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Bottler
+                      </label>
+                      <input
+                        type="text"
+                        name="bottler"
+                        id="bottler"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
-
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="type" className="block text-sm font-medium text-gray-700">Type</label>
-                      <input type="text" name="type" id="type" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                    </div>
-                    
-                    <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
-                      <input type="text" name="country" id="country" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                    </div>
-
-                    <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="region" className="block text-sm font-medium text-gray-700">Region</label>
-                      <input type="text" name="region" id="region" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                    </div>
-
-                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="size" className="block text-sm font-medium text-gray-700">Size</label>
-                      <input type="text" name="size" id="size" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                    </div>
-
-
-                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="age" className="block text-sm font-medium text-gray-700">Age</label>
-                      <input type="text" name="age" id="age" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                    </div>
-
-                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
-                      <input type="text" name="price" id="price" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="type"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Type
+                      </label>
+                      <input
+                        type="text"
+                        name="type"
+                        id="type"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-3">
-                      <label htmlFor="color" className="block text-sm font-medium text-gray-700">Color</label>
-                      <input type="text" name="color" id="color" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="country"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Country
+                      </label>
+                      <input
+                        type="text"
+                        name="country"
+                        id="country"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 md:col-span-3 lg:col-span-3">
+                      <label
+                        htmlFor="region"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Region
+                      </label>
+                      <input
+                        type="text"
+                        name="region"
+                        id="region"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="batch" className="block text-sm font-medium text-gray-700">Batch / Barrel</label>
-                      <input type="text" name="batch" id="batch" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="size"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Size
+                      </label>
+                      <input
+                        type="text"
+                        name="size"
+                        id="size"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
+                      <label
+                        htmlFor="age"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Age
+                      </label>
+                      <input
+                        type="text"
+                        name="age"
+                        id="age"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
+                      <label
+                        htmlFor="price"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Price
+                      </label>
+                      <input
+                        type="text"
+                        name="price"
+                        id="price"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 md:col-span-3 lg:col-span-3">
+                      <label
+                        htmlFor="color"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Color
+                      </label>
+                      <input
+                        type="text"
+                        name="color"
+                        id="color"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 md:col-span-3 lg:col-span-2">
+                      <label
+                        htmlFor="batch"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Batch / Barrel
+                      </label>
+                      <input
+                        type="text"
+                        name="batch"
+                        id="batch"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6 md:col-span-3 lg:col-span-1">
-                      <label htmlFor="year" className="block text-sm font-medium text-gray-700">Year</label>
-                      <input type="text" name="year" id="year" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="year"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Year
+                      </label>
+                      <input
+                        type="text"
+                        name="year"
+                        id="year"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="alcoholPercent" className="block text-sm font-medium text-gray-700">ABV</label>
-                      <input type="text" name="alcoholPercent" id="alcoholPercent" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="alcoholPercent"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        ABV
+                      </label>
+                      <input
+                        type="text"
+                        name="alcoholPercent"
+                        id="alcoholPercent"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
-                    
+
                     <div className="col-span-6 md:col-span-3 lg:col-span-2">
-                      <label htmlFor="proof" className="block text-sm font-medium text-gray-700">Proof</label>
-                      <input type="text" name="proof" id="proof" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="proof"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Proof
+                      </label>
+                      <input
+                        type="text"
+                        name="proof"
+                        id="proof"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 md:col-span-5 lg:col-span-5">
-                      <label htmlFor="finishing" className="block text-sm font-medium text-gray-700">Finishing</label>
-                      <input type="text" name="finishing" id="finishing" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="finishing"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Finishing
+                      </label>
+                      <input
+                        type="text"
+                        name="finishing"
+                        id="finishing"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
-
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
             </form>
@@ -155,63 +321,156 @@ export default function SingleForm() {
       </div>
 
       {/* SETTING / REVIEW FORM */}
-      <div className="mt-10 sm:mt-0 bg-gray-100 shadow-md">
+      <div className="mt-10 bg-gray-100 shadow-md sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1 p-6">
+          <div className="p-6 md:col-span-1">
             <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Your Review</h3>
-              <p className="mt-1 text-sm text-gray-600">This section is for the actual review.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Your Review
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                This section is for the actual review.
+              </p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
-              <div className="shadow overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
+              <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 md:col-span-4 lg:col-span-4">
-                      <label htmlFor="date" className="block text-sm font-medium text-gray-700">Date</label>
-                      <input type="text" name="date" id="date" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="date"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Date
+                      </label>
+                      <input
+                        type="text"
+                        name="date"
+                        id="date"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6 md:col-span-3">
-                      <label htmlFor="restTime" className="block text-sm font-medium text-gray-700">Rest Time</label>
-                      <input type="text" name="restTime" id="restTime" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="restTime"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Rest Time
+                      </label>
+                      <input
+                        type="text"
+                        name="restTime"
+                        id="restTime"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6 md:col-span-3">
-                      <label htmlFor="glassware" className="block text-sm font-medium text-gray-700">Glassware</label>
-                      <input type="text" name="glassware" id="glassware" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="glassware"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Glassware
+                      </label>
+                      <input
+                        type="text"
+                        name="glassware"
+                        id="glassware"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6 md:col-span-5">
-                      <label htmlFor="setting" className="block text-sm font-medium text-gray-700">Setting</label>
-                      <input type="text" name="setting" id="setting" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                      <label
+                        htmlFor="setting"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Setting
+                      </label>
+                      <input
+                        type="text"
+                        name="setting"
+                        id="setting"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6">
-                      <label htmlFor="nose" className="block text-sm font-medium text-gray-700"> Nose </label>
+                      <label
+                        htmlFor="nose"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Nose{" "}
+                      </label>
                       <div className="mt-1">
-                        <textarea id="nose" name="nose" rows={4} className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                        <textarea
+                          id="nose"
+                          name="nose"
+                          rows={4}
+                          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        ></textarea>
                       </div>
                     </div>
                     <div className="col-span-6">
-                      <label htmlFor="palate" className="block text-sm font-medium text-gray-700"> Palate </label>
+                      <label
+                        htmlFor="palate"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Palate{" "}
+                      </label>
                       <div className="mt-1">
-                        <textarea id="palate" name="palate" rows={4} className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                        <textarea
+                          id="palate"
+                          name="palate"
+                          rows={4}
+                          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        ></textarea>
                       </div>
                     </div>
                     <div className="col-span-6">
-                      <label htmlFor="finish" className="block text-sm font-medium text-gray-700"> Finish </label>
+                      <label
+                        htmlFor="finish"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Finish{" "}
+                      </label>
                       <div className="mt-1">
-                        <textarea id="finish" name="finish" rows={4} className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                        <textarea
+                          id="finish"
+                          name="finish"
+                          rows={4}
+                          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        ></textarea>
                       </div>
                     </div>
                     <div className="col-span-6">
-                      <label htmlFor="thoughts" className="block text-sm font-medium text-gray-700"> Final Thoughts </label>
+                      <label
+                        htmlFor="thoughts"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Final Thoughts{" "}
+                      </label>
                       <div className="mt-1">
-                        <textarea id="thoughts" name="thoughts" rows={4} className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                        <textarea
+                          id="thoughts"
+                          name="thoughts"
+                          rows={4}
+                          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        ></textarea>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
             </form>
@@ -225,18 +484,23 @@ export default function SingleForm() {
       </div>
 
       {/* TASTING NOTES FORM */}
-      <div className="mt-10 sm:mt-0 bg-gray-100 shadow-md">
+      <div className="mt-10 bg-gray-100 shadow-md sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1 p-6">
+          <div className="p-6 md:col-span-1">
             <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Tasting Notes</h3>
-              <p className="mt-1 text-sm text-gray-600">Add specific tasting notes to your review from an array of classic whiskey notes.</p>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Tasting Notes
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                Add specific tasting notes to your review from an array of
+                classic whiskey notes.
+              </p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
-              <div className="shadow overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
+              <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="flex flex-col">
                     <div className="flex flex-col">
                       <div className="py-4">
@@ -244,24 +508,74 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="pepper" className="block text-sm font-medium text-gray-700">Pepper</label>
-                          <input type="number" name="pepper" id="pepper" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="pepper"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Pepper
+                          </label>
+                          <input
+                            type="number"
+                            name="pepper"
+                            id="pepper"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="bakingSpice" className="block text-sm font-medium text-gray-700">Baking Spices</label>
-                          <input type="number" name="bakingSpice" id="bakingSpice" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="bakingSpice"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Baking Spices
+                          </label>
+                          <input
+                            type="number"
+                            name="bakingSpice"
+                            id="bakingSpice"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="cinnamon" className="block text-sm font-medium text-gray-700">Cinnamon</label>
-                          <input type="number" name="cinnamon" id="cinnamon" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="cinnamon"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Cinnamon
+                          </label>
+                          <input
+                            type="number"
+                            name="cinnamon"
+                            id="cinnamon"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="herbal" className="block text-sm font-medium text-gray-700">Herbal</label>
-                          <input type="number" name="herbal" id="herbal" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="herbal"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Herbal
+                          </label>
+                          <input
+                            type="number"
+                            name="herbal"
+                            id="herbal"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="mint" className="block text-sm font-medium text-gray-700">Mint</label>
-                          <input type="number" name="mint" id="mint" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="mint"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Mint
+                          </label>
+                          <input
+                            type="number"
+                            name="mint"
+                            id="mint"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
@@ -272,48 +586,158 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="cherry" className="block text-sm font-medium text-gray-700">Cherry</label>
-                          <input type="number" name="cherry" id="cherry" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="cherry"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Cherry
+                          </label>
+                          <input
+                            type="number"
+                            name="cherry"
+                            id="cherry"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="strawberry" className="block text-sm font-medium text-gray-700">Strawberry</label>
-                          <input type="number" name="strawberry" id="strawberry" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="strawberry"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Strawberry
+                          </label>
+                          <input
+                            type="number"
+                            name="strawberry"
+                            id="strawberry"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="raspberry" className="block text-sm font-medium text-gray-700">Raspberry</label>
-                          <input type="number" name="raspberry" id="raspberry" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="raspberry"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Raspberry
+                          </label>
+                          <input
+                            type="number"
+                            name="raspberry"
+                            id="raspberry"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="blackberry" className="block text-sm font-medium text-gray-700">Blackberry</label>
-                          <input type="number" name="blackberry" id="blackberry" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="blackberry"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Blackberry
+                          </label>
+                          <input
+                            type="number"
+                            name="blackberry"
+                            id="blackberry"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="blueberry" className="block text-sm font-medium text-gray-700">Blueberry</label>
-                          <input type="number" name="blueberry" id="blueberry" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="blueberry"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Blueberry
+                          </label>
+                          <input
+                            type="number"
+                            name="blueberry"
+                            id="blueberry"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="apple" className="block text-sm font-medium text-gray-700">Apple</label>
-                          <input type="number" name="apple" id="apple" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="apple"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Apple
+                          </label>
+                          <input
+                            type="number"
+                            name="apple"
+                            id="apple"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="grape" className="block text-sm font-medium text-gray-700">Grape</label>
-                          <input type="number" name="grape" id="grape" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="grape"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Grape
+                          </label>
+                          <input
+                            type="number"
+                            name="grape"
+                            id="grape"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="banana" className="block text-sm font-medium text-gray-700">Banana</label>
-                          <input type="number" name="banana" id="banana" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="banana"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Banana
+                          </label>
+                          <input
+                            type="number"
+                            name="banana"
+                            id="banana"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="stone" className="block text-sm font-medium text-gray-700">Stone Fruit</label>
-                          <input type="number" name="stone" id="stone" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="stone"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Stone Fruit
+                          </label>
+                          <input
+                            type="number"
+                            name="stone"
+                            id="stone"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="citrus" className="block text-sm font-medium text-gray-700">Citrus</label>
-                          <input type="number" name="citrus" id="citrus" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="citrus"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Citrus
+                          </label>
+                          <input
+                            type="number"
+                            name="citrus"
+                            id="citrus"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="tropical" className="block text-sm font-medium text-gray-700">Tropical</label>
-                          <input type="number" name="tropical" id="tropical" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="tropical"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Tropical
+                          </label>
+                          <input
+                            type="number"
+                            name="tropical"
+                            id="tropical"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
@@ -324,52 +748,172 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="coffee" className="block text-sm font-medium text-gray-700">Coffee</label>
-                          <input type="number" name="coffee" id="coffee" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="coffee"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Coffee
+                          </label>
+                          <input
+                            type="number"
+                            name="coffee"
+                            id="coffee"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="tobacco" className="block text-sm font-medium text-gray-700">Tobacco</label>
-                          <input type="number" name="tobacco" id="tobacco" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="tobacco"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Tobacco
+                          </label>
+                          <input
+                            type="number"
+                            name="tobacco"
+                            id="tobacco"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="leather" className="block text-sm font-medium text-gray-700">Leather</label>
-                          <input type="number" name="leather" id="leather" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="leather"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Leather
+                          </label>
+                          <input
+                            type="number"
+                            name="leather"
+                            id="leather"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="oak" className="block text-sm font-medium text-gray-700">Oak</label>
-                          <input type="number" name="oak" id="oak" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="oak"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Oak
+                          </label>
+                          <input
+                            type="number"
+                            name="oak"
+                            id="oak"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="toasted" className="block text-sm font-medium text-gray-700">Toasted</label>
-                          <input type="number" name="toasted" id="toasted" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="toasted"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Toasted
+                          </label>
+                          <input
+                            type="number"
+                            name="toasted"
+                            id="toasted"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="smokey" className="block text-sm font-medium text-gray-700">Smokey</label>
-                          <input type="number" name="smokey" id="smokey" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="smokey"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Smokey
+                          </label>
+                          <input
+                            type="number"
+                            name="smokey"
+                            id="smokey"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="peanut" className="block text-sm font-medium text-gray-700">Peanut</label>
-                          <input type="number" name="peanut" id="peanut" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="peanut"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Peanut
+                          </label>
+                          <input
+                            type="number"
+                            name="peanut"
+                            id="peanut"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="almond" className="block text-sm font-medium text-gray-700">Almond</label>
-                          <input type="number" name="almond" id="almond" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="almond"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Almond
+                          </label>
+                          <input
+                            type="number"
+                            name="almond"
+                            id="almond"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="pecan" className="block text-sm font-medium text-gray-700">Pecan</label>
-                          <input type="number" name="pecan" id="pecan" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="pecan"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Pecan
+                          </label>
+                          <input
+                            type="number"
+                            name="pecan"
+                            id="pecan"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="walnut" className="block text-sm font-medium text-gray-700">Walnut</label>
-                          <input type="number" name="walnut" id="walnut" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="walnut"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Walnut
+                          </label>
+                          <input
+                            type="number"
+                            name="walnut"
+                            id="walnut"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="oily" className="block text-sm font-medium text-gray-700">Oily</label>
-                          <input type="number" name="oily" id="oily" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="oily"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Oily
+                          </label>
+                          <input
+                            type="number"
+                            name="oily"
+                            id="oily"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="floral" className="block text-sm font-medium text-gray-700">Floral</label>
-                          <input type="number" name="floral" id="floral" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="floral"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Floral
+                          </label>
+                          <input
+                            type="number"
+                            name="floral"
+                            id="floral"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
@@ -380,24 +924,74 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="corn" className="block text-sm font-medium text-gray-700">Corn</label>
-                          <input type="number" name="corn" id="corn" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="corn"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Corn
+                          </label>
+                          <input
+                            type="number"
+                            name="corn"
+                            id="corn"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="rye" className="block text-sm font-medium text-gray-700">Rye</label>
-                          <input type="number" name="rye" id="rye" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="rye"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Rye
+                          </label>
+                          <input
+                            type="number"
+                            name="rye"
+                            id="rye"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="wheat" className="block text-sm font-medium text-gray-700">Wheat</label>
-                          <input type="number" name="wheat" id="wheat" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="wheat"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Wheat
+                          </label>
+                          <input
+                            type="number"
+                            name="wheat"
+                            id="wheat"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="malt" className="block text-sm font-medium text-gray-700">Malt</label>
-                          <input type="number" name="malt" id="malt" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="malt"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Malt
+                          </label>
+                          <input
+                            type="number"
+                            name="malt"
+                            id="malt"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="dough" className="block text-sm font-medium text-gray-700">Dough</label>
-                          <input type="number" name="dough" id="dough" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="dough"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Dough
+                          </label>
+                          <input
+                            type="number"
+                            name="dough"
+                            id="dough"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
@@ -408,36 +1002,116 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="vanilla" className="block text-sm font-medium text-gray-700">Vanilla</label>
-                          <input type="number" name="vanilla" id="vanilla" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="vanilla"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Vanilla
+                          </label>
+                          <input
+                            type="number"
+                            name="vanilla"
+                            id="vanilla"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="caramel" className="block text-sm font-medium text-gray-700">Caramel</label>
-                          <input type="number" name="caramel" id="caramel" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="caramel"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Caramel
+                          </label>
+                          <input
+                            type="number"
+                            name="caramel"
+                            id="caramel"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="molasses" className="block text-sm font-medium text-gray-700">Molasses</label>
-                          <input type="number" name="molasses" id="molasses" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="molasses"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Molasses
+                          </label>
+                          <input
+                            type="number"
+                            name="molasses"
+                            id="molasses"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="butterscotch" className="block text-sm font-medium text-gray-700">Butterscotch</label>
-                          <input type="number" name="butterscotch" id="butterscotch" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="butterscotch"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Butterscotch
+                          </label>
+                          <input
+                            type="number"
+                            name="butterscotch"
+                            id="butterscotch"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="honey" className="block text-sm font-medium text-gray-700">Honey</label>
-                          <input type="number" name="honey" id="honey" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="honey"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Honey
+                          </label>
+                          <input
+                            type="number"
+                            name="honey"
+                            id="honey"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="chocolate" className="block text-sm font-medium text-gray-700">Chocolate</label>
-                          <input type="number" name="chocolate" id="chocolate" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="chocolate"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Chocolate
+                          </label>
+                          <input
+                            type="number"
+                            name="chocolate"
+                            id="chocolate"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="toffee" className="block text-sm font-medium text-gray-700">Toffee</label>
-                          <input type="number" name="toffee" id="toffee" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="toffee"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Toffee
+                          </label>
+                          <input
+                            type="number"
+                            name="toffee"
+                            id="toffee"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-2 lg:col-span-1">
-                          <label htmlFor="sugar" className="block text-sm font-medium text-gray-700">Sugar</label>
-                          <input type="number" name="sugar" id="sugar" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="sugar"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Sugar
+                          </label>
+                          <input
+                            type="number"
+                            name="sugar"
+                            id="sugar"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
@@ -448,20 +1122,44 @@ export default function SingleForm() {
                       </div>
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-3 lg:col-span-2">
-                          <label htmlFor="value" className="block text-sm font-medium text-gray-700">Value</label>
-                          <input type="number" name="value" id="value" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="value"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Value
+                          </label>
+                          <input
+                            type="number"
+                            name="value"
+                            id="value"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                         <div className="col-span-3 lg:col-span-2">
-                          <label htmlFor="overallRating" className="block text-sm font-medium text-gray-700">Rating</label>
-                          <input type="number" name="overallRating" id="overallRating" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                          <label
+                            htmlFor="overallRating"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Rating
+                          </label>
+                          <input
+                            type="number"
+                            name="overallRating"
+                            id="overallRating"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
             </form>
@@ -469,7 +1167,7 @@ export default function SingleForm() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 /*

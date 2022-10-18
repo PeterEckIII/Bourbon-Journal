@@ -2,7 +2,7 @@ import { Form, useOutletContext } from "@remix-run/react";
 import type { ContextType } from "~/routes/reviews/new";
 import EarthNotes from "~/components/Notes/EarthNotes/EarthNotes";
 import FruitNotes from "~/components/Notes/FruitNotes/FruitNotes";
-import PrimaryButton from "~/components/Form/PrimaryButton";
+import Button from "../Button";
 import GrainNotes from "~/components/Notes/GrainNotes/GrainNotes";
 import SpiceNotes from "~/components/Notes/SpiceNotes/SpiceNotes";
 import SweetNotes from "~/components/Notes/SweetNotes/SweetNotes";
@@ -50,7 +50,10 @@ export default function NotesForm({ formData, formState }: INoteFormProps) {
         formData={formData}
       />
       <Rating state={state} changeHandler={stateSetter} formData={formData} />
-      <PrimaryButton
+      <Button type="button" callToAction="Cancel" />
+      <Button
+        type="submit"
+        primary
         callToAction={formState === "submitting" ? "Loading..." : "Review"}
       />
     </Form>
