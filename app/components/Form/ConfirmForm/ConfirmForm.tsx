@@ -1,7 +1,7 @@
 import { Form, Link } from "@remix-run/react";
 import NoteTabs from "~/components/Review/NoteTabs/NoteTabs";
 import type { CustomFormData } from "~/utils/helpers.server";
-import PrimaryButton from "../PrimaryButton";
+import Button from "../Button";
 import Collapsible from "~/components/UI/Collapsible/Collapsible";
 
 interface IConfirmFormProps {
@@ -225,7 +225,10 @@ export default function ConfirmForm({
       <Form method="post">
         <input type="hidden" name="id" value={formData.redisId} />
         <input type="hidden" name="imageId" value={imageId} />
-        <PrimaryButton
+        <Button callToAction="Cancel" type="button" />
+        <Button
+          primary
+          type="submit"
           callToAction={
             formState === "submitting" ? "Submitting..." : "Submit Review"
           }

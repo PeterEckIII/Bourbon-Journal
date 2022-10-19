@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useEffect } from "react";
-import { Link } from "remix";
-import { useFetcher, useTransition } from "remix";
+import React, { useEffect } from "react";
+import type { ChangeEvent } from "react";
+import { Link, useFetcher, useTransition } from "@remix-run/react";
 import CheckIcon from "~/components/Icons/CheckIcon";
 import Spinner from "~/components/Icons/Spinner";
 import type { FormState } from "~/routes/reviews/new";

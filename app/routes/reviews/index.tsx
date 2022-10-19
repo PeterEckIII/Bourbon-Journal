@@ -1,5 +1,5 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
-import { json } from "remix";
+import { json } from "@remix-run/server-runtime";
 import type { LoaderFunction, LinksFunction } from "@remix-run/server-runtime";
 import { requireUserId } from "~/session.server";
 import { getReviewsForTable } from "~/models/review.server";

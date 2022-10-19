@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import type { LinksFunction } from "remix";
+import type { LinksFunction } from "@remix-run/server-runtime";
 import { useOptionalUser } from "~/utils";
 // import banner from "~/images/EHT_Banner.png";
 
