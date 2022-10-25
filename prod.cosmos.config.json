@@ -1,0 +1,6 @@
+{
+  "staticPath": "public",
+  "watchDirs": ["app"],
+  "userDepFilePath": "app/cosmos.userdeps.js",
+  "experimentalRendererUrl": "https://bourbon-journal.fly.dev/cosmos"
+}

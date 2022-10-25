@@ -16,3 +16,5 @@ node_modules
 cypress.env.json
 
 /4.25.0_0
+/app/cosmos.userdeps.js
+/cosmos-export
