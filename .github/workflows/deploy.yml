@@ -68,7 +68,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: ⚡ Run vitest
-        run: npm run test -- --coverage
+        run: npm run test:deploy -- --coverage
 
   cypress:
     name: 🧪 Cypress
@@ -102,6 +102,12 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+
+      - name: 🐳 Docker compose
+        # allow postgres to start with delay
+        run: docker-compose up -d && sleep 3
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
 
       - name: 🛠 Setup Database
         run: npx prisma migrate reset --force
