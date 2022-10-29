@@ -29,7 +29,7 @@ export const links: LinksFunction = () => {
   ];
 };
 
-interface LoaderData {
+export interface LoaderData {
   reviewListItems: Awaited<ReturnType<typeof getReviewsForTable>>;
   userId: string;
 }
